@@ -40,7 +40,6 @@ double Employee::getWorktime() const
 double Employee::getHourSalary() const
 {
     return this->hourSalary;
-    
 }
 void Employee::setEmployee(char *name, double worktime, double hourSalary)
 {
@@ -66,5 +65,16 @@ void Employee::setHourSalary(double worktime)
 void Employee::print()
 {
     std::cout << this->name << '\t' << this->worktime << '\t' << this->hourSalary << std::endl;
-    std::cout<<"hello";
+    std::cout << "hello";
+}
+bool Employee::storeInBin(std::ostream &out) const
+{
+    if (!out)
+    {
+        return false;
+    }
+    out.write(reinterpret_cast<const char*>(&this->name),sizeof(this->name));
+    out.write(reinterpret_cast<const char*>(&this->worktime),sizeof(this->worktime));
+    out.write(reinterpret_cast<const char*>(&this->hourSalary),sizeof(this->hourSalary));
+    return out.good();
 }

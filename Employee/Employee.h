@@ -1,6 +1,6 @@
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
-
+#include <iostream>
 class Employee
 {
 private:
@@ -19,6 +19,7 @@ public:
     void setWorktime(double);
     void setHourSalary(double);
     void print();
+    bool storeInBin(std::ostream& out)const;
 
 };
 
