@@ -73,8 +73,46 @@ bool Employee::storeInBin(std::ostream &out) const
     {
         return false;
     }
-    out.write(reinterpret_cast<const char*>(&this->name),sizeof(this->name));
-    out.write(reinterpret_cast<const char*>(&this->worktime),sizeof(this->worktime));
-    out.write(reinterpret_cast<const char*>(&this->hourSalary),sizeof(this->hourSalary));
+    size_t size = strlen(this->name);
+    out.write(reinterpret_cast<const char *>(&size), sizeof(size_t));
+    out.write(reinterpret_cast<const char *>(&this->name), sizeof(this->name));
+    out.write(reinterpret_cast<const char *>(&this->worktime), sizeof(this->worktime));
+    out.write(reinterpret_cast<const char *>(&this->hourSalary), sizeof(this->hourSalary));
     return out.good();
+}
+bool Employee::loadFromBin(std::istream &in)
+{
+    if (!in)
+    {
+        return false;
+    }
+    size_t size;
+    in.read(reinterpret_cast<const char *>(&size), sizeof(size));
+    if (in && in.gcount() == sizeof(size))
+    {
+        char *buffer = new char[size + 1];
+        in.read(reinterpret_cast<const char *>(buffer), sizeof(char) * size);
+        if (in && in.gcount() == sizeof(char) * size)
+        {
+            strcpy(this->name, buffer);
+            double worktime;
+            in.read(reinterpret_cast<const char *>(&worktime), sizeof(worktime));
+            if (in && in.gcount() == sizeof(worktime))
+            {
+                this->worktime = worktime;
+                double hourSalary;
+                in.read(reinterpret_cast<const char *>(&hourSalary), sizeof(hourSalary));
+                if (in && in.gcount() == sizeof(hourSalary))
+                {
+                    this->hourSalary = hourSalary;
+                    return true;
+                }
+            }
+        }
+        else
+        {
+            delete[] buffer;
+        }
+    }
+    return false;
 }

@@ -20,6 +20,7 @@ public:
     void setHourSalary(double);
     void print();
     bool storeInBin(std::ostream& out)const;
+    bool loadFromBin(std::istream& in);
 
 };
 
