@@ -62,10 +62,11 @@ void Employee::setHourSalary(double worktime)
     assert(hourSalary > 3.5);
     this->hourSalary = hourSalary;
 }
-void Employee::print()
+void Employee::print(std::ostream &out) const
 {
-    std::cout << this->name << '\t' << this->worktime << '\t' << this->hourSalary << std::endl;
-    std::cout << "hello";
+    if (!out)
+        return;
+    out << this->name << '\t' << this->worktime << '\t' << this->hourSalary << std::endl;
 }
 bool Employee::storeInBin(std::ostream &out) const
 {
