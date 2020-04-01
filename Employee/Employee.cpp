@@ -40,6 +40,7 @@ double Employee::getWorktime() const
 double Employee::getHourSalary() const
 {
     return this->hourSalary;
+    
 }
 void Employee::setEmployee(char *name, double worktime, double hourSalary)
 {
