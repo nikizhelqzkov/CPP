@@ -16,6 +16,8 @@ public:
     double getWorktime()const;
     double getHourSalary()const;
     void setEmployee(char*,double,double);
+    void setWorktime(double);
+    void setHourSalary(double);
     void print();
     
 };
