@@ -19,7 +19,7 @@ public:
     void setWorktime(double);
     void setHourSalary(double);
     void print();
-    
+
 };
 
 //da gi otdelq s \'t
