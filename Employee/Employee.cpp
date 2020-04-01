@@ -65,4 +65,5 @@ void Employee::setHourSalary(double worktime)
 void Employee::print()
 {
     std::cout << this->name << '\t' << this->worktime << '\t' << this->hourSalary << std::endl;
+    std::cout<<"hello";
 }
