@@ -13,6 +13,6 @@ int main()
     std::cout << s.getSum() << "\n";
     std::cout << s.getCount() << "\n";
     std::cout << s.average() << "\n";
-    s.~NumberSummator();
+  
     return 0;
 }
