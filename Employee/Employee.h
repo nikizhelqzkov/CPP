@@ -22,7 +22,7 @@ public:
 
 };
 
-//da gi otdelq s \'t
+
 
 
 #endif
