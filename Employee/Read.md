@@ -1,0 +1,1 @@
+//Class Employee with binary and text generation
