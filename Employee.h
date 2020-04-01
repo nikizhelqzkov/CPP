@@ -4,20 +4,23 @@
 class Employee
 {
 private:
-    /* data */
+   char* name;
+   double worktime;
+   double hourSalary;
 public:
-    Employee(/* args */);
+    Employee();
+    Employee(const char*,double,double);
+    Employee(const Employee&);
     ~Employee();
+    char* getName()const;
+    double getWorktime()const;
+    double getHourSalary()const;
+    void setEmployee(char*,double,double);
+    void print();
+    
 };
 
-Employee::Employee(/* args */)
-{
-}
-
-Employee::~Employee()
-{
-}
-
+//da gi otdelq s \'t
 
 
 #endif
