@@ -1,6 +1,6 @@
 #include "Employee.cpp"
-#include<fstream>
-#include<iostream>
+#include <fstream>
+#include <iostream>
 
 void textToBin(const char *inputFile, const char *outputFile)
 {
@@ -60,7 +60,26 @@ double generateSalaries(const char *inputFile, const char *outputFile)
 
 int main()
 {
-    textToBin("m.txt","Employ.txt");
+
+    //textToBin("m.txt","Employ.txt");
+    // std::cout<<generateSalaries("Employee.txt","Employ.txt");
+    std::ofstream output("ava.txt", std::ios::out | std::ios::binary);
+    if (!output.is_open())
+    {
+        std::cout << "The output can't be opened\n";
+        return 0;
+    }Employee em;
+    for (int i = 0; i < 2; i++)
+    {
+        
+        if (em.read())
+        {
+            em.storeInBin(output);   
+            em.print();
+        }
+    }
+ 
+    output.close();
 
     return 0;
 }

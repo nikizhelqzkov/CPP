@@ -21,7 +21,7 @@ public:
     void setHourSalary(double);
     void setName(const char*);
     bool print(std::ostream& out=std::cout)const;
-    bool read(std::istream&);
+    bool read(std::istream& in=std::cin);
     bool storeInBin(std::ostream& out)const;
     bool loadFromBin(std::istream& in);
 };

@@ -65,7 +65,7 @@ void Employee::setWorktime(double worktime)
     assert(worktime > 0);
     this->worktime = worktime;
 }
-void Employee::setHourSalary(double worktime)
+void Employee::setHourSalary(double hourSalary)
 {
     assert(hourSalary > 3.5);
     this->hourSalary = hourSalary;
@@ -74,7 +74,7 @@ bool Employee::print(std::ostream &out) const
 {
     if (!out)
         return false;
-    out << std::setiosflags(std::ios::fixed) << std::setprecision(2);
+    out << std::setiosflags(std::ios::fixed) << std::setprecision(3);
     out << this->name << '\t' << this->worktime << '\t' << this->hourSalary << std::endl;
     return out.good();
 }
@@ -143,7 +143,7 @@ bool Employee::loadFromBin(std::istream &in)
             double hourSalary = 3.5;
             in.read(reinterpret_cast<char *>(&hourSalary), sizeof(double));
 
-            // this->hourSalary = hourSalary;
+            //this->hourSalary = hourSalary;
 
             if (in)
             {
