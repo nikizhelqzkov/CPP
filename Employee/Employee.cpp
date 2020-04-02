@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cassert>
 #include <cstring>
+#include <iomanip>
 Employee::Employee()
 {
     this->name = nullptr;
@@ -41,7 +42,7 @@ double Employee::getHourSalary() const
 {
     return this->hourSalary;
 }
-void Employee::setEmployee(char *name, double worktime, double hourSalary)
+void Employee::setEmployee(const char *name, double worktime, double hourSalary)
 {
     delete[] this->name;
     assert(name && strlen(name) > 0 && strlen(name) < 50);
@@ -51,6 +52,13 @@ void Employee::setEmployee(char *name, double worktime, double hourSalary)
     this->worktime = worktime;
     assert(hourSalary > 3.5);
     this->hourSalary = hourSalary;
+}
+void Employee::setName(const char *name)
+{
+    delete[] this->name;
+    assert(name && strlen(name) > 0 && strlen(name) < 50);
+    this->name = new char[strlen(name) + 1];
+    strcpy(this->name, name);
 }
 void Employee::setWorktime(double worktime)
 {
@@ -62,11 +70,42 @@ void Employee::setHourSalary(double worktime)
     assert(hourSalary > 3.5);
     this->hourSalary = hourSalary;
 }
-void Employee::print(std::ostream &out) const
+bool Employee::print(std::ostream &out) const
 {
     if (!out)
         return;
+    out << std::setiosflags(std::ios::fixed) << std::setprecision(2);
     out << this->name << '\t' << this->worktime << '\t' << this->hourSalary << std::endl;
+    return out.good();
+}
+bool Employee::read(std::istream &in)
+{
+    if (!in)
+        return false;
+    char buffer[255];
+    double workTime = 0;
+    double hourSalary = 3.5;
+    in.getline(buffer, 255, '\t');
+    in >> worktime >> hourSalary;
+    if (in)
+    {
+        this->setName(buffer);
+        this->setWorktime(worktime);
+        this->setHourSalary(hourSalary);
+        return true;
+    }
+    else if (in.eof())
+    {
+        std::cout << "END OF FILE\n";
+        return false;
+    }
+    else if (in.fail())
+    {
+        in.clear();
+        in.ignore(1024, '\n');
+    }
+
+    return false;
 }
 bool Employee::storeInBin(std::ostream &out) const
 {
@@ -87,33 +126,35 @@ bool Employee::loadFromBin(std::istream &in)
     {
         return false;
     }
-    size_t size;
-    in.read((char *)(&size), sizeof(size));
+    int size = 0;
+    in.read(reinterpret_cast<char *>(&size), sizeof(int));
     if (in && in.gcount() == sizeof(size))
     {
         char *buffer = new char[size + 1];
-        in.read((char *)(buffer), sizeof(char) * size);
-        if (in && in.gcount() == sizeof(char) * size)
+        in.read(reinterpret_cast<char *>(buffer), sizeof(char) * size);
+        buffer[size] = '\0';
+        if (in)
         {
             strcpy(this->name, buffer);
-            double worktime;
-            in.read((char *)(&worktime), sizeof(worktime));
-            if (in && in.gcount() == sizeof(worktime))
+            double worktime = 0;
+            in.read((char *)(&worktime), sizeof(double));
+
+            //this->worktime = worktime;
+            double hourSalary = 3.5;
+            in.read(reinterpret_cast<char *>(&hourSalary), sizeof(double));
+
+            // this->hourSalary = hourSalary;
+
+            if (in)
             {
-                this->worktime = worktime;
-                double hourSalary;
-                in.read((char *)(&hourSalary), sizeof(hourSalary));
-                if (in && in.gcount() == sizeof(hourSalary))
-                {
-                    this->hourSalary = hourSalary;
-                    return true;
-                }
+                delete[] this->name;
+                this->name = buffer;
+                this->setWorktime(worktime);
+                this->setHourSalary(hourSalary);
+                return true;
             }
         }
-        else
-        {
-            delete[] buffer;
-        }
+        delete[] buffer;
     }
     return false;
 }

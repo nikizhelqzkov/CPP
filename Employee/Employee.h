@@ -16,10 +16,12 @@ public:
     char* getName()const;
     double getWorktime()const;
     double getHourSalary()const;
-    void setEmployee(char*,double,double);
+    void setEmployee(const char*,double,double);
     void setWorktime(double);
     void setHourSalary(double);
-    void print(std::ostream&)const;
+    void setName(const char*);
+    bool print(std::ostream& out=std::cout)const;
+    bool read(std::istream&);
     bool storeInBin(std::ostream& out)const;
     bool loadFromBin(std::istream& in);
 };
