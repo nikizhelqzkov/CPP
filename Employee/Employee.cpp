@@ -88,21 +88,21 @@ bool Employee::loadFromBin(std::istream &in)
         return false;
     }
     size_t size;
-    in.read(reinterpret_cast<const char *>(&size), sizeof(size));
+    in.read((char *)(&size), sizeof(size));
     if (in && in.gcount() == sizeof(size))
     {
         char *buffer = new char[size + 1];
-        in.read(reinterpret_cast<const char *>(buffer), sizeof(char) * size);
+        in.read((char *)(buffer), sizeof(char) * size);
         if (in && in.gcount() == sizeof(char) * size)
         {
             strcpy(this->name, buffer);
             double worktime;
-            in.read(reinterpret_cast<const char *>(&worktime), sizeof(worktime));
+            in.read((char *)(&worktime), sizeof(worktime));
             if (in && in.gcount() == sizeof(worktime))
             {
                 this->worktime = worktime;
                 double hourSalary;
-                in.read(reinterpret_cast<const char *>(&hourSalary), sizeof(hourSalary));
+                in.read((char *)(&hourSalary), sizeof(hourSalary));
                 if (in && in.gcount() == sizeof(hourSalary))
                 {
                     this->hourSalary = hourSalary;
