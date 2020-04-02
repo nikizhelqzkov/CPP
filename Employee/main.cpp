@@ -1,4 +1,6 @@
 #include "Employee.cpp"
+#include<fstream>
+#include<iostream>
 
 void textToBin(const char *inputFile, const char *outputFile)
 {
@@ -33,20 +35,32 @@ double generateSalaries(const char *inputFile, const char *outputFile)
     if (!input.is_open())
     {
         std::cout << "The input file: " << inputFile << " can't be openen!\n";
-        return;
+        return 0;
     }
-    std::
+    std::ofstream output(outputFile, std::ios::out);
     if (!output.is_open())
     {
         std::cout << "The output file: " << outputFile << " can't be openen!\n";
-        return;
+        return 0;
     }
- 
+    double totalSalaries = 0;
+    while (input)
+    {
+        Employee currentEmploy;
+        if (currentEmploy.loadFromBin(input))
+        {
+            double currentSalary = currentEmploy.getHourSalary() * currentEmploy.getWorktime();
+            output << currentEmploy.getName() << '\t' << currentSalary << '\n';
+            totalSalaries += currentSalary;
+        }
+    }
+
+    return totalSalaries;
 }
 
 int main()
 {
-    Employee e;
+    textToBin("m.txt","Employ.txt");
 
     return 0;
 }

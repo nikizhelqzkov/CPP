@@ -73,7 +73,7 @@ void Employee::setHourSalary(double worktime)
 bool Employee::print(std::ostream &out) const
 {
     if (!out)
-        return;
+        return false;
     out << std::setiosflags(std::ios::fixed) << std::setprecision(2);
     out << this->name << '\t' << this->worktime << '\t' << this->hourSalary << std::endl;
     return out.good();
