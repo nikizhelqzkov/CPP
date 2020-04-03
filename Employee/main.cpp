@@ -124,9 +124,9 @@ bool filterFromBin(const char* inputFileName, const char* outputFileName)
 
 int main()
 {
-    calculateSalaries("m.txt", "BudgetForSalaries.txt");
-    convertTextToBin("m.txt", "Employees.bin");
-    filterFromBin("Employees.bin", "LessThan20Hours.txt");
+    //calculateSalaries("m.txt", "BudgetForSalaries.txt");
+    //convertTextToBin("m.txt", "Employees.bin");
+    //filterFromBin("Employees.bin", "LessThan20Hours.txt");
 
     return 0;
 }
