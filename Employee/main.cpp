@@ -2,84 +2,131 @@
 #include <fstream>
 #include <iostream>
 
-void textToBin(const char *inputFile, const char *outputFile)
+void test()
 {
-    std::ifstream input(inputFile, std::ios::in);
-    if (!input.is_open())
+    Employee me("Me", 40, 20.50);
+
+    std::ofstream outputFile("Employees.txt", std::ios::out);
+    if(!outputFile.is_open())
     {
-        std::cout << "The input file: " << inputFile << " can't be openen!\n";
+        std::cout << "Error! The file cannot be opened!" << std::endl;
         return;
     }
-    std::ofstream output(outputFile, std::ios::out | std::ios::binary);
-    if (!output.is_open())
-    {
-        std::cout << "The output file: " << outputFile << " can't be openen!\n";
-        return;
-    }
-    while (input)
-    {
-        Employee currentEmployee;
-        if (currentEmployee.read(input))
-        {
-            currentEmployee.print();
-            currentEmployee.storeInBin(output);
-        }
-    }
-    input.close();
-    output.close();
+
+    me.print(outputFile);
+
+    outputFile.close();
 }
 
-double generateSalaries(const char *inputFile, const char *outputFile)
+double calculateSalaries(const char* inputFileName, const char* outputFileName)
 {
-    std::ifstream input(inputFile, std::ios::in | std::ios::binary);
-    if (!input.is_open())
+    std::ifstream inputFile(inputFileName, std::ios::in);
+    if(!inputFile.is_open())
     {
-        std::cout << "The input file: " << inputFile << " can't be openen!\n";
+        std::cout << "The input file " << inputFileName << " cannot be opened!" << std::endl;
         return 0;
     }
-    std::ofstream output(outputFile, std::ios::out);
-    if (!output.is_open())
+
+    std::ofstream outputFile(outputFileName, std::ios::out);
+    if(!outputFile.is_open())
     {
-        std::cout << "The output file: " << outputFile << " can't be openen!\n";
+        std::cout << "The output file " << outputFileName << " cannot be opened!" << std::endl;
         return 0;
     }
+
     double totalSalaries = 0;
-    while (input)
+
+    Employee currentEmployee;
+    while(inputFile)
     {
-        Employee currentEmploy;
-        if (currentEmploy.loadFromBin(input))
+        if(currentEmployee.read(inputFile))
         {
-            double currentSalary = currentEmploy.getHourSalary() * currentEmploy.getWorktime();
-            output << currentEmploy.getName() << '\t' << currentSalary << '\n';
-            totalSalaries += currentSalary;
+            double salary =
+                currentEmployee.getWorktime() * currentEmployee.getHourSalary();
+
+                outputFile << std::setiosflags(std::ios::fixed) << std::setprecision(2);
+                outputFile << currentEmployee.getName() << '\t' << salary << std::endl;
+
+                totalSalaries += salary;
         }
     }
+
+    inputFile.close();
+    outputFile.close();
 
     return totalSalaries;
 }
 
-int main()
+bool convertTextToBin(const char* inputFileName, const char* outputFileName)
 {
+    std::ifstream inputFile(inputFileName, std::ios::in);
+    if(!inputFile.is_open())
+    {
+        std::cout << "The input file " << inputFileName << " cannot be opened!" << std::endl;
+        return false;
+    }
 
-    //textToBin("m.txt","Employ.txt");
-    // std::cout<<generateSalaries("Employee.txt","Employ.txt");
-    std::ofstream output("ava.txt", std::ios::out | std::ios::binary);
-    if (!output.is_open())
+    std::ofstream outputFile(outputFileName, std::ios::out | std::ios::binary);
+    if(!outputFile.is_open())
     {
-        std::cout << "The output can't be opened\n";
-        return 0;
-    }Employee em;
-    for (int i = 0; i < 2; i++)
+        std::cout << "The output file " << outputFileName << " cannot be opened!" << std::endl;
+        return false;
+    }
+
+    Employee currentEmployee;
+    while(inputFile)
     {
-        
-        if (em.read())
+        if(currentEmployee.read(inputFile))
         {
-            em.storeInBin(output);   
-            em.print();
+            currentEmployee.storeInBin(outputFile);
         }
     }
- 
-    output.close();
+
+    inputFile.close();
+    outputFile.close();
+
+    return true;
+}
+
+bool filterFromBin(const char* inputFileName, const char* outputFileName)
+{
+    std::ifstream inputFile(inputFileName, std::ios::in | std::ios::binary);
+    if(!inputFile.is_open())
+    {
+        std::cout << "The input file " << inputFileName << " cannot be opened!" << std::endl;
+        return false;
+    }
+
+    std::ofstream outputFile(outputFileName, std::ios::out);
+    if(!outputFile.is_open())
+    {
+        std::cout << "The output file " << outputFileName << " cannot be opened!" << std::endl;
+        return false;
+    }
+
+    Employee currentEmployee;
+    while(inputFile)
+    {
+        if(currentEmployee.loadFromBin(inputFile))
+        {
+            if(currentEmployee.getWorktime() < 20.0)
+            {
+                currentEmployee.print(outputFile);
+            }
+        }
+    }
+
+    inputFile.close();
+    outputFile.close();
+
+    return true;
+}
+
+int main()
+{
+    calculateSalaries("m.txt", "BudgetForSalaries.txt");
+    convertTextToBin("m.txt", "Employees.bin");
+    filterFromBin("Employees.bin", "LessThan20Hours.txt");
 
     return 0;
 }
