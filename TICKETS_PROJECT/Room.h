@@ -11,7 +11,7 @@ private:
 
 public:
     Room();
-    Room(int&, const int **,int&, int&);
+    Room(int,  int **,int, int);
     Room(const Room &);
     ~Room();
     void print()const;

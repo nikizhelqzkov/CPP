@@ -1,15 +1,37 @@
 #include "Date.cpp"
 #include "Room.cpp"
-
+#include <iostream>
 int main()
 {
-    // Date date(25,06,2000);
-    // date.print();
-    int id = 3;
-    int a[3][10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-                    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-                    21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
+     Date date(25,06,2000);
+     date.print();
+    size_t id = 3; 
+    int **a = new int *[3];
+    
     int row = 3;
-    int col = 10;
-    Room A(id,a,row,col);
+    int col = 2;
+    int counter = 1;
+    for (int i = 0; i < row; ++i)
+    {
+        a[i] = new int[col];
+    }
+    for (int i = 0; i < row; ++i)
+    {
+        for (int j = 0; j < col; ++j)
+        {
+            std::cin>>a[i][j];
+        }
+    }
+  
+    Room A(3, a, row, col);
+
+    A.print();
+
+    for (size_t i = 0; i < row; i++)
+    {
+        delete[] a[i];
+    }
+    delete[] a;
+
+    return 0;
 }
