@@ -15,7 +15,8 @@ int main()
     v[0][1] = b;
     v[1][0] = b;
     v[1][1] = a;
-    Room club(1, v, 2, 2);
+    Room club(1, v, 12,12);
+    
     club.print();
     //  Date date(25,06,2000);
     //  date.print();

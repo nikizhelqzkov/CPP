@@ -4,7 +4,6 @@
 #include <cassert>
 #include "Client.cpp"
 
-
 Room::Room()
 {
     this->id = 0;
@@ -13,7 +12,7 @@ Room::Room()
     this->rows = 0;
     this->placeOnRow = 0;
 }
-Room::Room(int id, std::vector<std::vector<Client>> place, int rows, int placeOnRow)
+Room::Room(int id, const std::vector<std::vector<Client>>& place, int rows, int placeOnRow)
 {
     this->id = id;
     assert(rows > 0 && placeOnRow > 0);
@@ -77,4 +76,21 @@ void Room::print()
         }
         std::cout << "\n";
     }
+}
+int Room::getId() const
+{
+    return this->id;
+}
+int Room::getRows() const
+{
+    return this->rows;
+}
+std::vector<std::vector<Client>> Room::getplaces() const
+{
+    return this->matrix;
+}
+
+int Room::getCols() const
+{
+    return this->placeOnRow;
 }

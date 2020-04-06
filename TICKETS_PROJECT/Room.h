@@ -9,23 +9,30 @@ class Room
 private:
     int id;
     //mestata shte sa ot obekti
-    int **places;
+   // int **places;
     std::vector<std::vector<Client>> matrix;
     int rows;
     int placeOnRow;
 
 public:
     Room();
-    Room(int, std::vector<std::vector<Client>>, int, int);
+    Room(int,const std::vector<std::vector<Client>>&, int, int);
     Room(const Room &);
     ~Room();
     void print();
-    //getur
+    int getId()const;
+    int getRows()const;
+    int getCols()const;
+    std::vector<std::vector<Client>>getplaces()const;
+    void setId(int);
+    void setRows(int rows);
+    void setMatrix(const std::vector<std::vector<Client>>&);//
     //seturi
     //i->ti element
     //operaciq ravno
     //==
     //!=
+    //busy
 };
 
 class RoomArr
