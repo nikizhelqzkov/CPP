@@ -19,6 +19,8 @@ public:
     void setName(const std::string &);
     void read();
     void print();
+    int getRow()const;
+    int getCol()const;
 };
 
 #endif

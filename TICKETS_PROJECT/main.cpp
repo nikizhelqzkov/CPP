@@ -9,7 +9,7 @@ int main()
     c.read();d.read();
     e.read();
 
-    std::vector<std::vector<Client>> v(4, std::vector<Client>(3));
+    std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
     for (int i = 0; i < v.size(); i++)
     {
         for (int j = 0; j < v[i].size(); j++)
@@ -18,12 +18,12 @@ int main()
         }
     }
 
-v[0][0] = c;
-v[0][1] = d;
-v[1][0] = e;
+v[c.getRow()-1][c.getCol()-1] = c;
+v[d.getRow()-1][d.getCol()-1] = d;
+v[e.getRow()-1][e.getCol()-1] = e;
 
 // std::cout<<v[2].size();
-Room club(1, v, 4,3);
+Room club(1, v, 7,7);
 
 club.print();
 //  Date date(25,06,2000);

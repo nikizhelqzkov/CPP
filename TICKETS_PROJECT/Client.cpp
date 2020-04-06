@@ -47,3 +47,9 @@ void Client::read()
     std::getline(std::cin, c);
     this->name = c;
 }
+int Client::getRow()const{
+    return this->row;
+}
+int Client::getCol()const{
+    return this->col;
+}
