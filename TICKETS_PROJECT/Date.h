@@ -9,7 +9,9 @@ private:
 	bool isValidDate(unsigned short day, unsigned short month, unsigned short year);
 
 public:
+	Date();
 	Date(unsigned, unsigned, unsigned);
+	Date(const Date&);
 
 	void read();
 

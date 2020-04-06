@@ -1,60 +1,80 @@
 #include "Room.h"
+#include "Date.cpp"
 #include <iostream>
 #include <cassert>
+#include "Client.cpp"
+
+
 Room::Room()
 {
     this->id = 0;
-    this->places = nullptr;
+    // this->places = nullptr;
+
     this->rows = 0;
     this->placeOnRow = 0;
 }
-Room::Room(int id, int **places, int rows, int placeOnRow)
+Room::Room(int id, std::vector<std::vector<Client>> place, int rows, int placeOnRow)
 {
     this->id = id;
     assert(rows > 0 && placeOnRow > 0);
     this->rows = rows;
     this->placeOnRow = placeOnRow;
-    this->places = new int *[rows];
-    for (int i = 0; i < this->rows; i++)
-    {
-        this->places[i] = new int[placeOnRow];
+    //     this->matrix.resize(this->rows);
+    //     for (int i = 0; i < this->rows; i++)
+    //     {
+    //         this->matrix[i].resize(this->placeOnRow);
+    //     }
+    //     Client def;
+    // for (int i = 0; i < this->rows; i++)
+    // {
+    //     for (int j = 0; j < placeOnRow; j++)
+    //     {
+    //         matrix[i][j] =  def;
+    //     }
+    this->matrix = place;
 
-        for (int j = 0; j < placeOnRow; j++)
-        {
-            this->places[i][j] = places[i][j];
-        }
-        
-    }
+    // this->places = new int *[rows];
+    // for (int i = 0; i < this->rows; i++)
+    // {
+    //     this->places[i] = new int[placeOnRow];
+
+    //     for (int j = 0; j < placeOnRow; j++)
+    //     {
+    //         this->places[i][j] = places[i][j];
+    //     }
+
+    // }
 }
 Room::~Room()
 {
-    for (int i = 0; i < this->rows; i++)
-    {
-        delete[] this->places[i];
-    }
-    delete[] this->places;
+    //     for (int i = 0; i < this->rows; i++)
+    //     {
+    //         delete[] this->places[i];
+    //     }
+    //     delete[] this->places;
 }
 Room::Room(const Room &other)
 {
     this->id = other.id;
     this->rows = other.rows;
     this->placeOnRow = other.placeOnRow;
-    this->places = new int *[this->rows];
-    for (int i = 0; i < this->rows; i++)
-    {
-        this->places[i] = new int[placeOnRow];
-        *(this->places[i]) = *(other.places[i]);
-    }
+    this->matrix = other.matrix;
+    //     this->places = new int *[this->rows];
+    //     for (int i = 0; i < this->rows; i++)
+    //     {
+    //         this->places[i] = new int[placeOnRow];
+    //         *(this->places[i]) = *(other.places[i]);
+    //     }
 }
-void Room::print() const
+void Room::print()
 {
     std::cout << "Number: " << this->id << ", Rows: " << this->rows << ", Columns: " << this->placeOnRow << "\n\n";
-    for (int i = 0; i < this->rows; i++)
+    for (auto vec : this->matrix)
     {
-        for (int j = 0; j < this->placeOnRow; j++)
+        for (auto x : vec)
         {
-            std::cout << this->places[i][j] << ", ";
+            x.print();
         }
-        std::cout << std::endl;
+        std::cout << "\n";
     }
 }

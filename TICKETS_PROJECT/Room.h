@@ -1,21 +1,25 @@
 #ifndef ROOM_H
 #define ROOM_H
-
+#include <vector>
+#include <string>
+#include "Date.h"
+#include "Client.h"
 class Room
 {
 private:
     int id;
-//mestata shte sa ot obekti    
+    //mestata shte sa ot obekti
     int **places;
+    std::vector<std::vector<Client>> matrix;
     int rows;
     int placeOnRow;
 
 public:
     Room();
-    Room(int, int **, int, int);
+    Room(int, std::vector<std::vector<Client>>, int, int);
     Room(const Room &);
     ~Room();
-    void print() const;
+    void print();
     //getur
     //seturi
     //i->ti element
@@ -33,9 +37,9 @@ private:
 public:
     RoomArr();
     RoomArr(Room *, size_t);
-    RoomArr(const RoomArr&);
+    RoomArr(const RoomArr &);
     ~RoomArr();
-    void printArr()const;
+    void printArr() const;
     //i-ti element
     //add event = operator + na room i proverka dali tozi nomer na staqta ne e zaet
 };

@@ -2,12 +2,12 @@
 
 #include "Date.h"
 
-//Date::Date()
-//{
-//	this->day = 1;
-//	this->month = 1;
-//	this->year = 1900;
-//}
+Date::Date()
+{
+	this->day = 1;
+	this->month = 1;
+	this->year = 2020;
+}
 
 Date::Date(unsigned d, unsigned m, unsigned y)
 {
@@ -21,10 +21,14 @@ Date::Date(unsigned d, unsigned m, unsigned y)
 	{
 		this->day = 1;
 		this->month = 1;
-		this->year = 1900;
+		this->year = 2020;
 	}
 }
-
+Date::Date(const Date& other){
+	this->day = other.day;
+	this->month = other.month;
+	this->year = other.year;
+}
 void Date::read()
 {
     unsigned short day, month, year;
@@ -43,7 +47,7 @@ void Date::read()
 
 void Date::print() const
 {
-	std::cout << this->year << '-' << this->month << '-' << this->day << std::endl;
+	std::cout << this->year << '-' << this->month << '-' << this->day;
 }
 
 bool Date::isValidDate(unsigned short d, unsigned short m, unsigned short y)
