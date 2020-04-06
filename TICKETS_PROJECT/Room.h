@@ -26,8 +26,9 @@ public:
     std::vector<std::vector<Client>>getplaces()const;
     void setId(int);
     void setRows(int rows);
-    void setMatrix(const std::vector<std::vector<Client>>&);//
-    //seturi
+    void setCols(int cols);
+    void setMatrix(const std::vector<std::vector<Client>>&);
+   
     //i->ti element
     //operaciq ravno
     //==

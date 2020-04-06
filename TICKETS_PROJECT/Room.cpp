@@ -4,6 +4,22 @@
 #include <cassert>
 #include "Client.cpp"
 
+bool isItOkMatrix(int rows, int cols, std::vector<std::vector<Client>> m)
+{
+    if (rows != m.size())
+        return false;
+    else
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            if (m[i].size() != cols)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
 Room::Room()
 {
     this->id = 0;
@@ -12,37 +28,17 @@ Room::Room()
     this->rows = 0;
     this->placeOnRow = 0;
 }
-Room::Room(int id, const std::vector<std::vector<Client>>& place, int rows, int placeOnRow)
+Room::Room(int id, const std::vector<std::vector<Client>> &place, int rows, int placeOnRow)
 {
     this->id = id;
     assert(rows > 0 && placeOnRow > 0);
     this->rows = rows;
     this->placeOnRow = placeOnRow;
-    //     this->matrix.resize(this->rows);
-    //     for (int i = 0; i < this->rows; i++)
-    //     {
-    //         this->matrix[i].resize(this->placeOnRow);
-    //     }
-    //     Client def;
-    // for (int i = 0; i < this->rows; i++)
-    // {
-    //     for (int j = 0; j < placeOnRow; j++)
-    //     {
-    //         matrix[i][j] =  def;
-    //     }
+
+    assert(isItOkMatrix(this->rows,this->placeOnRow,place));
     this->matrix = place;
 
-    // this->places = new int *[rows];
-    // for (int i = 0; i < this->rows; i++)
-    // {
-    //     this->places[i] = new int[placeOnRow];
-
-    //     for (int j = 0; j < placeOnRow; j++)
-    //     {
-    //         this->places[i][j] = places[i][j];
-    //     }
-
-    // }
+    
 }
 Room::~Room()
 {
@@ -93,4 +89,19 @@ std::vector<std::vector<Client>> Room::getplaces() const
 int Room::getCols() const
 {
     return this->placeOnRow;
+}
+void Room::setId(int id)
+{
+    this->id = id;
+}
+void Room::setMatrix(const std::vector<std::vector<Client>> &other)
+{
+    assert(isItOkMatrix(this->rows,this->placeOnRow,other));
+    this->matrix = other;
+}
+void Room::setRows(int rows){
+    this->rows = rows;
+}
+void Room::setCols(int cols){
+    this->placeOnRow = cols;
 }

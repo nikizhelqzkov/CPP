@@ -15,6 +15,9 @@ private:
 public:
     Client();
     Client(int, int, Date, std::string);
+    std::string getName() const;
+    void setName(const std::string &);
+    void read();
     void print();
 };
 
