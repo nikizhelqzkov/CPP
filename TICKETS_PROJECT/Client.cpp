@@ -39,9 +39,9 @@ Date Client::getDate() const
 {
     return this->date;
 }
-void Client::read()
+void Client::read( const RoomArr& data)
 {
-    RoomArr data;
+   
     bool flag = true;
     std::cout << "Date of Event: \n";
     do
@@ -52,7 +52,7 @@ void Client::read()
         flag = this->getRooms(data);
 
     } while (!flag);
-    
+
 
     // std::cout << "Number of row: ";
     // std::cin >> this->row;

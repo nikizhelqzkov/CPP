@@ -19,7 +19,7 @@ public:
     std::string getName() const;
     Date getDate() const;
     void setName(const std::string &);
-    void read();
+    void read(const RoomArr&);
     void print();
     int getRow() const;
     int getCol() const;
