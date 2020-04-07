@@ -15,8 +15,8 @@ public:
     void printArr() const;
     Room &operator[](int i);
     Room operator[](int) const;
-    //i-ti element
-    //add event = operator + na room i proverka dali tozi nomer na staqta ne e zaet
+    bool addEvent(const Room&);
+   bool removeEvent(const Room&);
 };
 
 #endif
