@@ -35,7 +35,6 @@ std::string Client::getName() const
 }
 void Client::read()
 {
-
     
     std::cout << "Number of row: ";
     std::cin >> this->row;
