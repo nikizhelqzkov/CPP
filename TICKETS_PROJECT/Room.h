@@ -19,7 +19,7 @@ public:
     Room(int,const std::vector<std::vector<Client>>&, int, int);
     Room(const Room &);
     ~Room();
-    void print();
+    void print()const;
     int getId()const;
     int getRows()const;
     int getCols()const;
@@ -28,27 +28,13 @@ public:
     void setRows(int rows);
     void setCols(int cols);
     void setMatrix(const std::vector<std::vector<Client>>&);
-   
+  
     //i->ti element
     //operaciq ravno
     //==
     //!=
     //busy
-};
+}; 
 
-class RoomArr
-{
-private:
-    Room *arr;
-    size_t size;
 
-public:
-    RoomArr();
-    RoomArr(Room *, size_t);
-    RoomArr(const RoomArr &);
-    ~RoomArr();
-    void printArr() const;
-    //i-ti element
-    //add event = operator + na room i proverka dali tozi nomer na staqta ne e zaet
-};
 #endif
