@@ -28,8 +28,9 @@ Room::Room()
     this->rows = 0;
     this->placeOnRow = 0;
 }
-Room::Room(int id, const std::vector<std::vector<Client>> &place, int rows, int placeOnRow)
+Room::Room(Date eventDate,int id, const std::vector<std::vector<Client>> &place, int rows, int placeOnRow)
 {
+    this->eventDate = eventDate;
     this->id = id;
     assert(rows > 0 && placeOnRow > 0);
     this->rows = rows;
@@ -87,6 +88,9 @@ std::vector<std::vector<Client>> Room::getplaces() const
 int Room::getCols() const
 {
     return this->placeOnRow;
+}
+Date Room::getDate()const{
+    return this->eventDate;
 }
 void Room::setId(int id)
 {

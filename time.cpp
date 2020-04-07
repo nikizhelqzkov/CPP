@@ -20,7 +20,7 @@ int main()
     ti = localtime(&tt); 
   
     cout << "Current Day, Date and Time is = " 
-         //<< ti->
+         << ti->tm_mday
          //asctime(ti):
 
    /*ascitime-> It is used to convert the contents in the structure filled by localtime into a human-readable version which finally returns day, date and time in the given format: */

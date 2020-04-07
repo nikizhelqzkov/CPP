@@ -1,5 +1,7 @@
 #include "Client.h"
 #include <iostream>
+#include "Room.h"
+#include "DataOfRooms.cpp"
 
 Client::Client()
 {
@@ -8,7 +10,7 @@ Client::Client()
     this->name = "";
     this->note = "";
 }
-Client::Client(int row, int col, Date date, std::string name,std::string note)
+Client::Client(int row, int col, Date date, std::string name, std::string note)
 {
     this->row = row;
     this->col = col;
@@ -22,7 +24,7 @@ void Client::print()
 {
     std::cout << "CLIENT-> Row: " << this->row << ", Column: " << this->col << ",  DATE: ";
     this->date.print();
-    std::cout << " , Name: " << this->name <<" , Note: "<<this->note<< "; ";
+    std::cout << " , Name: " << this->name << " , Note: " << this->note << "; ";
 }
 void Client::setName(const std::string &other)
 {
@@ -33,26 +35,63 @@ std::string Client::getName() const
 {
     return this->name;
 }
+Date Client::getDate() const
+{
+    return this->date;
+}
 void Client::read()
 {
+    RoomArr data;
+    bool flag = true;
+    std::cout << "Date of Event: \n";
+    do
+    {
+        this->date.read();
+
+        this->getRooms(data);
+        flag = this->getRooms(data);
+
+    } while (!flag);
     
-    std::cout << "Number of row: ";
-    std::cin >> this->row;
-    std::cout << "Number of column of " << this->row << " row: ";
-    std::cin >> this->col;
-    this->date.read();
-    std::cin.ignore(1, '\n');
-   // std::cout << "\n";
-    //std::string c;
-    std::cout<<"Name: ";
-    std::getline(std::cin,this->name);
-    
-    std::cout<<"Note: ";
-     std::getline(std::cin,this->note);
+
+    // std::cout << "Number of row: ";
+    // std::cin >> this->row;
+    // std::cout << "Number of column of " << this->row << " row: ";
+    // std::cin >> this->col;
+    // this->date.read();
+    // std::cin.ignore(1, '\n');
+    // // std::cout << "\n";
+    // //std::string c;
+    // std::cout << "Name: ";
+    // std::getline(std::cin, this->name);
+
+    // std::cout << "Note: ";
+    // std::getline(std::cin, this->note);
 }
-int Client::getRow()const{
+int Client::getRow() const
+{
     return this->row;
 }
-int Client::getCol()const{
+int Client::getCol() const
+{
     return this->col;
+}
+bool Client::getRooms(const RoomArr &data)
+{
+    bool flag = false;
+    for (int i = 0; i < data.getSize(); i++)
+    {
+        if (data[i].getDate().isEqual(this->date))
+        {
+            flag = true;
+            std::cout << data[i].getId() << "  ";
+        }
+    }
+
+    if (!flag)
+    {
+        std::cout << "No events on this Date!\n";
+        return false;
+    }
+    return true;
 }

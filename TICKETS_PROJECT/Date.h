@@ -17,7 +17,7 @@ public:
 
 	
 	void print() const;
-
+	Date& operator=(const Date&);
 
 	unsigned getDay() const;
 	void setDay(unsigned);
@@ -28,6 +28,7 @@ public:
 	unsigned getYear() const;
 	void setYear(unsigned);
 
+Date& getLiveData();
 	
 	bool isEqual(const Date &other) const;
 	bool isBefore(const Date &other) const;

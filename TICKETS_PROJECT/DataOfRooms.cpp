@@ -49,15 +49,24 @@ bool RoomArr::addEvent(const Room &other)
     return true;
 }
 
- bool RoomArr::removeEvent(const Room& other){
-     for (int i = 0; i < this->size; i++)
-     {
-         if(this->data[i].getId()==other.getId()){
-             this->size--;
-             this->data.erase(this->data.begin()+i);
-             return true;
-         }
-     }
-     return false;
-     
- }
+bool RoomArr::removeEvent(const Room &other)
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        if (this->data[i].getId() == other.getId())
+        {
+            this->size--;
+            this->data.erase(this->data.begin() + i);
+            return true;
+        }
+    }
+    return false;
+}
+int RoomArr::getSize() const
+{
+    return this->size;
+}
+std::vector<Room> RoomArr::getData() const
+{
+    return this->data;
+}

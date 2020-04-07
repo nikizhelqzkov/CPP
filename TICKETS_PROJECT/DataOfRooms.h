@@ -15,8 +15,10 @@ public:
     void printArr() const;
     Room &operator[](int i);
     Room operator[](int) const;
-    bool addEvent(const Room&);
-   bool removeEvent(const Room&);
+    bool addEvent(const Room &);
+    bool removeEvent(const Room &);
+    int getSize() const;
+    std::vector<Room> getData() const;
 };
 
 #endif

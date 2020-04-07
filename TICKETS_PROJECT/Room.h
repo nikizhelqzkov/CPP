@@ -13,10 +13,11 @@ private:
     std::vector<std::vector<Client>> matrix;
     int rows;
     int placeOnRow;
+    Date eventDate;
 
 public:
     Room();
-    Room(int,const std::vector<std::vector<Client>>&, int, int);
+    Room(Date ,int,const std::vector<std::vector<Client>>&, int, int);
     Room(const Room &);
     ~Room();
     void print()const;
@@ -28,6 +29,7 @@ public:
     void setRows(int rows);
     void setCols(int cols);
     void setMatrix(const std::vector<std::vector<Client>>&);
+    Date getDate()const;
   
     //i->ti element
     //operaciq ravno

@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <ctime>
 #include "Date.h"
 
 Date::Date()
@@ -24,21 +24,24 @@ Date::Date(unsigned d, unsigned m, unsigned y)
 		this->year = 2020;
 	}
 }
-Date::Date(const Date& other){
+Date::Date(const Date &other)
+{
 	this->day = other.day;
 	this->month = other.month;
 	this->year = other.year;
 }
 void Date::read()
 {
-    unsigned short day, month, year;
+	unsigned short day, month, year;
 	do
 	{
-		std::cout << "Day: "; std::cin >> day;
-		std::cout << "Month: "; std::cin >> month;
-		std::cout << "Year: "; std::cin >> year;
-	}
-	while (!isValidDate(day, month, year));
+		std::cout << "Day: ";
+		std::cin >> day;
+		std::cout << "Month: ";
+		std::cin >> month;
+		std::cout << "Year: ";
+		std::cin >> year;
+	} while (!isValidDate(day, month, year));
 
 	this->day = day;
 	this->month = month;
@@ -52,23 +55,29 @@ void Date::print() const
 
 bool Date::isValidDate(unsigned short d, unsigned short m, unsigned short y)
 {
-	if (!y) return false;
+	if (!y)
+		return false;
 
-	if (m < 1 || m > 12) return false;
+	if (m < 1 || m > 12)
+		return false;
 
 	bool leapYear = (y % 4 == 0) && !(y % 100 == 0 && y % 400 != 0);
 
 	unsigned maxDays;
 	switch (m)
 	{
-		case 2: maxDays = 28 + leapYear; break;
-		case 4:
-		case 6:
-		case 9:
-		case 11: maxDays = 30; break;
-		default:
-			maxDays = 31;
-			break;
+	case 2:
+		maxDays = 28 + leapYear;
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		maxDays = 30;
+		break;
+	default:
+		maxDays = 31;
+		break;
 	}
 
 	return d > 0 && d <= maxDays;
@@ -107,19 +116,39 @@ void Date::setYear(unsigned newYear)
 		this->year = newYear;
 }
 
-
-bool Date::isEqual(const Date& other) const
+bool Date::isEqual(const Date &other) const
 {
 	return this->day == other.day && this->month == other.month && this->year == other.year;
 }
 
-bool Date::isBefore(const Date& other) const
+bool Date::isBefore(const Date &other) const
 {
-	if (this->year < other.year) return true;
-	if (this->year > other.year) return false;
+	if (this->year < other.year)
+		return true;
+	if (this->year > other.year)
+		return false;
 
-	if (this->month < other.month) return true;
-	if (this->month > other.month) return false;
+	if (this->month < other.month)
+		return true;
+	if (this->month > other.month)
+		return false;
 
 	return this->day < other.day;
+}
+Date &Date::getLiveData()
+{
+	time_t tt;
+	struct tm *ti;
+	time(&tt);
+	ti = localtime(&tt);
+	this->month = ti->tm_mon + 1;
+	this->year = ti->tm_year + 1900;
+	this->day = ti->tm_mday;
+	return *this;
+}
+Date &Date::operator=(const Date &other)
+{
+	this->day = other.day;
+	this->month  = other.month;
+	this->year = other.year;
 }

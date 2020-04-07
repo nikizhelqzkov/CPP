@@ -3,7 +3,7 @@
 
 #include "Date.h"
 #include <string>
-
+#include "DataOfRooms.h"
 class Client
 {
 private:
@@ -17,11 +17,13 @@ public:
     Client();
     Client(int, int, Date, std::string, std::string);
     std::string getName() const;
+    Date getDate() const;
     void setName(const std::string &);
     void read();
     void print();
-    int getRow()const;
-    int getCol()const;
+    int getRow() const;
+    int getCol() const;
+    bool getRooms(const RoomArr &);
 };
 
 #endif
