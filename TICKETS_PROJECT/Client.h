@@ -11,10 +11,11 @@ private:
     int col;
     Date date;
     std::string name;
+    std::string note;
 
 public:
     Client();
-    Client(int, int, Date, std::string);
+    Client(int, int, Date, std::string, std::string);
     std::string getName() const;
     void setName(const std::string &);
     void read();
