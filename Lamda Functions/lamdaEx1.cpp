@@ -1,51 +1,6 @@
 #include <iostream>
 #include <functional>
-template <class T>
-class vectors
-{
-private:
-    T *arr;
-    size_t size;
 
-public:
-    vectors();
-    vectors(T *arr, size_t size);
-    ~vectors();
-    T *getData() const;
-    size_t getSize() const;
-};
-template <class T>
-vectors<T>::vectors()
-{
-    this->arr = nullptr;
-    this->size = 0;
-}
-template <class T>
-vectors<T>::vectors(T *arr, size_t size)
-{
-    this->size = size;
-    this->arr = new T[this->size];
-    for (size_t i = 0; i < this->size; i++)
-    {
-        this->arr[i] = arr[i];
-    }
-}
-
-template <class T>
-vectors<T>::~vectors()
-{
-    delete[] this->arr;
-}
-template <class T>
-T *vectors<T>::getData() const
-{
-    return this->arr;
-}
-template <class T>
-size_t vectors<T>::getSize() const
-{
-    return this->size;
-}
 using fn = std::function<int(int)>;
 using ffn = std::function<fn(int)>;
 template <class T>
@@ -123,7 +78,52 @@ T reduce(T arr[],
 
     return result;
 }
+template <class T>
+class vectors
+{
+private:
+    T *arr;
+    size_t size;
 
+public:
+    vectors();
+    vectors(T *arr, size_t size);
+    ~vectors();
+    T *getData() const;
+    size_t getSize() const;
+};
+template <class T>
+vectors<T>::vectors()
+{
+    this->arr = nullptr;
+    this->size = 0;
+}
+template <class T>
+vectors<T>::vectors(T *arr, size_t size)
+{
+    this->size = size;
+    this->arr = new T[this->size];
+    for (size_t i = 0; i < this->size; i++)
+    {
+        this->arr[i] = arr[i];
+    }
+}
+
+template <class T>
+vectors<T>::~vectors()
+{
+    delete[] this->arr;
+}
+template <class T>
+T *vectors<T>::getData() const
+{
+    return this->arr;
+}
+template <class T>
+size_t vectors<T>::getSize() const
+{
+    return this->size;
+}
 int main()
 {
     // ffn a = devideFromFn(25);
