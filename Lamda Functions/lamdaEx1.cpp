@@ -1,5 +1,51 @@
 #include <iostream>
 #include <functional>
+template <class T>
+class vectors
+{
+private:
+    T *arr;
+    size_t size;
+
+public:
+    vectors();
+    vectors(T *arr, size_t size);
+    ~vectors();
+    T *getData() const;
+    size_t getSize() const;
+};
+template <class T>
+vectors<T>::vectors()
+{
+    this->arr = nullptr;
+    this->size = 0;
+}
+template <class T>
+vectors<T>::vectors(T *arr, size_t size)
+{
+    this->size = size;
+    this->arr = new T[this->size];
+    for (size_t i = 0; i < this->size; i++)
+    {
+        this->arr[i] = arr[i];
+    }
+}
+
+template <class T>
+vectors<T>::~vectors()
+{
+    delete[] this->arr;
+}
+template <class T>
+T *vectors<T>::getData() const
+{
+    return this->arr;
+}
+template <class T>
+size_t vectors<T>::getSize() const
+{
+    return this->size;
+}
 using fn = std::function<int(int)>;
 using ffn = std::function<fn(int)>;
 template <class T>
@@ -54,6 +100,7 @@ K *map(T *arr, size_t size, TsFn<T, K> a)
     }
     return res;
 }
+
 // double* map(int*arr,size_t size,std::function<double(int)>a){
 //     double* res = new double[size];
 //     for (size_t i = 0; i < size; i++)
@@ -84,13 +131,15 @@ int main()
     // std::function<int(int)> mul = multi(3);
     //std::cout << mul(5);
 
-    int arr[5]{1, 2, 3, 4, 5};
+    int arr[5] = {1, 2, 3, 4, 5};
     size_t size = 5;
-    //  forEach<int>(arr, size, [](const int &a) { std::cout << a; });
-    // double *res = map<int, double>(arr, size, [](const int &a) {return 0.5+a;});
-    double *res = map<int, double>(arr, size, [](const int &a) -> double { return 0.5 + a; });
+    vectors<int> v(arr, size);
+
+    forEach<int>(v.getData(), v.getSize(), [](const int &a) { std::cout << a << ' '; });
+    double *res = map<int, double>(v.getData(), v.getSize(), [](const int &a) { return 0.5 + a; });
+
     forEach<double>(res, size, [](const double &a) { std::cout << a << ' '; });
-    std::cout << reduce<int>(arr, size, [](int &acc, const int &val) {
+    std::cout << reduce<int>(v.getData(), v.getSize(), [](int &acc, const int &val) {
         acc += val;
     });
 }
