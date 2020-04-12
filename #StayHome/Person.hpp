@@ -26,14 +26,15 @@ bool IsItLeterUserName(const char *name)
     return true;
 }
 
-// Person::Person()
-// {
-//     this->name = nullptr;
-//     this->years = 0;
-//     this->email = nullptr;
-//     this->id = 0;
-// }
-Person::Person(const char *name = nullptr, int years = 0, const char *email = nullptr, int id = 0) : id(id)
+Person::Person()
+{
+    this->name = nullptr;
+    this->years = 0;
+    this->email = nullptr;
+    this->id = 0;
+}
+
+Person::Person(const char *name, int years, const char *email, int id) : id(id)
 {
 
     assert(name && IsItLeterUserName(name));
@@ -62,9 +63,10 @@ Person::Person(const Person &other)
     strcpy(this->email, other.email);
     this->id = other.id;
 }
-Person::~Person(){
-    delete[]this->name;
-    delete[]this->email;
+Person::~Person()
+{
+    delete[] this->name;
+    delete[] this->email;
 }
 void Person::setName(const char *name)
 {
@@ -130,10 +132,10 @@ int Person::getId() const
 }
 void Person::profile_info(const char *name) const
 {
-    if (strcmp(this->name,name)==0)
+    if (strcmp(this->name, name) == 0)
     {
         std::cout << "PERSON NAME: " << this->name << ", ";
-        if (years <= 0)
+        if (this->years <= 0)
         {
             std::cout << "YEARS: UNKNOWN, ";
         }
@@ -152,4 +154,26 @@ void Person::profile_info(const char *name) const
         }
         std::cout << "ID: " << this->id << "\n";
     }
+}
+void Person::print() const
+{
+    std::cout << "PERSON NAME: " << this->name << ", ";
+    if (this->years <= 0)
+    {
+        std::cout << "YEARS: UNKNOWN, ";
+    }
+    else
+    {
+        std::cout << "YEARS: " << this->years << ", ";
+    }
+
+    if (this->email == nullptr || this->email == "")
+    {
+        std::cout << "EMAIL: UNKNOWN, ";
+    }
+    else
+    {
+        std::cout << "EMAIL: " << this->email << ", ";
+    }
+    std::cout << "ID: " << this->id << "\n";
 }
