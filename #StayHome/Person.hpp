@@ -45,7 +45,7 @@ Person::Person(const char *name, int years, const char *email, int id) : id(id)
     this->years = years;
     if (!IsItEmail(email))
     {
-        this->email = nullptr;
+        this->email = "";
     }
     else
     {
@@ -53,6 +53,33 @@ Person::Person(const char *name, int years, const char *email, int id) : id(id)
         this->email = new char[strlen(email) + 1];
         strcpy(this->email, email);
     }
+}
+Person::Person(const char *name, const char *email, int id) : id(id)
+{
+    this->years = 0;
+    assert(name && IsItLeterUserName(name));
+
+    this->name = new char[strlen(name) + 1];
+    strcpy(this->name, name);
+
+    if (!IsItEmail(email))
+    {
+        this->email = "";
+    }
+    else
+    {
+        assert(strlen(email) <= 100);
+        this->email = new char[strlen(email) + 1];
+        strcpy(this->email, email);
+    }
+}
+Person::Person(const char *name, int id) : id(id)
+{
+
+    assert(name && IsItLeterUserName(name));
+
+    this->name = new char[strlen(name) + 1];
+    strcpy(this->name, name);
 }
 Person::Person(const char *name, int years, int id) : id(id)
 {
@@ -63,16 +90,22 @@ Person::Person(const char *name, int years, int id) : id(id)
     strcpy(this->name, name);
     assert(years > 0 && years <= 90);
     this->years = years;
-   
 }
-Person::Person(const Person &other)
+Person::Person(const Person &other):years(other.years),id(other.id)
 {
     this->name = new char[strlen(other.name) + 1];
     strcpy(this->name, other.name);
     this->years = other.years;
+    if(other.email){
     this->email = new char[strlen(other.email) + 1];
     strcpy(this->email, other.email);
-    this->id = other.id;
+    }
+    else
+    {
+        this->name = nullptr;
+    }
+    
+   
 }
 Person::~Person()
 {
@@ -89,9 +122,11 @@ void Person::setName(const char *name)
 }
 void Person::setEmail(const char *email)
 {
+    if (!email)
+        return;
     if (!IsItEmail(email))
     {
-        this->email =nullptr;
+        this->email = nullptr;
     }
     else
     {
@@ -107,6 +142,8 @@ void Person::setId(int id)
 }
 void Person::setYears(int years)
 {
+    if (years > 90||years<=0)
+        return;
     assert(years > 0 && years <= 90);
     this->years = years;
 }
@@ -136,6 +173,9 @@ int Person::getYears() const
 char *Person::getEmail() const
 {
     return this->email;
+    char*result = new char[8];
+    strcpy(result,"UNKNOWN");
+    return result;
 }
 int Person::getId() const
 {
@@ -155,13 +195,13 @@ void Person::profile_info(const char *name) const
             std::cout << "YEARS: " << this->years << ", ";
         }
 
-        if (this->email == nullptr || this->email == "")
+        if (this->getEmail() == nullptr || this->getEmail() == "")
         {
             std::cout << "EMAIL: UNKNOWN, ";
         }
         else
         {
-            std::cout << "EMAIL: " << this->email << ", ";
+            std::cout << "EMAIL: " << this->getEmail() << ", ";
         }
         std::cout << "ID: " << this->id << "\n";
     }
@@ -187,6 +227,4 @@ void Person::print() const
         std::cout << "EMAIL: " << this->email << ", ";
     }
     std::cout << "ID: " << this->id << "\n";
-
-    
 }

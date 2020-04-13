@@ -17,19 +17,20 @@ char *addChar(char *name, const char s)
 
 int main()
 {
-srand(time(0));
-    Person a("Ivancho", 20, "n@", 17);
-    Person b("Kimor", 20, "n@", 18);
-    Person c("Aleks", 20, "n@", 19);
+    srand(time(0));
+    Person a("Ivancho", "n@", 17);
+    Person b("Kimor", 18);
+    Person c("ee", "ne@", 25);
     Person d("Niki", 17, 21);
-    Person *arr = new Person[4]  {a,b,c,d};
-    // Person *arr = new Person[4];
-    // arr[0] = a;
-    // arr[1] = b;
-    // arr[2] = c;
-    // arr[3] = d;
-    //arr[3].print();
-    std::cout<<arr[3].getEmail();
+
+   // Person *arr = new Person[4]{a, b, c, d};
+    Person *arr = new Person[4];
+    arr[0] = a;
+    arr[1] = b;
+    arr[2] = c;
+    arr[3] = d;
+    arr[3].print();
+
     for (size_t i = 0; i < 4; i++)
     {
         arr[i].print();
@@ -71,5 +72,5 @@ srand(time(0));
     //     PersonArr array(arr,1);
     //     array.printArr();
     //     delete[]arr;
-    std::cout<<rand()%100;
+    std::cout << rand() % 100;
 }
