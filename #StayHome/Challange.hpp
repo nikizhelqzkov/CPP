@@ -1,16 +1,16 @@
 #include "Challange.h"
 //#include "PersonArr.h"
 
-PersonArr&  Contains(const char *name,const PersonArr& arr,  PersonArr& res)
+void  Contains(const char *name,const PersonArr& arr,  PersonArr res)
 {
 
     for (size_t i = 0; i < arr.getSize(); i++)
     {
         if (strcmp(arr[i].getName(), name) == 0)
             res += arr[i];
-        return res;
+      
     }
-    return res;
+    
 }
 bool Contains(const char *name, PersonArr arr)
 {

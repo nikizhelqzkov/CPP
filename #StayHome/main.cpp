@@ -33,9 +33,10 @@ int main()
     arr[2] = c;
     arr[3] = d;
     //arr[3].print();
-
+    // Person *brr = new Person[1];
+    // brr[0] = b;
     PersonArr p(arr, 4);
-    PersonArr z;
+    PersonArr Challanged;
     // p += b;
     p.printArr();
     delete[] arr;
@@ -50,13 +51,25 @@ int main()
         std::cin >> text;
         if (Contains(text, p))
         {
-            Contains(text,p,z);
-            std::cout << text << "\n";
+            
+            //  Contains(text,p,z);
+            for (size_t i = 0; i < p.getSize(); i++)
+            {
+                if (strcmp(text, p[i].getName()) == 0)
+                {
+                    Challanged += p[i];
+                   std::cout << text << "\n";
+                }
+            }
         }
 
         count++;
     }
-    z.printArr();
+    Challanged.printArr();
+    delete[]text;
+
+    Challange ch("niki","kurvi",Challanged,p);
+    std::cout<<ch.getSize()<<"\n";
     // char *name = new char[2];
     // name[0] = 'a';
     // name[1] = 'b';
