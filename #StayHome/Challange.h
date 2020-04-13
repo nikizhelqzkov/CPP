@@ -1,4 +1,4 @@
-#include "PersonArr.h"
+#include "PersonArr.hpp"
 #include <cstring>
 
 class Challange

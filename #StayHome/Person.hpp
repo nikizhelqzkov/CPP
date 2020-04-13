@@ -58,7 +58,7 @@ Person::Person(const Person &other)
 {
     this->name = new char[strlen(other.name) + 1];
     strcpy(this->name, other.name);
-    this->years = years;
+    this->years = other.years;
     this->email = new char[strlen(other.email) + 1];
     strcpy(this->email, other.email);
     this->id = other.id;
@@ -80,7 +80,7 @@ void Person::setEmail(const char *email)
 {
     if (!IsItEmail(email))
     {
-        this->email = "";
+        this->email ="";
     }
     else
     {
@@ -167,7 +167,7 @@ void Person::print() const
         std::cout << "YEARS: " << this->years << ", ";
     }
 
-    if (this->email == nullptr || this->email == "")
+    if (this->email == nullptr || this->email ==""|| this->email==" "|| this->email==(char*)' ')
     {
         std::cout << "EMAIL: UNKNOWN, ";
     }

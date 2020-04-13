@@ -1,6 +1,6 @@
 #ifndef ARR_PERSON
 #define ARR_PERSON
-#include "Person.h"
+#include "Person.hpp"
 
 class PersonArr
 {
@@ -27,6 +27,6 @@ public:
 
 
 
-#include "PersonArr.hpp"
+//#include "PersonArr.hpp"
 
 #endif
