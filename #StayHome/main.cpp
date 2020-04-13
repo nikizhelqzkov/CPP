@@ -20,10 +20,11 @@ int main()
     srand(time(0));
     Person a("Ivancho", "n@", 17);
     Person b("Kimor", 18);
+    Person d("niki",27,22);
     Person c("ee", "ne@", 25);
-    Person d("Niki", 17, 21);
+    
 
-   // Person *arr = new Person[4]{a, b, c, d};
+    // Person *arr = new Person[4]{a, b, c, d};
     Person *arr = new Person[4];
     arr[0] = a;
     arr[1] = b;
@@ -31,10 +32,9 @@ int main()
     arr[3] = d;
     arr[3].print();
 
-    for (size_t i = 0; i < 4; i++)
-    {
-        arr[i].print();
-    }
+    PersonArr p(arr, 4);
+     p+=d;
+    p.printArr();
 
     char *text;
     text = new char[50];
@@ -45,8 +45,8 @@ int main()
     {
 
         std::cin >> text;
-
-        std::cout << text << "\n";
+    
+       // std::cout << text << "\n";
         count++;
     }
 

@@ -96,14 +96,15 @@ Person::Person(const Person &other):years(other.years),id(other.id)
     this->name = new char[strlen(other.name) + 1];
     strcpy(this->name, other.name);
     this->years = other.years;
-    if(other.email){
+   // if(other.email){
     this->email = new char[strlen(other.email) + 1];
     strcpy(this->email, other.email);
-    }
-    else
-    {
-        this->name = nullptr;
-    }
+    //this->email[strlen(this->email)]= '\0';
+    //}
+    // else
+    // {
+    //     this->email = nullptr;
+    // }
     
    
 }
@@ -134,6 +135,7 @@ void Person::setEmail(const char *email)
         delete[] this->email;
         this->email = new char[strlen(email) + 1];
         strcpy(this->email, email);
+        //this->email[strlen(this->email)]= '\0';
     }
 }
 void Person::setId(int id)
