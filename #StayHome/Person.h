@@ -12,6 +12,7 @@ protected:
 public:
     Person();
     Person(const char*,int,const char*,int);//func for validation on email ,years
+    Person(const char*,int,int);
     Person(const Person&);
     ~Person();
     Person& operator=(const Person&);
