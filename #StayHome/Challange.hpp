@@ -1,12 +1,24 @@
 #include "Challange.h"
 //#include "PersonArr.h"
 
+PersonArr&  Contains(const char *name,const PersonArr& arr,  PersonArr& res)
+{
+
+    for (size_t i = 0; i < arr.getSize(); i++)
+    {
+        if (strcmp(arr[i].getName(), name) == 0)
+            res += arr[i];
+        return res;
+    }
+    return res;
+}
 bool Contains(const char *name, PersonArr arr)
 {
 
     for (size_t i = 0; i < arr.getSize(); i++)
     {
         if (strcmp(arr[i].getName(), name) == 0)
+
             return true;
     }
     return false;
@@ -27,7 +39,7 @@ Challange::Challange(const char *User, const char *tag, const PersonArr chUsers,
     assert(Contains(User, users));
     this->User = new char[strlen(User) + 1];
     strcpy(this->User, User);
-    assert(tag && strlen(tag)<31);
+    assert(tag && strlen(tag) < 31);
     this->tag = new char[strlen(tag) + 1];
     strcpy(this->tag, tag);
     this->chUsers = chUsers;
@@ -56,7 +68,7 @@ Challange &Challange::operator=(const Challange &other)
         this->User = new char[strlen(other.User) + 1];
         strcpy(this->User, other.User);
         assert(other.tag);
-        delete[]this->tag;
+        delete[] this->tag;
         this->tag = new char[strlen(other.tag) + 1];
         strcpy(this->tag, other.tag);
         this->chUsers = other.chUsers;
@@ -65,12 +77,15 @@ Challange &Challange::operator=(const Challange &other)
     }
 }
 // void SetChallange(const char*, const char*);
- void Challange::getChallgedUser()const{
+void Challange::getChallgedUser() const
+{
     this->chUsers.printArr();
- }
- char* Challange::getUser()const{
-     return this->User;
- }
- int Challange::getSize()const{
-     return this->size;
- }
+}
+char *Challange::getUser() const
+{
+    return this->User;
+}
+int Challange::getSize() const
+{
+    return this->size;
+}

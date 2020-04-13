@@ -75,7 +75,8 @@ Person::Person(const char *name, const char *email, int id) : id(id)
 }
 Person::Person(const char *name, int id) : id(id)
 {
-
+    this->email = nullptr;
+    this->years = 0;
     assert(name && IsItLeterUserName(name));
 
     this->name = new char[strlen(name) + 1];
@@ -83,7 +84,7 @@ Person::Person(const char *name, int id) : id(id)
 }
 Person::Person(const char *name, int years, int id) : id(id)
 {
-
+    this->email = nullptr;
     assert(name && IsItLeterUserName(name));
 
     this->name = new char[strlen(name) + 1];
@@ -91,12 +92,12 @@ Person::Person(const char *name, int years, int id) : id(id)
     assert(years > 0 && years <= 90);
     this->years = years;
 }
-Person::Person(const Person &other):years(other.years),id(other.id)
+Person::Person(const Person &other) : years(other.years), id(other.id)
 {
     this->name = new char[strlen(other.name) + 1];
     strcpy(this->name, other.name);
     this->years = other.years;
-   // if(other.email){
+    // if(other.email){
     this->email = new char[strlen(other.email) + 1];
     strcpy(this->email, other.email);
     //this->email[strlen(this->email)]= '\0';
@@ -105,13 +106,11 @@ Person::Person(const Person &other):years(other.years),id(other.id)
     // {
     //     this->email = nullptr;
     // }
-    
-   
 }
 Person::~Person()
 {
-    delete[] this->name;
     delete[] this->email;
+    delete[] this->name;
 }
 void Person::setName(const char *name)
 {
@@ -144,7 +143,7 @@ void Person::setId(int id)
 }
 void Person::setYears(int years)
 {
-    if (years > 90||years<=0)
+    if (years > 90 || years <= 0)
         return;
     assert(years > 0 && years <= 90);
     this->years = years;
@@ -175,8 +174,8 @@ int Person::getYears() const
 char *Person::getEmail() const
 {
     return this->email;
-    char*result = new char[8];
-    strcpy(result,"UNKNOWN");
+    char *result = new char[8];
+    strcpy(result, "UNKNOWN");
     return result;
 }
 int Person::getId() const

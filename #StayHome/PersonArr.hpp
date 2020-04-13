@@ -2,7 +2,7 @@
 
 PersonArr::PersonArr(const Person *arr = nullptr, size_t size = 0) : size(size)
 {
-    assert(arr && size > 0);
+   // assert(arr && size > 0);
     this->arr = new Person[this->size];
     for (size_t i = 0; i < this->size; i++)
     {
@@ -32,7 +32,7 @@ PersonArr &PersonArr::operator=(const PersonArr &other)
 }
 void PersonArr::SetArr(const Person *arr, size_t size)
 {
-    assert(arr && size > 0);
+    assert(arr && size >= 0);
     delete[] this->arr;
     this->size = size;
     this->arr = new Person[this->size];

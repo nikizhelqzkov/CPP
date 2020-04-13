@@ -1,7 +1,8 @@
 #include <iostream>
 #include <cstring>
-#include "PersonArr.hpp"
+//#include "PersonArr.hpp"
 #include <ctime>
+#include "Challange.hpp"
 
 char *addChar(char *name, const char s)
 {
@@ -19,10 +20,11 @@ int main()
 {
     srand(time(0));
     Person a("Ivancho", "n@", 17);
+
     Person b("Kimor", 18);
-    Person d("niki",27,22);
+
     Person c("ee", "ne@", 25);
-    
+    Person d("niki", 27, 22);
 
     // Person *arr = new Person[4]{a, b, c, d};
     Person *arr = new Person[4];
@@ -30,12 +32,13 @@ int main()
     arr[1] = b;
     arr[2] = c;
     arr[3] = d;
-    arr[3].print();
+    //arr[3].print();
 
     PersonArr p(arr, 4);
-     p+=d;
+    PersonArr z;
+    // p += b;
     p.printArr();
-
+    delete[] arr;
     char *text;
     text = new char[50];
     int count = 0, counter;
@@ -45,11 +48,15 @@ int main()
     {
 
         std::cin >> text;
-    
-       // std::cout << text << "\n";
+        if (Contains(text, p))
+        {
+            Contains(text,p,z);
+            std::cout << text << "\n";
+        }
+
         count++;
     }
-
+    z.printArr();
     // char *name = new char[2];
     // name[0] = 'a';
     // name[1] = 'b';
