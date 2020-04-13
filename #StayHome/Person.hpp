@@ -45,7 +45,7 @@ Person::Person(const char *name, int years, const char *email, int id) : id(id)
     this->years = years;
     if (!IsItEmail(email))
     {
-        this->email = "";
+        this->email = nullptr;
     }
     else
     {
@@ -187,4 +187,6 @@ void Person::print() const
         std::cout << "EMAIL: " << this->email << ", ";
     }
     std::cout << "ID: " << this->id << "\n";
+
+    
 }

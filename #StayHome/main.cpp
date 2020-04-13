@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "PersonArr.hpp"
+#include <ctime>
 
 char *addChar(char *name, const char s)
 {
@@ -16,7 +17,7 @@ char *addChar(char *name, const char s)
 
 int main()
 {
-
+srand(time(0));
     Person a("Ivancho", 20, "n@", 17);
     Person b("Kimor", 20, "n@", 18);
     Person c("Aleks", 20, "n@", 19);
@@ -70,4 +71,5 @@ int main()
     //     PersonArr array(arr,1);
     //     array.printArr();
     //     delete[]arr;
+    std::cout<<rand()%100;
 }
