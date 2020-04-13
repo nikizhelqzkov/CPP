@@ -19,12 +19,12 @@ char *addChar(char *name, const char s)
 int main()
 {
     srand(time(0));
-    Person a("Ivancho", "n@", 17);
+    Person a("Ivancho", "n@", rand() % 100);
 
-    Person b("Kimor", 18);
+    Person b("Kimor", rand() % 100);
 
-    Person c("ee", "ne@", 25);
-    Person d("niki", 27, 22);
+    Person c("ee", "ne@", rand() % 100);
+    Person d("niki", 27, rand() % 100);
 
     // Person *arr = new Person[4]{a, b, c, d};
     Person *arr = new Person[4];
@@ -92,5 +92,6 @@ int main()
     //     PersonArr array(arr,1);
     //     array.printArr();
     //     delete[]arr;
-    std::cout << rand() % 100;
+    // std::cout << rand() % 100;
+    // std::cout << rand() % 100;
 }
