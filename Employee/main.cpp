@@ -159,6 +159,7 @@ bool binToText(const char* inputFileName, const char* outputFileName)
     std::cout<<"-------------------------------------\n";
 
     inputFile.close();
+    
     outputFile.close();
 
     return true;

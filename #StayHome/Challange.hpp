@@ -1,5 +1,5 @@
 #include "Challange.h"
-#include "PersonArr.h"
+//#include "PersonArr.h"
 
 bool Contains(const char *name, PersonArr arr)
 {
@@ -12,16 +12,65 @@ bool Contains(const char *name, PersonArr arr)
     return false;
 }
 
-//  Challange::Challange(){
-//      this->User = nullptr;
-//      this->ChallangedUser = nullptr;
-//  }
+Challange::Challange()
+{
+    this->User = nullptr;
+    this->tag = nullptr;
+    // this->ChallangedUser = nullptr;
+    this->chUsers = nullptr;
+    this->size = 0;
+    this->users = nullptr;
+}
 
-// Challange(const char* User,const char* ChallangedUsers,const PersonArr* users);
-// Challange(const Challange&);
-// ~Challange();
-// Challange& operator=(const Challange&);
+Challange::Challange(const char *User, const char *tag, const PersonArr chUsers, PersonArr users)
+{
+    assert(Contains(User, users));
+    this->User = new char[strlen(User) + 1];
+    strcpy(this->User, User);
+    assert(tag && strlen(tag)<31);
+    this->tag = new char[strlen(tag) + 1];
+    strcpy(this->tag, tag);
+    this->chUsers = chUsers;
+    this->users = users;
+    this->size = this->chUsers.getSize();
+}
+Challange::Challange(const Challange &other)
+{
+    this->User = new char[strlen(other.User) + 1];
+    strcpy(this->User, other.User);
+    this->tag = new char[strlen(other.tag) + 1];
+    strcpy(this->tag, other.tag);
+    this->chUsers = other.chUsers;
+    this->users = other.users;
+}
+Challange::~Challange()
+{
+    delete[] this->User;
+    delete[] this->tag;
+}
+Challange &Challange::operator=(const Challange &other)
+{
+    if (this != &other)
+    {
+        delete[] this->User;
+        this->User = new char[strlen(other.User) + 1];
+        strcpy(this->User, other.User);
+        assert(other.tag);
+        delete[]this->tag;
+        this->tag = new char[strlen(other.tag) + 1];
+        strcpy(this->tag, other.tag);
+        this->chUsers = other.chUsers;
+        this->users = other.users;
+        this->size = this->chUsers.getSize();
+    }
+}
 // void SetChallange(const char*, const char*);
-// char* getChallgedUser()const;
-// char* getUser()const;
-// int getSize()const;
+ void Challange::getChallgedUser()const{
+    this->chUsers.printArr();
+ }
+ char* Challange::getUser()const{
+     return this->User;
+ }
+ int Challange::getSize()const{
+     return this->size;
+ }
