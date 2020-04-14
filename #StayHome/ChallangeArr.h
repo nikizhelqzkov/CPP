@@ -1,11 +1,11 @@
 #include "Challange.hpp"
-class ChallangeArr
+#include <functional>
+class ChallangeArr:public Challange
 {
 private:
 Challange* arr;
-int sustoqnie;
 size_t size;
-size_t Repeats;    
+    
 
 public:
     ChallangeArr();
@@ -14,7 +14,9 @@ public:
     ~ChallangeArr();
     ChallangeArr& operator=(const ChallangeArr&);
     ChallangeArr& operator+=(const Challange&);
-    void lisrBy()
+    ChallangeArr& add(const Challange&);
+    void printCArr()const;
+   
 
 };
 

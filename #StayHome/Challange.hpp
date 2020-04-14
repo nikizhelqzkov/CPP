@@ -1,16 +1,14 @@
 #include "Challange.h"
 //#include "PersonArr.h"
 
-void  Contains(const char *name,const PersonArr& arr,  PersonArr res)
+void Contains(const char *name, const PersonArr &arr, PersonArr res)
 {
 
     for (size_t i = 0; i < arr.getSize(); i++)
     {
         if (strcmp(arr[i].getName(), name) == 0)
             res += arr[i];
-      
     }
-    
 }
 bool Contains(const char *name, PersonArr arr)
 {
@@ -32,19 +30,25 @@ Challange::Challange()
     this->chUsers = nullptr;
     this->size = 0;
     this->users = nullptr;
+    this->Repeats = 0;
+    this->position = 0;
 }
 
-Challange::Challange(const char *User, const char *tag, const PersonArr chUsers, PersonArr users)
+Challange::Challange(const char *User, const char *tag, const PersonArr chUsers, PersonArr users):chUsers(chUsers),users(users)
 {
     assert(Contains(User, users));
+    //if (Contains(User, users))
+    //{
+        this->Repeats = 0;
+        this->sustoqnie = 0;
     this->User = new char[strlen(User) + 1];
     strcpy(this->User, User);
     assert(tag && strlen(tag) < 31);
     this->tag = new char[strlen(tag) + 1];
     strcpy(this->tag, tag);
-    this->chUsers = chUsers;
-    this->users = users;
+   
     this->size = this->chUsers.getSize();
+    // }
 }
 Challange::Challange(const Challange &other)
 {
@@ -75,9 +79,10 @@ Challange &Challange::operator=(const Challange &other)
         this->users = other.users;
         this->size = this->chUsers.getSize();
     }
+    return *this;
 }
 // void SetChallange(const char*, const char*);
-void Challange::getChallgedUser() const
+PersonArr Challange::getChallgedUser() const
 {
     this->chUsers.printArr();
 }
@@ -89,3 +94,48 @@ int Challange::getSize() const
 {
     return this->size;
 }
+int Challange::getRepeats() const
+{
+    return this->Repeats;
+}
+int Challange::getPositions() const
+{
+    return this->position;
+}
+void Challange::setPosition(int position)
+{
+    this->position = position;
+}
+void Challange::setRepeats(int repeats)
+{
+    this->Repeats = repeats;
+}
+bool Challange::operator==(const Challange &other) const
+{
+    return strcmp(this->User, other.User) == 0 && strcmp(this->tag, other.tag) == 0;
+}
+void Challange::setChUsers(const PersonArr &other)
+{
+    this->chUsers = other;
+    this->size = this->chUsers.getSize();
+}
+void Challange::setUser(const Person &other)
+{
+    this->chUsers += other;
+    this->size++;
+}
+void Challange::printChallange() const
+{
+    std::cout << "User: " << this->User << " , Challange: #" << this->tag << ", Challanged Users: ";
+    for (size_t i = 0; i < this->size; i++)
+    {
+        this->chUsers[i].print();
+    }
+    std::cout << " ,\n Repeats: " << this->Repeats;
+}
+// Challange *operator+=( Challange *buffer, const Challange &other)
+// {
+//     buffer = new Challange[1];
+//     buffer[0] = other;
+//     return buffer;
+// }

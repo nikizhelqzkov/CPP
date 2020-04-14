@@ -2,7 +2,7 @@
 #include <cstring>
 //#include "PersonArr.hpp"
 #include <ctime>
-#include "Challange.hpp"
+#include "ChallangeArr.hpp"
 
 char *addChar(char *name, const char s)
 {
@@ -51,14 +51,14 @@ int main()
         std::cin >> text;
         if (Contains(text, p))
         {
-            
+
             //  Contains(text,p,z);
             for (size_t i = 0; i < p.getSize(); i++)
             {
                 if (strcmp(text, p[i].getName()) == 0)
                 {
                     Challanged += p[i];
-                   std::cout << text << "\n";
+                    std::cout << text << "\n";
                 }
             }
         }
@@ -66,10 +66,19 @@ int main()
         count++;
     }
     Challanged.printArr();
-    delete[]text;
+    delete[] text;
 
-    Challange ch("niki","kurvi",Challanged,p);
-    std::cout<<ch.getSize()<<"\n";
+    Challange ch("niki", "b", Challanged, p);
+    Challange zh("Ivancho", "a", Challanged, p);
+    Challange * crr = new Challange[1];
+    
+   // Challange *crr = new Challange[1]{ch};
+    crr[0] = ch;
+    //zh.printChallange();
+   // std::cout << ch.getSize() << "\n";
+    ChallangeArr cha(crr, 1);
+     cha.add(ch);
+    cha.printCArr();
     // char *name = new char[2];
     // name[0] = 'a';
     // name[1] = 'b';
@@ -94,4 +103,5 @@ int main()
     //     delete[]arr;
     // std::cout << rand() % 100;
     // std::cout << rand() % 100;
+    return 0;
 }

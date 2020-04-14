@@ -3,7 +3,7 @@
 
 class Challange
 {
-private:
+protected:
     // char * ChallangedUser;
 
     char *User;
@@ -11,7 +11,9 @@ private:
     PersonArr users;
     int size;
     PersonArr chUsers;
-    size_t Repeats;
+    int Repeats;
+    int position;
+    int sustoqnie;
 
 public:
     Challange();
@@ -20,7 +22,17 @@ public:
     ~Challange();
     Challange &operator=(const Challange &);
     void SetChallange(const char *, const char *);
-    void getChallgedUser() const;
+    PersonArr getChallgedUser() const;
     char *getUser() const;
     int getSize() const;
+    int getRepeats()const;
+    int getPositions()const;
+    void setPosition(int);
+    void setRepeats(int);
+    bool operator==(const Challange&)const;
+    void setChUsers(const PersonArr&);
+    void setUser(const Person&);
+    void printChallange()const;
+  //friend  Challange* operator+=( Challange *,const Challange&);
+
 };
