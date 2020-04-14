@@ -89,14 +89,18 @@ ChallangeArr &ChallangeArr::add(const Challange &other)
             Challange a;
             a = this->arr[i];
             //a.printChallange();
+            
+            
             a.setUser(other.getChallgedUser().operator[](0));
-            a.printChallange();
+            //a.printChallange();
             this->arr[i].setChUsers(a.getChallgedUser());
             this->arr[i].setRepeats(this->arr[i].getRepeats() + 1);
+            break;
         }
         else
         {
             *this += other;
+            
             //this->size++;
         }
     }

@@ -77,6 +77,8 @@ int main()
     //zh.printChallange();
    // std::cout << ch.getSize() << "\n";
     ChallangeArr cha(crr, 1);
+
+     cha.add(zh);
      cha.add(ch);
     cha.printCArr();
     // char *name = new char[2];

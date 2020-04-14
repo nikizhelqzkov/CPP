@@ -84,7 +84,7 @@ Challange &Challange::operator=(const Challange &other)
 // void SetChallange(const char*, const char*);
 PersonArr Challange::getChallgedUser() const
 {
-    this->chUsers.printArr();
+    return this->chUsers;
 }
 char *Challange::getUser() const
 {
