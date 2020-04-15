@@ -14,6 +14,7 @@ protected:
     int Repeats;
     int position;
     int sustoqnie;//0->new;1->quite recently; 2->old
+    int posInArr;
 
 public:
     Challange();
@@ -28,12 +29,14 @@ public:
     int getRepeats()const;
     int getPositions()const;
     int getSustoqnie()const;
+    int getPosInArr()const;
     void setPosition(int);
     void setRepeats(int);
     void setSustoqnie(int);
     bool operator==(const Challange&)const;
     void setChUsers(const PersonArr&);
     void setUser(const Person&);
+    void setPosInArr(int);
     void printChallange()const;
   //friend  Challange* operator+=( Challange *,const Challange&);
 

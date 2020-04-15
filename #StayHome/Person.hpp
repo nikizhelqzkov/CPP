@@ -201,7 +201,7 @@ void Person::profile_info(const char *name) const
             std::cout << "YEARS: " << this->years << ", ";
         }
 
-        if (this->getEmail() == nullptr || this->getEmail() == "\0")
+        if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " ")
         {
             std::cout << "EMAIL: UNKNOWN, ";
         }
@@ -224,7 +224,7 @@ void Person::print() const
         std::cout << "YEARS: " << this->years << ", ";
     }
 
-    if (this->getEmail() == nullptr || this->getEmail() == "\0")
+    if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " ")
     {
         std::cout << "EMAIL: UNKNOWN, ";
     }

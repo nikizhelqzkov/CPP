@@ -33,6 +33,7 @@ Challange::Challange()
     this->Repeats = 0;
     this->position = 0;
     this->sustoqnie = 0;
+    this->posInArr = 0;
 }
 
 Challange::Challange(const char *User, const char *tag, const PersonArr &chUsers, const PersonArr &users) : chUsers(chUsers), users(users)
@@ -40,14 +41,14 @@ Challange::Challange(const char *User, const char *tag, const PersonArr &chUsers
     assert(Contains(User, users));
     //if (Contains(User, users))
     //{
+    this->posInArr = 0;    
     this->Repeats = 0;
-    this->sustoqnie = 0;
     this->User = new char[strlen(User) + 1];
     strcpy(this->User, User);
     assert(tag && strlen(tag) < 31);
     this->tag = new char[strlen(tag) + 1];
     strcpy(this->tag, tag);
-
+    this->sustoqnie = 0;
     this->size = this->chUsers.getSize();
     // }
 }
@@ -63,6 +64,7 @@ Challange::Challange(const Challange &other) : chUsers(other.chUsers), users(oth
         this->tag = new char[strlen(other.tag) + 1];
         strcpy(this->tag, other.tag);
     }
+   
 }
 Challange::~Challange()
 {
@@ -85,6 +87,7 @@ Challange &Challange::operator=(const Challange &other)
         this->size = this->chUsers.getSize();
         this->Repeats = other.Repeats;
         this->sustoqnie = other.sustoqnie;
+        this->posInArr = other.posInArr;
     }
     return *this;
 }
@@ -160,6 +163,13 @@ void Challange::setSustoqnie(int s)
 {
     assert(s < 3 && s >= 0);
     this->sustoqnie = s;
+}
+
+void Challange::setPosInArr(int i){
+    this->posInArr = i;
+}
+int Challange::getPosInArr()const{
+    return this->posInArr;
 }
 // Challange *operator+=( Challange *buffer, const Challange &other)
 // {

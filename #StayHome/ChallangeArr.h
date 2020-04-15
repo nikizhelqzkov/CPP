@@ -1,23 +1,25 @@
 #include "Challange.hpp"
 #include <functional>
-class ChallangeArr:public Challange
+class ChallangeArr : public Challange
 {
 private:
-Challange* arr;
-size_t size;
-    
+    Challange *arr;
+    size_t size;
 
 public:
     ChallangeArr();
-    ChallangeArr(const Challange* arr,size_t size);
-    ChallangeArr(const ChallangeArr&);
+    ChallangeArr(const Challange *arr, size_t size);
+    ChallangeArr(const ChallangeArr &);
     ~ChallangeArr();
-    ChallangeArr& operator=(const ChallangeArr&);
-    ChallangeArr& operator+=(const Challange&);
-    ChallangeArr& add(const Challange&);
-    void printCArr()const;
-   
-
+    ChallangeArr &operator=(const ChallangeArr &);
+    ChallangeArr &operator+=(const Challange &);
+    ChallangeArr &add(const Challange &);
+    ChallangeArr &operator[](int i);
+    ChallangeArr operator[](int i) const;
+    void printCArr() const;
+    void listByPopular();
+    void listByNewest();
+    void listByOldest();
 };
 
 //+= s proverka ako sushtestvuva da ne go dobawq a vdigne broqch

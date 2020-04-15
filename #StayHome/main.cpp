@@ -83,7 +83,11 @@ int main()
 
      cha.add(zh);
      cha.add(ch);
-    cha.printCArr();
+      std::cout<<"\n----\n";
+     cha.printCArr();
+     std::cout<<"\n----\n";
+     cha.listByNewest();
+    //cha.printCArr();
     // char *name = new char[2];
     // name[0] = 'a';
     // name[1] = 'b';
