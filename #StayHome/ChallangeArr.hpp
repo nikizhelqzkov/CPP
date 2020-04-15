@@ -86,14 +86,14 @@ ChallangeArr &ChallangeArr::add(const Challange &other)
             //
             //     }
             // }
-            Challange a;
-            a = this->arr[i];
+          //  Challange a;
+          //  a = this->arr[i];
             //a.printChallange();
 
-            a.setUser(other.getChallgedUser().operator[](0));
-            this->arr[i] = a;
+            this->arr[i].setUser(other.getChallgedUser().operator[](0));
+           // this->arr[i] = a;
             //a.printChallange();
-            this->arr[i].setChUsers(a.getChallgedUser());
+            this->arr[i].setChUsers(this->arr[i].getChallgedUser());
             this->arr[i].setRepeats(this->arr[i].getRepeats() + 1);
             if (this->arr[i].getRepeats() > 0 && this->arr[i].getRepeats() < 10 && this->getSustoqnie() == 0)
             {

@@ -23,20 +23,22 @@ int main()
 
    // Person b("K", rand() % 100);
    Person b("Kimor","kim@abv.bg",rand()%100);
-
+    Person e("sofi", "n@", rand() % 100);
     Person c("ee", "ne@", rand() % 100);
-    Person d("niki", 27, rand() % 100);
+    Person d("niki", 27,"n@", rand() % 100);
+   // Person d("niki", 27, rand() % 100);-->that constructor i don't know why it kills the challange
 
     // Person *arr = new Person[4]{a, b, c, d};
-    Person *arr = new Person[4];
+    Person *arr = new Person[5];
     arr[0] = a;
     arr[1] = b;
     arr[2] = c;
     arr[3] = d;
+    arr[4] = e;
     //arr[3].print();
     // Person *brr = new Person[1];
     // brr[0] = b;
-    PersonArr p(arr, 4);
+    PersonArr p(arr, 5);
     PersonArr Challanged;
     // p += b;
     p.printArr();
@@ -69,7 +71,7 @@ int main()
     Challanged.printArr();
     delete[] text;
 
-    Challange ch("niki", "b", Challanged, p);
+    Challange ch("ee", "b", Challanged, p);
     Challange zh("Ivancho", "a", Challanged, p);
     Challange * crr = new Challange[1];
     
