@@ -21,7 +21,8 @@ int main()
     srand(time(0));
     Person a("Ivancho", "n@", rand() % 100);
 
-    Person b("Kimor", rand() % 100);
+   // Person b("K", rand() % 100);
+   Person b("Kimor","kim@abv.bg",rand()%100);
 
     Person c("ee", "ne@", rand() % 100);
     Person d("niki", 27, rand() % 100);

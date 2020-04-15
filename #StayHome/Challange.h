@@ -13,7 +13,7 @@ protected:
     PersonArr chUsers;
     int Repeats;
     int position;
-    int sustoqnie;
+    int sustoqnie;//0->new;1->quite recently; 2->old
 
 public:
     Challange();
@@ -27,8 +27,10 @@ public:
     int getSize() const;
     int getRepeats()const;
     int getPositions()const;
+    int getSustoqnie()const;
     void setPosition(int);
     void setRepeats(int);
+    void setSustoqnie(int);
     bool operator==(const Challange&)const;
     void setChUsers(const PersonArr&);
     void setUser(const Person&);

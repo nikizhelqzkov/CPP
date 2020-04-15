@@ -32,21 +32,22 @@ Challange::Challange()
     this->users = nullptr;
     this->Repeats = 0;
     this->position = 0;
+    this->sustoqnie = 0;
 }
 
-Challange::Challange(const char *User, const char *tag, const PersonArr chUsers, PersonArr users):chUsers(chUsers),users(users)
+Challange::Challange(const char *User, const char *tag, const PersonArr chUsers, PersonArr users) : chUsers(chUsers), users(users)
 {
     assert(Contains(User, users));
     //if (Contains(User, users))
     //{
-        this->Repeats = 0;
-        this->sustoqnie = 0;
+    this->Repeats = 0;
+    this->sustoqnie = 0;
     this->User = new char[strlen(User) + 1];
     strcpy(this->User, User);
     assert(tag && strlen(tag) < 31);
     this->tag = new char[strlen(tag) + 1];
     strcpy(this->tag, tag);
-   
+
     this->size = this->chUsers.getSize();
     // }
 }
@@ -102,6 +103,9 @@ int Challange::getPositions() const
 {
     return this->position;
 }
+int Challange::getSustoqnie()const{
+    return this->sustoqnie;
+}
 void Challange::setPosition(int position)
 {
     this->position = position;
@@ -132,6 +136,20 @@ void Challange::printChallange() const
         this->chUsers[i].print();
     }
     std::cout << " ,\n Repeats: " << this->Repeats;
+    if(this->sustoqnie==0){
+        std::cout<<" , Sustoqnie: New";
+    }
+    else if(this->sustoqnie>0 && this->sustoqnie<10){
+        std::cout<<" , Sustoqnie: quite recently";
+    }
+    else if(this->sustoqnie>=10){
+        std::cout<<" , Sustoqnie: old";
+    }
+}
+void Challange::setSustoqnie(int s)
+{
+    assert(s<3&& s>=0);
+    this->sustoqnie = s;
 }
 // Challange *operator+=( Challange *buffer, const Challange &other)
 // {
