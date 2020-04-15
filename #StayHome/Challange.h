@@ -17,13 +17,13 @@ protected:
 
 public:
     Challange();
-    Challange(const char *, const char *, const PersonArr, const PersonArr);
+    Challange(const char *, const char *, const PersonArr&, const PersonArr&);
     Challange(const Challange &);
     ~Challange();
     Challange &operator=(const Challange &);
     void SetChallange(const char *, const char *);
     PersonArr getChallgedUser() const;
-    char *getUser() const;
+    const char *getUser() const;
     int getSize() const;
     int getRepeats()const;
     int getPositions()const;

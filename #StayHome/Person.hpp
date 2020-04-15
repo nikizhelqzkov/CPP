@@ -45,7 +45,8 @@ Person::Person(const char *name, int years, const char *email, int id) : id(id)
     this->years = years;
     if (!IsItEmail(email))
     {
-        this->email = "";
+
+        this->email = "\0"; //zadelqne
     }
     else
     {
@@ -64,7 +65,7 @@ Person::Person(const char *name, const char *email, int id) : id(id)
 
     if (!IsItEmail(email))
     {
-        this->email = "";
+        this->email = "\0";
     }
     else
     {
@@ -75,7 +76,7 @@ Person::Person(const char *name, const char *email, int id) : id(id)
 }
 Person::Person(const char *name, int id) : id(id)
 {
-    this->email = nullptr;
+    this->email = "\0";
     this->years = 0;
     assert(name && IsItLeterUserName(name));
 
@@ -84,7 +85,7 @@ Person::Person(const char *name, int id) : id(id)
 }
 Person::Person(const char *name, int years, int id) : id(id)
 {
-    this->email = nullptr;
+    this->email = "\0";
     assert(name && IsItLeterUserName(name));
 
     this->name = new char[strlen(name) + 1];
@@ -96,10 +97,13 @@ Person::Person(const Person &other) : years(other.years), id(other.id)
 {
     this->name = new char[strlen(other.name) + 1];
     strcpy(this->name, other.name);
-    this->years = other.years;
-    // if(other.email){
-    this->email = new char[strlen(other.email) + 1];
-    strcpy(this->email, other.email);
+    if (other.years)
+        this->years = other.years;
+    if (other.email)
+    {
+        this->email = new char[strlen(other.email) + 1];
+        strcpy(this->email, other.email);
+    }
     //this->email[strlen(this->email)]= '\0';
     //}
     // else
@@ -163,7 +167,7 @@ Person &Person::operator=(const Person &other)
     }
     return *this;
 }
-char *Person::getName() const
+const char *Person::getName() const
 {
     return this->name;
 }
@@ -171,12 +175,13 @@ int Person::getYears() const
 {
     return this->years;
 }
-char *Person::getEmail() const
+const char *Person::getEmail() const
 {
-    return this->email;
-    char *result = new char[8];
-    strcpy(result, "UNKNOWN");
-    return result;
+    if (this->email)
+        return this->email;
+    // char *result = new char[8];
+    // strcpy(result, "UNKNOWN");
+    // return result;
 }
 int Person::getId() const
 {
@@ -196,7 +201,7 @@ void Person::profile_info(const char *name) const
             std::cout << "YEARS: " << this->years << ", ";
         }
 
-        if (this->getEmail() == nullptr || this->getEmail() == "")
+        if (this->getEmail() == nullptr || this->getEmail() == "\0")
         {
             std::cout << "EMAIL: UNKNOWN, ";
         }
@@ -219,7 +224,7 @@ void Person::print() const
         std::cout << "YEARS: " << this->years << ", ";
     }
 
-    if (!this->email)
+    if (this->getEmail() == nullptr || this->getEmail() == "\0")
     {
         std::cout << "EMAIL: UNKNOWN, ";
     }

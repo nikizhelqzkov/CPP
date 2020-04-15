@@ -25,8 +25,8 @@ int main()
    Person b("Kimor","kim@abv.bg",rand()%100);
     Person e("sofi", "n@", rand() % 100);
     Person c("ee", "ne@", rand() % 100);
-    Person d("niki", 27,"n@", rand() % 100);
-   // Person d("niki", 27, rand() % 100);-->that constructor i don't know why it kills the challange
+   // Person d("niki", 27,"n@", rand() % 100);
+    Person d("niki", 27, rand() % 100);//-->that constructor i don't know why it kills the challange
 
     // Person *arr = new Person[4]{a, b, c, d};
     Person *arr = new Person[5];

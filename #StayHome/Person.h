@@ -23,8 +23,8 @@ public:
     void setEmail(const char *);
     void setName(const char* );
     void setId(int);
-    char*getName()const;
-    char*getEmail()const;
+   const char*getName()const;
+   const char*getEmail()const;
     int getId()const;
     int getYears()const;
     void profile_info(const char*)const;//da raboti v masiva ot personi kato normalna funkciq

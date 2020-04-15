@@ -1,7 +1,7 @@
 #include "Challange.h"
 //#include "PersonArr.h"
 
-void Contains(const char *name, const PersonArr &arr, PersonArr res)
+void Contains(const char *name, const PersonArr &arr, PersonArr &res)
 {
 
     for (size_t i = 0; i < arr.getSize(); i++)
@@ -10,7 +10,7 @@ void Contains(const char *name, const PersonArr &arr, PersonArr res)
             res += arr[i];
     }
 }
-bool Contains(const char *name, PersonArr arr)
+bool Contains(const char *name, const PersonArr &arr)
 {
 
     for (size_t i = 0; i < arr.getSize(); i++)
@@ -29,13 +29,13 @@ Challange::Challange()
     // this->ChallangedUser = nullptr;
     this->chUsers = nullptr;
     this->size = 0;
-    this->users = nullptr;
+    this->users = nullptr; //!
     this->Repeats = 0;
     this->position = 0;
     this->sustoqnie = 0;
 }
 
-Challange::Challange(const char *User, const char *tag, const PersonArr chUsers, PersonArr users) : chUsers(chUsers), users(users)
+Challange::Challange(const char *User, const char *tag, const PersonArr &chUsers, const PersonArr &users) : chUsers(chUsers), users(users)
 {
     assert(Contains(User, users));
     //if (Contains(User, users))
@@ -51,14 +51,18 @@ Challange::Challange(const char *User, const char *tag, const PersonArr chUsers,
     this->size = this->chUsers.getSize();
     // }
 }
-Challange::Challange(const Challange &other)
+Challange::Challange(const Challange &other) : chUsers(other.chUsers), users(other.users)
 {
-    this->User = new char[strlen(other.User) + 1];
-    strcpy(this->User, other.User);
-    this->tag = new char[strlen(other.tag) + 1];
-    strcpy(this->tag, other.tag);
-    this->chUsers = other.chUsers;
-    this->users = other.users;
+    if (this->User)
+    {
+        this->User = new char[strlen(other.User) + 1];
+        strcpy(this->User, other.User);
+    }
+    if (this->tag)
+    {
+        this->tag = new char[strlen(other.tag) + 1];
+        strcpy(this->tag, other.tag);
+    }
 }
 Challange::~Challange()
 {
@@ -79,6 +83,8 @@ Challange &Challange::operator=(const Challange &other)
         this->chUsers = other.chUsers;
         this->users = other.users;
         this->size = this->chUsers.getSize();
+        this->Repeats = other.Repeats;
+        this->sustoqnie = other.sustoqnie;
     }
     return *this;
 }
@@ -87,7 +93,7 @@ PersonArr Challange::getChallgedUser() const
 {
     return this->chUsers;
 }
-char *Challange::getUser() const
+const char *Challange::getUser() const
 {
     return this->User;
 }
@@ -103,7 +109,8 @@ int Challange::getPositions() const
 {
     return this->position;
 }
-int Challange::getSustoqnie()const{
+int Challange::getSustoqnie() const
+{
     return this->sustoqnie;
 }
 void Challange::setPosition(int position)
@@ -136,19 +143,22 @@ void Challange::printChallange() const
         this->chUsers[i].print();
     }
     std::cout << " ,\n Repeats: " << this->Repeats;
-    if(this->sustoqnie==0){
-        std::cout<<" , Sustoqnie: New";
+    if (this->sustoqnie == 0)
+    {
+        std::cout << " , Sustoqnie: New";
     }
-    else if(this->sustoqnie>0 && this->sustoqnie<10){
-        std::cout<<" , Sustoqnie: quite recently";
+    else if (this->sustoqnie > 0 && this->sustoqnie < 10)
+    {
+        std::cout << " , Sustoqnie: quite recently";
     }
-    else if(this->sustoqnie>=10){
-        std::cout<<" , Sustoqnie: old";
+    else if (this->sustoqnie >= 10)
+    {
+        std::cout << " , Sustoqnie: old";
     }
 }
 void Challange::setSustoqnie(int s)
 {
-    assert(s<3&& s>=0);
+    assert(s < 3 && s >= 0);
     this->sustoqnie = s;
 }
 // Challange *operator+=( Challange *buffer, const Challange &other)

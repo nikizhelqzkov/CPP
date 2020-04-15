@@ -2,7 +2,7 @@
 
 PersonArr::PersonArr(const Person *arr = nullptr, size_t size = 0) : size(size)
 {
-   // assert(arr && size > 0);
+    // assert(arr && size > 0);
     this->arr = new Person[this->size];
     for (size_t i = 0; i < this->size; i++)
     {
@@ -41,7 +41,7 @@ void PersonArr::SetArr(const Person *arr, size_t size)
         this->arr[i] = arr[i];
     }
 }
-Person *PersonArr::getArr() const
+const Person *PersonArr::getArr() const//const
 {
     return this->arr;
 }
@@ -64,21 +64,23 @@ Person PersonArr::operator[](int i) const
 {
     return this->arr[i];
 }
-PersonArr& PersonArr::operator+=(const Person&other){
-    
-    Person* buffer;
-    buffer = new Person [this->size+1];
+PersonArr &PersonArr::operator+=(const Person &other)
+{
+
+    Person *buffer;
+    buffer = new Person[this->size + 1];
     for (size_t i = 0; i < this->size; i++)
     {
         buffer[i] = this->arr[i];
     }
     buffer[this->size] = other;
-    delete[]this->arr;
+    delete[] this->arr;
     this->size++;
     this->arr = new Person[this->size];
     for (size_t i = 0; i < this->size; i++)
     {
         this->arr[i] = buffer[i];
     }
+    delete[] buffer;
     return *this;
 }

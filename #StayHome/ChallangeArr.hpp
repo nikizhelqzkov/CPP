@@ -69,6 +69,7 @@ ChallangeArr &ChallangeArr::operator+=(const Challange &other)
     {
         this->arr[i] = buffer[i];
     }
+    delete[] buffer;
     return *this;
 }
 ChallangeArr &ChallangeArr::add(const Challange &other)
@@ -86,14 +87,14 @@ ChallangeArr &ChallangeArr::add(const Challange &other)
             //
             //     }
             // }
-          //  Challange a;
-          //  a = this->arr[i];
+            //  Challange a;
+            //  a = this->arr[i];
             //a.printChallange();
 
             this->arr[i].setUser(other.getChallgedUser().operator[](0));
-           // this->arr[i] = a;
+            // this->arr[i] = a;
             //a.printChallange();
-            this->arr[i].setChUsers(this->arr[i].getChallgedUser());
+            this->arr[i].setChUsers(other.getChallgedUser());
             this->arr[i].setRepeats(this->arr[i].getRepeats() + 1);
             if (this->arr[i].getRepeats() > 0 && this->arr[i].getRepeats() < 10 && this->getSustoqnie() == 0)
             {
@@ -103,16 +104,14 @@ ChallangeArr &ChallangeArr::add(const Challange &other)
             {
                 this->arr[i].setSustoqnie(this->arr[i].getSustoqnie() + 1);
             }
-            
-            break;
-        }
-        else
-        {
-            *this += other;
 
-            //this->size++;
+            return *this;
         }
+
+        //this->size++;
     }
+    *this += other;
+    return *this;
 }
 void ChallangeArr::printCArr() const
 {
