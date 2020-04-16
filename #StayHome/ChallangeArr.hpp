@@ -15,12 +15,12 @@ void listBy(Challange *arr, size_t size, std::function<bool(Challange, Challange
             if (func(arr[i], arr[j]))
             {
 
-                // Challange g;
-                // g = arr[i];
-                // arr[i] = arr[j];
-                // arr[j] = g;
+                Challange g;
+                g = arr[i];
+                arr[i] = arr[j];
+                arr[j] = g;
                 // std::swap(arr[i], arr[j]);
-                swap(arr[i],arr[j]);
+                // swap(arr[i],arr[j]);
             }
         }
     }
@@ -158,16 +158,21 @@ void ChallangeArr::printCArr() const
 }
 void ChallangeArr::listByPopular()
 {
-    listBy(this->arr, this->size, [](Challange a, Challange b) { return a.getRepeats() > b.getRepeats(); });
+
+    listBy(this->arr, this->size, [](Challange a, Challange b) { return a.getRepeats() < b.getRepeats(); });
     this->printCArr();
 }
+
 void ChallangeArr::listByNewest()
 {
+
     listBy(this->arr, this->size, [](Challange a, Challange b) { return a.getPosInArr() > b.getPosInArr(); });
     this->printCArr();
 }
+
 void ChallangeArr::listByOldest()
 {
+
     listBy(this->arr, this->size, [](Challange a, Challange b) { return a.getPosInArr() < b.getPosInArr(); });
     this->printCArr();
 }

@@ -41,7 +41,7 @@ int main()
     PersonArr p(arr, 5);
     PersonArr Challanged;
     // p += b;
-    p.printArr();
+   // p.printArr();
     delete[] arr;
     char *text;
     text = new char[50];
@@ -68,7 +68,7 @@ int main()
 
         count++;
     }
-    Challanged.printArr();
+  //  Challanged.printArr();
     delete[] text;
 
     Challange ch("ee", "b", Challanged, p);
@@ -84,9 +84,13 @@ int main()
      cha.add(zh);
      cha.add(ch);
       std::cout<<"\n----\n";
-     cha.printCArr();
+    // cha.printCArr();
      std::cout<<"\n----\n";
-     cha.listByNewest();
+    // cha.listByNewest();
+      std::cout<<"\n----\n";
+      //cha.listByOldest();
+       std::cout<<"\n----\n";
+      // cha.listByPopular();
     //cha.printCArr();
     // char *name = new char[2];
     // name[0] = 'a';
