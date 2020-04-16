@@ -1,3 +1,6 @@
+#ifndef CH_INCLUDED
+#define CH_INCLUDED
+
 #include "PersonArr.hpp"
 #include <cstring>
 
@@ -15,6 +18,7 @@ protected:
     int position;
     int sustoqnie;//0->new;1->quite recently; 2->old
     int posInArr;
+    double rating;
 
 public:
     Challange();
@@ -37,7 +41,10 @@ public:
     void setChUsers(const PersonArr&);
     void setUser(const Person&);
     void setPosInArr(int);
+    void setRating(double);
     void printChallange()const;
   //friend  Challange* operator+=( Challange *,const Challange&);
-
+  Challange(const char*, const char*);
+  void setChInPerson(const char*, const char*);
 };
+#endif

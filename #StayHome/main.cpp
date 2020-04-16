@@ -84,7 +84,7 @@ int main()
      cha.add(zh);
      cha.add(ch);
       std::cout<<"\n----\n";
-    // cha.printCArr();
+     cha.printCArr();
      std::cout<<"\n----\n";
     // cha.listByNewest();
       std::cout<<"\n----\n";

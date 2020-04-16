@@ -34,6 +34,7 @@ Challange::Challange()
     this->position = 0;
     this->sustoqnie = 0;
     this->posInArr = 0;
+    this->rating = 0;
 }
 
 Challange::Challange(const char *User, const char *tag, const PersonArr &chUsers, const PersonArr &users) : chUsers(chUsers), users(users)
@@ -41,7 +42,7 @@ Challange::Challange(const char *User, const char *tag, const PersonArr &chUsers
     assert(Contains(User, users));
     //if (Contains(User, users))
     //{
-    this->posInArr = 0;    
+    this->posInArr = 0;
     this->Repeats = 0;
     this->User = new char[strlen(User) + 1];
     strcpy(this->User, User);
@@ -50,9 +51,11 @@ Challange::Challange(const char *User, const char *tag, const PersonArr &chUsers
     strcpy(this->tag, tag);
     this->sustoqnie = 0;
     this->size = this->chUsers.getSize();
+    this->rating = 0;
     // }
 }
-Challange::Challange(const Challange &other) : chUsers(other.chUsers), users(other.users)
+Challange::Challange(const Challange &other) : chUsers(other.chUsers), users(other.users),
+                                               rating(other.rating), sustoqnie(other.sustoqnie), Repeats(other.Repeats), size(other.size), posInArr(other.posInArr), position(position)
 {
     if (this->User)
     {
@@ -64,7 +67,6 @@ Challange::Challange(const Challange &other) : chUsers(other.chUsers), users(oth
         this->tag = new char[strlen(other.tag) + 1];
         strcpy(this->tag, other.tag);
     }
-   
 }
 Challange::~Challange()
 {
@@ -88,6 +90,7 @@ Challange &Challange::operator=(const Challange &other)
         this->Repeats = other.Repeats;
         this->sustoqnie = other.sustoqnie;
         this->posInArr = other.posInArr;
+        this->rating = other.rating;
     }
     return *this;
 }
@@ -148,16 +151,17 @@ void Challange::printChallange() const
     std::cout << " ,\n Repeats: " << this->Repeats;
     if (this->sustoqnie == 0)
     {
-        std::cout << " , Sustoqnie: New";
+        std::cout << " , Sustoqnie: New, ";
     }
     else if (this->sustoqnie > 0 && this->sustoqnie < 10)
     {
-        std::cout << " , Sustoqnie: quite recently";
+        std::cout << " , Sustoqnie: quite recently, ";
     }
     else if (this->sustoqnie >= 10)
     {
-        std::cout << " , Sustoqnie: old";
+        std::cout << " , Sustoqnie: old, ";
     }
+    std::cout<<"Rating: "<<this->rating;
 }
 void Challange::setSustoqnie(int s)
 {
@@ -165,11 +169,64 @@ void Challange::setSustoqnie(int s)
     this->sustoqnie = s;
 }
 
-void Challange::setPosInArr(int i){
+void Challange::setPosInArr(int i)
+{
     this->posInArr = i;
 }
-int Challange::getPosInArr()const{
+int Challange::getPosInArr() const
+{
     return this->posInArr;
+}
+void Challange::setRating(double rating)
+{
+    if (this->rating == 0)
+    {
+        this->rating = rating;
+    }
+    else
+    {
+        this->rating = (this->rating + rating) / 2;
+    }
+}
+// Challange::Challange(const char *user, const char *tag)
+// {
+//     if (user)
+//     {
+//         this->User = new char[strlen(user)];
+//         strcpy(User, user);
+//     }
+//     if (tag)
+//     {
+//         this->tag = new char[strlen(tag)];
+//         strcpy(this->tag, tag);
+//     }
+//     this->chUsers = nullptr;
+//     this->posInArr = 0;
+//     this->size = 0;
+//     this->sustoqnie = 0;
+//     this->users = nullptr;
+// }
+void Challange::setChInPerson(const char *user, const char *tag)
+{
+
+    if (user)
+    {
+        delete[] this->User;
+        this->User = new char[strlen(user)];
+        strcpy(User, user);
+    }
+    if (tag)
+    {
+        delete[] this->tag;
+        this->tag = new char[strlen(tag)];
+        strcpy(this->tag, tag);
+    }
+    this->chUsers = nullptr;
+    this->posInArr = 0;
+    this->size = 0;
+    this->sustoqnie = 0;
+    this->users = nullptr;
+   // this->rating = 0;
 }
 // Challange *operator+=( Challange *buffer, const Challange &other)
 // {

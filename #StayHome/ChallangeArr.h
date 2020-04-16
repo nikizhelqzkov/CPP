@@ -1,3 +1,6 @@
+#ifndef CH_ARR
+#define CH_ARR
+
 #include "Challange.hpp"
 #include <functional>
 class ChallangeArr : public Challange
@@ -21,7 +24,7 @@ public:
     void listByNewest();
     void listByOldest();
 };
-
+#endif
 //+= s proverka ako sushtestvuva da ne go dobawq a vdigne broqch
 //sustoqniq (1)1-new , 2-10(2) qiite recently, 11+ - old(3)
 //using comparatorFunction = std::function<bool(Student,Student)>;
