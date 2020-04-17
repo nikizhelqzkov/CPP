@@ -1,9 +1,9 @@
 #ifndef FINISH_INCLUDED
 #define FINISH_INCLUDED
-#include "ChallangeArr.h"
+#include "ChallangeArr.hpp"
 
 
-class Finish
+class Finish//://public ChallangeArr
 {
 private:
     ChallangeArr data;
@@ -24,6 +24,7 @@ public:
     int getId()const;
     const char*getTag()const;
     double getRating()const;
+    void RemoveChUsers(const char* ,int ,double);
     //shte pravim funckiq koqto po idto shte namirra icha, shte go maha ot sistemata s chuseri 
     //a ako e edinstven , shte se maha challange  i shte se obnovqva reitinga na challange
     

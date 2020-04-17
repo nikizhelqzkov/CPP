@@ -45,7 +45,7 @@ ChallangeArr::ChallangeArr(const ChallangeArr &other) : size(other.size)
     this->arr = new Challange[this->size];
     for (size_t i = 0; i < this->size; i++)
     {
-        this->arr[i] = arr[i];
+        this->arr[i] = other.arr[i];
     }
 }
 ChallangeArr::~ChallangeArr()
@@ -61,7 +61,7 @@ ChallangeArr &ChallangeArr::operator=(const ChallangeArr &other)
         this->arr = new Challange[this->size];
         for (size_t i = 0; i < this->size; i++)
         {
-            this->arr[i] = arr[i];
+            this->arr[i] = other.arr[i];
         }
     }
     return *this;
@@ -84,6 +84,22 @@ ChallangeArr &ChallangeArr::operator+=(const Challange &other)
     }
     delete[] buffer;
     return *this;
+}
+Challange &ChallangeArr::operator[](int i)
+{
+    return this->arr[i];
+}
+Challange ChallangeArr::operator[](int i) const
+{
+    return this->arr[i];
+}
+Challange *ChallangeArr::getArr() const
+{
+    return this->arr;
+}
+size_t ChallangeArr::getSize() const
+{
+    return this->size;
 }
 ChallangeArr &ChallangeArr::add(const Challange &other)
 {
@@ -113,11 +129,11 @@ ChallangeArr &ChallangeArr::add(const Challange &other)
             {
                 this->arr[i].setSustoqnie(0);
             }
-            else if (this->arr[i].getRepeats() > 0 && this->arr[i].getRepeats() < 10 && this->getSustoqnie() == 0)
+            else if (this->arr[i].getRepeats() > 0 && this->arr[i].getRepeats() < 10 && this->arr[i].getSustoqnie() == 0)
             {
                 this->arr[i].setSustoqnie(1);
             }
-            else if (this->arr[i].getRepeats() >= 10 && this->getSustoqnie() == 1)
+            else if (this->arr[i].getRepeats() >= 10 && this->arr[i].getSustoqnie() == 1)
             {
                 this->arr[i].setSustoqnie(2);
             }

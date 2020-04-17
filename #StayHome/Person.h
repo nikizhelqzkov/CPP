@@ -23,6 +23,7 @@ public:
     void setEmail(const char *);
     void setName(const char* );
     void setId(int);
+    bool operator==(const Person&);
    const char*getName()const;
    const char*getEmail()const;
     int getId()const;

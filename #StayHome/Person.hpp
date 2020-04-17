@@ -178,7 +178,9 @@ int Person::getYears() const
 const char *Person::getEmail() const
 {
     if (this->email)
+    {
         return this->email;
+    }
     // char *result = new char[8];
     // strcpy(result, "UNKNOWN");
     // return result;
@@ -233,4 +235,8 @@ void Person::print() const
         std::cout << "EMAIL: " << this->email << ", ";
     }
     std::cout << "ID: " << this->id << "\n";
+}
+bool Person::operator==(const Person& other){
+    return this->id==other.id && strcmp(this->name,other.name)==0
+    &&this->years==other.years;
 }

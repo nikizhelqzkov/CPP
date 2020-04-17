@@ -41,7 +41,7 @@ void PersonArr::SetArr(const Person *arr, size_t size)
         this->arr[i] = arr[i];
     }
 }
-const Person *PersonArr::getArr() const//const
+const Person *PersonArr::getArr() const //const
 {
     return this->arr;
 }
@@ -76,6 +76,46 @@ PersonArr &PersonArr::operator+=(const Person &other)
     buffer[this->size] = other;
     delete[] this->arr;
     this->size++;
+    this->arr = new Person[this->size];
+    for (size_t i = 0; i < this->size; i++)
+    {
+        this->arr[i] = buffer[i];
+    }
+    delete[] buffer;
+    return *this;
+}
+PersonArr &PersonArr::operator-=(const Person &element)
+{
+    Person *buffer;
+    bool flag = false;
+    buffer = new Person[this->size];
+    for (size_t i = 0; i < this->size; i++)
+    {
+        buffer[i] = this->arr[i];
+    }
+
+    for (size_t i = 0; i < this->size - 1; i++)
+    {
+        if (buffer[i] == element)
+        {
+            flag = true;
+            for (size_t j = i + 1; j < this->size; j++)
+            {
+                buffer[j - 1] = this->arr[j];
+            }
+          //  break;
+        }
+    }
+    if (buffer[this->size - 1] == element)
+    {
+        flag = true;
+    }
+    if (!flag)
+    {
+        return *this;
+    }
+    this->size--;
+    delete[] this->arr;
     this->arr = new Person[this->size];
     for (size_t i = 0; i < this->size; i++)
     {

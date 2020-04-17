@@ -20,6 +20,9 @@ public:
     Person &operator[](int i);
     Person operator[](int i) const;
     PersonArr &operator+=(const Person &);
+    PersonArr& operator-=(const Person&);
+
+
 };
 
 //#include "PersonArr.hpp"

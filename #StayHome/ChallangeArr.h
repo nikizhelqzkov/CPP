@@ -3,9 +3,9 @@
 
 #include "Challange.hpp"
 #include <functional>
-class ChallangeArr : public Challange
+class ChallangeArr  //:public Challange
 {
-private:
+protected:
     Challange *arr;
     size_t size;
 
@@ -14,11 +14,13 @@ public:
     ChallangeArr(const Challange *arr, size_t size);
     ChallangeArr(const ChallangeArr &);
     ~ChallangeArr();
+    Challange* getArr()const;
+    size_t getSize()const;
     ChallangeArr &operator=(const ChallangeArr &);
     ChallangeArr &operator+=(const Challange &);
     ChallangeArr &add(const Challange &);
-    ChallangeArr &operator[](int i);
-    ChallangeArr operator[](int i) const;
+    Challange &operator[](int i);
+    Challange operator[](int i) const;
     void printCArr() const;
     void listByPopular();
     void listByNewest();

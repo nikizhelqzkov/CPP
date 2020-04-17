@@ -99,6 +99,10 @@ PersonArr Challange::getChallgedUser() const
 {
     return this->chUsers;
 }
+PersonArr &Challange::getChallgedUser()
+{
+    return this->chUsers;
+}
 const char *Challange::getUser() const
 {
     return this->User;
@@ -106,6 +110,10 @@ const char *Challange::getUser() const
 int Challange::getSize() const
 {
     return this->size;
+}
+const char *Challange::getTag() const
+{
+    return this->tag;
 }
 int Challange::getRepeats() const
 {
@@ -122,6 +130,11 @@ int Challange::getSustoqnie() const
 void Challange::setPosition(int position)
 {
     this->position = position;
+}
+void Challange::setTag(const char *tag)
+{
+    this->tag = new char[strlen(tag) + 1];
+    strcpy(this->tag, tag);
 }
 void Challange::setRepeats(int repeats)
 {
@@ -143,12 +156,8 @@ void Challange::setUser(const Person &other)
 }
 void Challange::printChallange() const
 {
-    std::cout << "User: " << this->User << " , Challange: #" << this->tag << ", Challanged Users: ";
-    for (size_t i = 0; i < this->size; i++)
-    {
-        this->chUsers[i].print();
-    }
-    std::cout << " ,\n Repeats: " << this->Repeats;
+    std::cout << "User: " << this->User << " , Challange: #" << this->tag;
+
     if (this->sustoqnie == 0)
     {
         std::cout << " , Sustoqnie: New, ";
@@ -161,7 +170,12 @@ void Challange::printChallange() const
     {
         std::cout << " , Sustoqnie: old, ";
     }
-    std::cout<<"Rating: "<<this->rating;
+    std::cout << "Rating: " << this->rating;
+    std::cout << " ,\n Repeats: " << this->Repeats<< ", Challanged Users: ";;
+    for (size_t i = 0; i < this->size; i++)
+    {
+        this->chUsers[i].print();
+    }
 }
 void Challange::setSustoqnie(int s)
 {
@@ -179,6 +193,7 @@ int Challange::getPosInArr() const
 }
 void Challange::setRating(double rating)
 {
+    assert(rating >= -5 && rating <= 10);
     if (this->rating == 0)
     {
         this->rating = rating;
@@ -226,7 +241,7 @@ void Challange::setChInPerson(const char *user, const char *tag)
     this->size = 0;
     this->sustoqnie = 0;
     this->users = nullptr;
-   // this->rating = 0;
+    // this->rating = 0;
 }
 // Challange *operator+=( Challange *buffer, const Challange &other)
 // {

@@ -28,7 +28,10 @@ public:
     Challange &operator=(const Challange &);
     void SetChallange(const char *, const char *);
     PersonArr getChallgedUser() const;
+    PersonArr& getChallgedUser();
+
     const char *getUser() const;
+    const char* getTag()const;
     int getSize() const;
     int getRepeats()const;
     int getPositions()const;
@@ -36,6 +39,7 @@ public:
     int getPosInArr()const;
     void setPosition(int);
     void setRepeats(int);
+    void setTag(const char*);
     void setSustoqnie(int);
     bool operator==(const Challange&)const;
     void setChUsers(const PersonArr&);

@@ -3,8 +3,8 @@
 Finish::Finish()
 {
     this->data;
-    this->id = 0;
-    this->tag = nullptr;
+    this->id;
+    this->tag = "";
     this->rating = 0;
 }
 Finish::Finish(const ChallangeArr &data, const char *tag, int id, double rating) : id(id), rating(rating)
@@ -12,9 +12,24 @@ Finish::Finish(const ChallangeArr &data, const char *tag, int id, double rating)
     this->data = data;
     if (tag)
     {
-        this->tag = new char[strlen(tag)];
+        this->tag = new char[strlen(tag) + 1];
         strcpy(this->tag, tag);
     }
+        for (size_t i = 0; i < this->data.getSize(); i++)
+    {
+        if (strcmp(this->data[i].getTag(), tag) == 0)
+        {
+            for (size_t j = 0; j < this->data[i].getChallgedUser().getSize(); j++)
+            {
+                if (this->data[i].getChallgedUser()[j].getId() == id)
+                {
+                    this->data[i].getChallgedUser().operator-=(this->data[i].getChallgedUser()[j]);
+                    this->data[i].setRating(rating);
+                }
+            }
+        }
+    }
+    this->data.printCArr();
 }
 Finish::Finish(const Finish &other) : id(other.id), rating(other.rating)
 {
@@ -22,7 +37,7 @@ Finish::Finish(const Finish &other) : id(other.id), rating(other.rating)
     if (other.tag)
     {
         delete[] this->tag;
-        this->tag = new char[strlen(other.tag)];
+        this->tag = new char[strlen(other.tag) + 1];
         strcpy(this->tag, other.tag);
     }
 }
@@ -36,7 +51,7 @@ Finish &Finish::operator=(const Finish &other)
     if (other.tag)
     {
         delete[] this->tag;
-        this->tag = new char[strlen(other.tag)];
+        this->tag = new char[strlen(other.tag) + 1];
         strcpy(this->tag, other.tag);
     }
     this->id = other.id;
@@ -57,7 +72,7 @@ void Finish::setData(const ChallangeArr &other)
 }
 void Finish::setTag(const char *tag)
 {
-    this->tag = new char[strlen(tag)];
+    this->tag = new char[strlen(tag) + 1];
     strcpy(this->tag, tag);
 }
 ChallangeArr Finish::getData() const
@@ -72,6 +87,28 @@ const char *Finish::getTag() const
 {
     return this->tag;
 }
-double Finish::getRating() const{
+double Finish::getRating() const
+{
     return this->rating;
+}
+void Finish::RemoveChUsers(const char *tag, int id, double rating)
+{
+    for (size_t i = 0; i < this->data.getSize(); i++)
+    {
+        if (strcmp(this->data[i].getTag(), tag) == 0)
+        {
+            for (size_t j = 0; j < this->data[i].getChallgedUser().getSize(); j++)
+            {
+                if (this->data[i].getChallgedUser()[j].getId() == id)
+                {
+                    this->data[i].getChallgedUser().operator-=(this->data[i].getChallgedUser()[j]);
+                    this->data[i].setRating(rating);
+                }
+            }
+        }
+    }
+   this->data.printCArr();
+
+    // this->data[0].getChallgedUser()[0];//getChallgedUser().operator[](0);
+    //
 }
