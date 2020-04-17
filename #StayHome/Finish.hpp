@@ -58,6 +58,7 @@ Finish &Finish::operator=(const Finish &other)
     }
     this->id = other.id;
     this->rating = other.rating;
+    return *this;
 }
 
 void Finish::setId(int id)
