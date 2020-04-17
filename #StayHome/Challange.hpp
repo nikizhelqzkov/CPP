@@ -171,9 +171,16 @@ void Challange::printChallange() const
         std::cout << " , Sustoqnie: old, ";
     }
     std::cout << "Rating: " << this->rating;
-    std::cout << " ,\n Repeats: " << this->Repeats<< ", Challanged Users: ";;
+    std::cout << " ,\n Repeats: " << this->Repeats << ", Challanged Users: ";
+    // if(this->chUsers)
     for (size_t i = 0; i < this->size; i++)
     {
+        if (this->chUsers[i].getId() == 0)
+        {
+            std::cout << "NO CHALLENGED PERSONS";
+            break;
+        }
+
         this->chUsers[i].print();
     }
 }

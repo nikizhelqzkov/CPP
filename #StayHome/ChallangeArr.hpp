@@ -167,9 +167,13 @@ void ChallangeArr::printCArr() const
 {
     for (size_t i = 0; i < this->size; i++)
     {
-        std::cout << "Challange " << i << " : ";
-        this->arr[i].printChallange();
-        std::cout << "\n";
+        if (this->arr[i].getChallgedUser()[0].getId() != 0)
+        {
+
+            std::cout << "Challange " << i << " : ";
+            this->arr[i].printChallange();
+            std::cout << "\n";
+        }
     }
 }
 void ChallangeArr::listByPopular()

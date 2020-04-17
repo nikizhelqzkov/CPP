@@ -92,10 +92,22 @@ int main()
     std::cout << "\n----\n";
 
     //p.printArr();
-    int id;
-    std::cin >> id;
+    int id,id2;
+    std::cin >> id>>id2;
     Finish f(cha, "a", id, 7.5);
-    Finish frs(cha,"b",id,7.5);
+    cha = f.RemoveChUsers("a", id, 7.5);
+    cha.printCArr();
+    std::cout << "\n----------------------\n";
+    cha = f.RemoveChUsers("b", id, 8.6);
+    cha.printCArr();
+     std::cout << "\n----------------------\n";
+    cha = f.RemoveChUsers("b", id2, 5.6);
+    cha.printCArr();
+         std::cout << "\n----------------------\n";
+    cha = f.RemoveChUsers("b", id, 5.6);
+    cha.printCArr();
+    std::cout<<"0";
+    // Finish frs(cha,"b",id,7.5);
     // cha.printCArr();
     //cha.printCArr();
     // cha.listByNewest();

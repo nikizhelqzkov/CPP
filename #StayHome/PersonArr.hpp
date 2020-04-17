@@ -103,7 +103,7 @@ PersonArr &PersonArr::operator-=(const Person &element)
             {
                 buffer[j - 1] = this->arr[j];
             }
-          //  break;
+           break;
         }
     }
     if (buffer[this->size - 1] == element)
