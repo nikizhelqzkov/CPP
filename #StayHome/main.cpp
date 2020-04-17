@@ -106,6 +106,7 @@ int main()
          std::cout << "\n----------------------\n";
     cha = f.RemoveChUsers("b", id, 5.6);
     cha.printCArr();
+    
     std::cout<<"0";
     // Finish frs(cha,"b",id,7.5);
     // cha.printCArr();
