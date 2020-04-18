@@ -22,6 +22,15 @@ int main()
     Person testUser("Ivancho", "n@", rand() % 100);
     arr[0] = testUser;
     PersonArr ar(arr, 1);
+    PersonArr Challanged;
+    Challange ivancho("Ivancho", "kurnik", Challanged, ar);
+    Challange *crr = new Challange[1];
+
+    // // Challange *crr = new Challange[1]{ch};
+    crr[0] = ivancho;
+    // //zh.printChallange();
+    // // std::cout << ch.getSize() << "\n";
+    ChallangeArr cha(crr, 1);
 
     srand(time(0));
 
@@ -46,7 +55,15 @@ int main()
                     int a;
                     std::cin >> text >> a;
                     Person user(text, a, rand() % 100);
-                    ar += user;
+                    if (ar[0] == testUser)
+                    {
+                        ar[0] = user;
+                    }
+                    else
+                    {
+                        ar += user;
+                    }
+
                     delete[] text;
                 }
                 else if (regMeth == 2)
@@ -55,7 +72,14 @@ int main()
                     char *emailText = new char[50];
                     std::cin >> text >> emailText;
                     Person user2(text, emailText, rand() % 100);
-                    ar += user2;
+                    if (ar[0] == testUser)
+                    {
+                        ar[0] = user2;
+                    }
+                    else
+                    {
+                        ar += user2;
+                    }
                     delete[] text;
                     delete[] emailText;
                 }
@@ -66,7 +90,14 @@ int main()
                     char *emailText = new char[50];
                     std::cin >> text >> a >> emailText;
                     Person user3(text, a, emailText, rand() % 100);
-                    ar += user3;
+                    if (ar[0] == testUser)
+                    {
+                        ar[0] = user3;
+                    }
+                    else
+                    {
+                        ar += user3;
+                    }
                 }
                 else if (regMeth != 0 && regMeth != 1 && regMeth != 2 && regMeth != 3)
                 {
@@ -78,10 +109,71 @@ int main()
         else if (method == 2)
         {
             std::cout << "\n WELCOME TO CHALLANGE MODE!\n ";
-            int count;
+            int count = 0, counter;
+            char *text = new char[50];
+            char *name = new char[30];
+            char *tag = new char[30];
             std::cout << "Write how many people u will challange: ";
-            std::cin >> count;
-            std::cout << "Write Your name(you have to be registered), challange tag and challanged users:";
+            std::cin >> counter;
+            std::cout << "Write Your name(you have to be registered), challange tag and challanged users:\n";
+            std::cin >> name >> tag >> text;
+            if (Contains(name, ar))
+            {
+                PersonArr ChallangedUsers;
+                while (std::cin && count < counter)
+                {
+                    if (count == 0)
+                    {
+                        if (Contains(text, ar))
+                        {
+
+                            //  Contains(text,p,z);
+                            for (size_t i = 0; i < ar.getSize(); i++)
+                            {
+                                if (strcmp(text, ar[i].getName()) == 0)
+                                {
+                                    ChallangedUsers += ar[i];
+                                    std::cout << text << "\n";
+                                }
+                            }
+                        }
+
+                        count++;
+                    }
+                    else
+                    {
+                        std::cin >> text;
+                        if (Contains(text, ar))
+                        {
+
+                            //  Contains(text,p,z);
+                            for (size_t i = 0; i < ar.getSize(); i++)
+                            {
+                                if (strcmp(text, ar[i].getName()) == 0)
+                                {
+                                    ChallangedUsers += ar[i];
+                                    std::cout << text << "\n";
+                                }
+                            }
+                        }
+
+                        count++;
+                    }
+                }
+                Challange userCHallange(name, tag, ChallangedUsers, ar);
+                if (cha[0] == ivancho)
+                {
+                    cha[0] = userCHallange;
+                }
+                else
+                {
+                    cha.add(userCHallange);
+                }
+                delete[]name;
+                delete[]tag;
+                delete[]text;
+               // cha.printCArr();
+            }
         }
         else if (method == 3)
         {
@@ -106,7 +198,7 @@ int main()
             ar.printArr();
             return 0;
         }
-        else if ( method != 1 && method != 2 && method != 3 && method != 4)
+        else if (method != 1 && method != 2 && method != 3 && method != 4)
         {
             std::cout << "WRONG NUMBER --> EXIT APP";
             return 0;
