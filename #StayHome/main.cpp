@@ -38,7 +38,7 @@ int main()
 
     do
     {
-        std::cout << "Welcome to Challange!\n Choose methods:\n 1) register \n 2) Challange\n 3) finish \n 4) exit\n\n";
+        std::cout << "Welcome to Challange!\n Choose methods:\n 1) register \n 2) Challange\n 3) finish \n 4) exit\n 5) list_by\n";
         std::cin >> method;
 
         if (method == 1)
@@ -98,11 +98,13 @@ int main()
                     {
                         ar += user3;
                     }
+                    delete[]text;
+                    delete[]emailText;
                 }
                 else if (regMeth != 0 && regMeth != 1 && regMeth != 2 && regMeth != 3)
                 {
-                    std::cout << "WRONG NUMBER --> EXIT APP";
-                    return 0;
+                    std::cout << "WRONG NUMBER! TRY AGAIN!\n"; //--> EXIT APP";
+                                                               // return 0;
                 }
             } while (regMeth != 0);
         }
@@ -183,6 +185,11 @@ int main()
                         std::cout << "YOUR NAME HAS NOT REGISTRED YET!\n";
                     }
                 }
+                else if (chOption != 0 && chOption != 1 && chOption != 2)
+                {
+                    std::cout << "WRONG NUMBER! TRY AGAIN!\n"; //--> EXIT APP";
+                }
+
             } while (chOption != 0);
         }
         else if (method == 3)
@@ -226,6 +233,7 @@ int main()
 
                         Finish f(cha, finishTag, id, rating);
                         cha = f.RemoveChUsers(finishTag, id, rating);
+                        delete[]finishTag;
                     }
 
                     // cha.printCArr();
@@ -233,8 +241,8 @@ int main()
 
                 else if (finishOption != 0 && finishOption != 1 && finishOption != 2)
                 {
-                    std::cout << "WRONG NUMBER --> EXIT APP";
-                    return 0;
+                    std::cout << "WRONG NUMBER! TRY AGAIN!\n"; //--> EXIT APP";
+                                                               // return 0;
                 }
             } while (finishOption != 0);
         }
@@ -261,10 +269,36 @@ int main()
 
             return 0;
         }
-        else if (method != 1 && method != 2 && method != 3 && method != 4)
+        else if (method == 5)
         {
-            std::cout << "WRONG NUMBER --> EXIT APP";
-            return 0;
+            int listN;
+            do
+            {
+                std::cout << "WELCOME TO LIST OF CHALLANGES!\n CHOOSE YOUR LIST:\n 1)list_by newest\n 2)list_by oldest\n 3)list_by most_popular\n 0)back \n";
+                std::cin >> listN;
+                if (listN == 1)
+                {
+                    cha.listByNewest();
+                }
+                else if (listN == 2)
+                {
+                    cha.listByOldest();
+                }
+                else if (listN == 3)
+                {
+                    cha.listByPopular();
+                }
+                else if (listN != 1 && listN != 2 && listN != 3 && listN != 0)
+                {
+                    std::cout << "WRONG NUMBER! TRY AGAIN!\n";
+                }
+
+            } while (listN != 0);
+        }
+        else if (method != 1 && method != 2 && method != 3 && method != 4 && method != 5)
+        {
+            std::cout << "WRONG NUMBER! TRY AGAIN! \n"; //--> EXIT APP";
+            //return 0;
         }
     } while (method != 4);
 
