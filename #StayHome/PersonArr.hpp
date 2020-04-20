@@ -49,11 +49,12 @@ size_t PersonArr::getSize() const
 {
     return this->size;
 }
-void PersonArr::printArr() const
+void PersonArr::printArr(std::ostream &out)
 {
     for (size_t i = 0; i < this->size; i++)
     {
-        this->arr[i].profile_info(this->arr[i].getName());
+     this->arr[i].print(out);
+     //profile_info(this->arr[i].getName());
     }
 }
 Person &PersonArr::operator[](int i)
@@ -103,7 +104,7 @@ PersonArr &PersonArr::operator-=(const Person &element)
             {
                 buffer[j - 1] = this->arr[j];
             }
-           break;
+            break;
         }
     }
     if (buffer[this->size - 1] == element)

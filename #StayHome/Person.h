@@ -29,7 +29,7 @@ public:
     int getId()const;
     int getYears()const;
     void profile_info(const char*)const;//da raboti v masiva ot personi kato normalna funkciq
-    void print()const;
+    void print(std::ostream&);
 
   
 };

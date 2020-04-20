@@ -63,7 +63,7 @@ int main()
                     {
                         ar += user;
                     }
-
+                    //operator writing to person.txt
                     delete[] text;
                 }
                 else if (regMeth == 2)
@@ -80,6 +80,8 @@ int main()
                     {
                         ar += user2;
                     }
+                    //operator writing to person.txt
+
                     delete[] text;
                     delete[] emailText;
                 }
@@ -98,8 +100,10 @@ int main()
                     {
                         ar += user3;
                     }
-                    delete[]text;
-                    delete[]emailText;
+                    //operator writing to person.txt
+
+                    delete[] text;
+                    delete[] emailText;
                 }
                 else if (regMeth != 0 && regMeth != 1 && regMeth != 2 && regMeth != 3)
                 {
@@ -124,7 +128,8 @@ int main()
                     }
                     else
                     {
-                        ar.printArr();
+                        //load from person.txt
+                        ar.printArr(std::cout);
                     }
                 }
                 else if (chOption == 2)
@@ -167,6 +172,7 @@ int main()
                             //}
                         }
                         Challange userCHallange(name, tag, ChallangedUsers, ar);
+                        
                         if (cha[0] == ivancho)
                         {
                             cha[0] = userCHallange;
@@ -175,10 +181,12 @@ int main()
                         {
                             cha.add(userCHallange);
                         }
+                        //write to ch.bin
                         delete[] name;
                         delete[] tag;
                         delete[] text;
-                        cha.printCArr();
+                        //read from ch bin
+                        cha.printCArr(std::cout);
                     }
                     else
                     {
@@ -208,7 +216,7 @@ int main()
                     }
                     else
                     {
-                        ar.printArr();
+                        ar.printArr(std::cout);
                     }
 
                     std::cout << "\n\n";
@@ -233,7 +241,7 @@ int main()
 
                         Finish f(cha, finishTag, id, rating);
                         cha = f.RemoveChUsers(finishTag, id, rating);
-                        delete[]finishTag;
+                        delete[] finishTag;
                     }
 
                     // cha.printCArr();
@@ -256,15 +264,15 @@ int main()
             else if (cha[0] == ivancho)
             {
                 std::cout << "\n USERS: ";
-                ar.printArr();
+                ar.printArr(std::cout);
                 std::cout << " IT HASN'T GOT ANY CHALLANGES YET! \n\n";
             }
             else
             {
                 std::cout << "CHALLANGES: ";
-                cha.printCArr();
+                cha.printCArr(std::cout);
                 std::cout << "\n USERS: ";
-                ar.printArr();
+                ar.printArr(std::cout);
             }
 
             return 0;

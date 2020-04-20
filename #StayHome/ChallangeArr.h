@@ -21,7 +21,7 @@ public:
     ChallangeArr &add(const Challange &);
     Challange &operator[](int i);
     Challange operator[](int i) const;
-    void printCArr() const;
+    void printCArr(std::ostream&) ;
     void listByPopular();
     void listByNewest();
     void listByOldest();

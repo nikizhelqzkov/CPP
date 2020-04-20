@@ -16,13 +16,11 @@ public:
     void SetArr(const Person *, size_t);
     const Person *getArr() const;
     size_t getSize() const;
-    void printArr() const;
+    void printArr(std::ostream &);
     Person &operator[](int i);
     Person operator[](int i) const;
     PersonArr &operator+=(const Person &);
-    PersonArr& operator-=(const Person&);
-
-
+    PersonArr &operator-=(const Person &);
 };
 
 //#include "PersonArr.hpp"

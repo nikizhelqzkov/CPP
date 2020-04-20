@@ -2,7 +2,7 @@
 
 Finish::Finish()
 {
-    this->data;
+    //this->data;
     this->id;
     this->tag = "";
     this->rating = 0;
@@ -71,7 +71,7 @@ void Finish::SetRating(double rating)
 }
 void Finish::setData(const ChallangeArr &other)
 {
-    this->data = data;
+    this->data = other;
 }
 void Finish::setTag(const char *tag)
 {

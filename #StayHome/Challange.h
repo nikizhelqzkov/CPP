@@ -46,7 +46,7 @@ public:
     void setUser(const Person&);
     void setPosInArr(int);
     void setRating(double);
-    void printChallange()const;
+    void printChallange(std::ostream& out);
   //friend  Challange* operator+=( Challange *,const Challange&);
   Challange(const char*, const char*);
   void setChInPerson(const char*, const char*);

@@ -163,16 +163,16 @@ ChallangeArr &ChallangeArr::add(const Challange &other)
     return *this;
 }
 
-void ChallangeArr::printCArr() const
+void ChallangeArr::printCArr(std::ostream &out)
 {
     for (size_t i = 0; i < this->size; i++)
     {
         if (this->arr[i].getChallgedUser()[0].getId() != 0)
         {
 
-            std::cout << "Challange " << i << " : ";
-            this->arr[i].printChallange();
-            std::cout << "\n";
+            out << "Challange " << i << " : ";
+            this->arr[i].printChallange(out);
+            out << "\n";
         }
     }
 }
@@ -180,19 +180,19 @@ void ChallangeArr::listByPopular()
 {
 
     listBy(this->arr, this->size, [](Challange a, Challange b) { return a.getRepeats() < b.getRepeats(); });
-    this->printCArr();
+    this->printCArr(std::cout);
 }
 
 void ChallangeArr::listByNewest()
 {
 
     listBy(this->arr, this->size, [](Challange a, Challange b) { return a.getPosInArr() > b.getPosInArr(); });
-    this->printCArr();
+    this->printCArr(std::cout);
 }
 
 void ChallangeArr::listByOldest()
 {
 
     listBy(this->arr, this->size, [](Challange a, Challange b) { return a.getPosInArr() < b.getPosInArr(); });
-    this->printCArr();
+    this->printCArr(std::cout);
 }

@@ -154,7 +154,7 @@ void Challange::setUser(const Person &other)
     this->chUsers += other;
     this->size++;
 }
-void Challange::printChallange() const
+void Challange::printChallange(std::ostream& out) 
 {
     std::cout << "User: " << this->User << " , Challange: #" << this->tag;
 
@@ -181,7 +181,7 @@ void Challange::printChallange() const
             break;
         }
 
-        this->chUsers[i].print();
+        this->chUsers[i].print(out);
     }
 }
 void Challange::setSustoqnie(int s)

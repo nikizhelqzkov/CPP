@@ -214,29 +214,29 @@ void Person::profile_info(const char *name) const
         std::cout << "ID: " << this->id << "\n";
     }
 }
-void Person::print() const
+void Person::print(std::ostream &out)
 {
-    std::cout << "PERSON NAME: " << this->name << ", ";
+    out << "PERSON NAME: " << this->name << ", ";
     if (this->years <= 0)
     {
-        std::cout << "YEARS: UNKNOWN, ";
+        out << "YEARS: UNKNOWN, ";
     }
     else
     {
-        std::cout << "YEARS: " << this->years << ", ";
+        out << "YEARS: " << this->years << ", ";
     }
 
     if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " ")
     {
-        std::cout << "EMAIL: UNKNOWN, ";
+        out << "EMAIL: UNKNOWN, ";
     }
     else
     {
-        std::cout << "EMAIL: " << this->email << ", ";
+        out << "EMAIL: " << this->email << ", ";
     }
-    std::cout << "ID: " << this->id << "\n";
+    out << "ID: " << this->id << "\n";
 }
-bool Person::operator==(const Person& other){
-    return this->id==other.id && strcmp(this->name,other.name)==0
-    &&this->years==other.years;
+bool Person::operator==(const Person &other)
+{
+    return this->id == other.id && strcmp(this->name, other.name) == 0 && this->years == other.years;
 }
