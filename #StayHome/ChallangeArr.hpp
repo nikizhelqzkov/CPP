@@ -19,8 +19,6 @@ void listBy(Challange *arr, size_t size, std::function<bool(Challange, Challange
                 g = arr[i];
                 arr[i] = arr[j];
                 arr[j] = g;
-                // std::swap(arr[i], arr[j]);
-                // swap(arr[i],arr[j]);
             }
         }
     }
@@ -109,20 +107,7 @@ ChallangeArr &ChallangeArr::add(const Challange &other)
         if (this->arr[i] == other)
         {
 
-            // for (size_t j = 0; j < other.getChallgedUser().getSize(); j++)
-            // {
-            //     if (!Contains(other.getChallgedUser().operator[](j).getName(), this->arr[i].getChallgedUser()))
-            //     {
-            //
-            //     }
-            // }
-            //  Challange a;
-            //  a = this->arr[i];
-            //a.printChallange();
-
             this->arr[i].setUser(other.getChallgedUser().operator[](0));
-            // this->arr[i] = a;
-            //a.printChallange();
             this->arr[i].setChUsers(other.getChallgedUser());
             this->arr[i].setRepeats(this->arr[i].getRepeats() + 1);
             if (this->arr[i].getRepeats() == 0)
@@ -155,8 +140,6 @@ ChallangeArr &ChallangeArr::add(const Challange &other)
                 this->arr[i].setSustoqnie(2);
             }
         }
-
-        //this->size++;
     }
 
     *this += other;

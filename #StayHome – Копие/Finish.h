@@ -3,7 +3,7 @@
 #include "ChallangeArr.hpp"
 
 
-class Finish//://public ChallangeArr
+class Finish
 {
 private:
     ChallangeArr data;
@@ -25,8 +25,7 @@ public:
     const char*getTag()const;
     double getRating()const;
     ChallangeArr& RemoveChUsers(const char* ,int ,double);
-    //shte pravim funckiq koqto po idto shte namirra icha, shte go maha ot sistemata s chuseri 
-    //a ako e edinstven , shte se maha challange  i shte se obnovqva reitinga na challange
+   
     
 };
 

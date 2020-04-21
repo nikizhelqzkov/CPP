@@ -47,7 +47,7 @@ Person::Person(const char *name, int years, const char *email, int id) : id(id)
     if (!IsItEmail(email))
     {
 
-        this->email = "\0"; //zadelqne
+        this->email = "\0";
     }
     else
     {
@@ -105,12 +105,6 @@ Person::Person(const Person &other) : years(other.years), id(other.id)
         this->email = new char[strlen(other.email) + 1];
         strcpy(this->email, other.email);
     }
-    //this->email[strlen(this->email)]= '\0';
-    //}
-    // else
-    // {
-    //     this->email = nullptr;
-    // }
 }
 Person::~Person()
 {
@@ -120,7 +114,7 @@ Person::~Person()
 void Person::setName(const char *name)
 {
 
-    // assert(name && IsItLeterUserName(name));
+    assert(name && IsItLeterUserName(name));
     delete[] this->name;
     this->name = new char[strlen(name) + 1];
     strcpy(this->name, name);
@@ -139,7 +133,6 @@ void Person::setEmail(const char *email)
         delete[] this->email;
         this->email = new char[strlen(email) + 1];
         strcpy(this->email, email);
-        //this->email[strlen(this->email)]= '\0';
     }
 }
 void Person::setId(int id)
@@ -182,9 +175,6 @@ const char *Person::getEmail() const
     {
         return this->email;
     }
-    // char *result = new char[8];
-    // strcpy(result, "UNKNOWN");
-    // return result;
 }
 int Person::getId() const
 {
@@ -204,7 +194,7 @@ void Person::profile_info(const char *name) const
             std::cout << "YEARS: " << this->years << ", ";
         }
 
-        if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " " || this->email=="0null")
+        if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " " || this->email == "0null")
         {
             std::cout << "EMAIL: UNKNOWN, ";
         }
@@ -224,7 +214,6 @@ void Person::print(std::ostream &out)
 
     out << "\n";
     in.close();
-    //std::cout<<out.tellp();
     out << this->name << " ";
     if (this->years <= 0)
     {
@@ -254,26 +243,21 @@ bool Person::operator==(const Person &other)
 
 bool Person::read(std::istream &in)
 {
-    // in.clear();
+
     if (!in)
     {
         return false;
     }
-    //name,years,email
     char name[50];
     in >> name;
     name[strlen(name)] = '\0';
-    // std::cout<<name<<" ";
     int years, id;
     in >> years;
 
-    //std::cout<<years<<" ";
     char email[49];
     in >> email;
     email[strlen(email)] = '\0';
-    //std::cout<<email<<" ";
     in >> id;
-    //std::cout << id;
     if (in)
     {
 
@@ -288,7 +272,7 @@ bool Person::read(std::istream &in)
         return true;
         if (in.eof())
         {
-            //std::cout << "The EOF has been reached!" << std::endl;
+            std::cout << "The EOF has been reached!" << std::endl;
         }
         else
         {

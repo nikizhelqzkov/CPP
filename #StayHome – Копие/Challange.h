@@ -7,8 +7,6 @@
 class Challange
 {
 protected:
-    // char * ChallangedUser;
-
     char *User;
     char *tag;
     PersonArr users;
@@ -29,7 +27,6 @@ public:
     void SetChallange(const char *, const char *);
     PersonArr getChallgedUser() const;
     PersonArr& getChallgedUser();
-
     const char *getUser() const;
     const char* getTag()const;
     int getSize() const;
@@ -47,7 +44,7 @@ public:
     void setPosInArr(int);
     void setRating(double);
     void printChallange(std::ostream& out);
-  //friend  Challange* operator+=( Challange *,const Challange&);
+    bool storeInBin(std::ostream&);
   Challange(const char*, const char*);
   void setChInPerson(const char*, const char*);
 };

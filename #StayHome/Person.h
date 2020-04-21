@@ -8,10 +8,9 @@ protected:
     int years;   //max 90
     char *email; //max 100 symbols
     int id;
-    //spisuk ot challanges koito da sa w nov klas s nasledqvane
 public:
     Person();
-    Person(const char *, int, const char *, int); //func for validation on email ,years
+    Person(const char *, int, const char *, int); 
     Person(const char *, int, int);
     Person(const char *, const char *, int);
     Person(const char *, int);
@@ -28,11 +27,10 @@ public:
     const char *getEmail() const;
     int getId() const;
     int getYears() const;
-    void profile_info(const char *) const; //da raboti v masiva ot personi kato normalna funkciq
+    void profile_info(const char *) const;
     void print(std::ostream &);
     bool read(std::istream &);
 };
 
-// #include "Person.hpp"
 
 #endif
