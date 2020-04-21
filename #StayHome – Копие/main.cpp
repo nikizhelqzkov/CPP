@@ -19,30 +19,17 @@ char *addChar(char *name, const char s)
 
 int main()
 {
-    // Person deeba;
-    // std::ifstream in("USERS.txt",std::ios::in);
-    // deeba.read(in);
-    // deeba.print(std::cout);
-    // in.close();
     Person *arr = new Person[1];
     Person testUser("niki", "n@", rand() % 100);
     arr[0] = testUser;
     PersonArr ar(arr, 1);
-    std::ifstream input("USERS.txt", std::ios::in);
+    std::ifstream input("USER.txt", std::ios::in);
 
     do
     {
+        if (input.tellg() == -1)
+            break;
         std::cout << input.tellg() << " ";
-
-        // if (input.tellg() == 0)
-        // {
-        //     break;
-        // }
-
-        // if (input.tellg() == 21)
-        // {
-        //     break;
-        // }
         Person per;
         per.read(input);
 
@@ -97,7 +84,7 @@ int main()
                     if (ar[0] == testUser)
                     {
                         ar[0] = user;
-                        std::ofstream outputFile("USERS.txt", std::ios::out | std::ios::app);
+                        std::ofstream outputFile("USER.txt", std::ios::out | std::ios::app);
                         if (!outputFile.is_open())
                         {
                             std::cout << "Error! The file cannot be opened!" << std::endl;
@@ -111,7 +98,7 @@ int main()
                     else
                     {
                         ar += user;
-                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        std::ofstream outputFile("USER.txt", std::ios::app);
                         if (!outputFile.is_open())
                         {
                             std::cout << "Error! The file cannot be opened!" << std::endl;
@@ -134,7 +121,7 @@ int main()
                     if (ar[0] == testUser)
                     {
                         ar[0] = user2;
-                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        std::ofstream outputFile("USER.txt", std::ios::app);
                         if (!outputFile.is_open())
                         {
                             std::cout << "Error! The file cannot be opened!" << std::endl;
@@ -146,7 +133,7 @@ int main()
                     else
                     {
                         ar += user2;
-                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        std::ofstream outputFile("USER.txt", std::ios::app);
                         if (!outputFile.is_open())
                         {
                             std::cout << "Error! The file cannot be opened!" << std::endl;
@@ -170,7 +157,7 @@ int main()
                     if (ar[0] == testUser)
                     {
                         ar[0] = user3;
-                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        std::ofstream outputFile("USER.txt", std::ios::app);
                         if (!outputFile.is_open())
                         {
                             std::cout << "Error! The file cannot be opened!" << std::endl;
@@ -182,7 +169,7 @@ int main()
                     else
                     {
                         ar += user3;
-                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        std::ofstream outputFile("USER.txt", std::ios::app);
                         if (!outputFile.is_open())
                         {
                             std::cout << "Error! The file cannot be opened!" << std::endl;
