@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <cassert>
+#include <fstream>
 
 bool IsItEmail(const char *email)
 {
@@ -119,7 +120,7 @@ Person::~Person()
 void Person::setName(const char *name)
 {
 
-    assert(name && IsItLeterUserName(name));
+    // assert(name && IsItLeterUserName(name));
     delete[] this->name;
     this->name = new char[strlen(name) + 1];
     strcpy(this->name, name);
@@ -203,7 +204,7 @@ void Person::profile_info(const char *name) const
             std::cout << "YEARS: " << this->years << ", ";
         }
 
-        if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " ")
+        if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " " || this->email=="0null")
         {
             std::cout << "EMAIL: UNKNOWN, ";
         }
@@ -216,27 +217,86 @@ void Person::profile_info(const char *name) const
 }
 void Person::print(std::ostream &out)
 {
-    out << "PERSON NAME: " << this->name << ", ";
+    std::ifstream in("USERS.txt", std::ios::in);
+
+    if (!out)
+        return;
+
+    out << "\n";
+    in.close();
+    //std::cout<<out.tellp();
+    out << this->name << " ";
     if (this->years <= 0)
     {
-        out << "YEARS: UNKNOWN, ";
+        out << 0
+            << " ";
     }
     else
     {
-        out << "YEARS: " << this->years << ", ";
+        out << this->years << " ";
     }
 
     if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " ")
     {
-        out << "EMAIL: UNKNOWN, ";
+        out << "0null"
+            << " ";
     }
     else
     {
-        out << "EMAIL: " << this->email << ", ";
+        out << this->email << " ";
     }
-    out << "ID: " << this->id << "\n";
+    out << this->id;
 }
 bool Person::operator==(const Person &other)
 {
     return this->id == other.id && strcmp(this->name, other.name) == 0 && this->years == other.years;
+}
+
+bool Person::read(std::istream &in)
+{
+    // in.clear();
+    if (!in)
+    {
+        return false;
+    }
+    //name,years,email
+    char name[50];
+    in >> name;
+    name[strlen(name)] = '\0';
+    // std::cout<<name<<" ";
+    int years, id;
+    in >> years;
+
+    //std::cout<<years<<" ";
+    char email[49];
+    in >> email;
+    email[strlen(email)] = '\0';
+    //std::cout<<email<<" ";
+    in >> id;
+    //std::cout << id;
+    if (in)
+    {
+
+        this->setName(name);
+        this->setYears(years);
+        this->setEmail(email);
+        this->setId(id);
+        return true;
+    }
+    else
+    {
+        return true;
+        if (in.eof())
+        {
+            //std::cout << "The EOF has been reached!" << std::endl;
+        }
+        else
+        {
+            in.clear();
+            in.ignore(1024, '\n');
+        }
+
+        return true;
+        ;
+    }
 }

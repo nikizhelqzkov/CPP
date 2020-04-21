@@ -29,18 +29,20 @@ int main()
     arr[0] = testUser;
     PersonArr ar(arr, 1);
     std::ifstream input("USERS.txt", std::ios::in);
-    int n = 0;
+
     do
     {
+        std::cout << input.tellg() << " ";
+
         // if (input.tellg() == 0)
         // {
         //     break;
         // }
-        n++;
-        if (input.tellg() == 67)
-        {
-            break;
-        }
+
+        // if (input.tellg() == 21)
+        // {
+        //     break;
+        // }
         Person per;
         per.read(input);
 
@@ -53,14 +55,14 @@ int main()
             ar += per;
         }
         // ar.printArr(std::cout);
-        std::cout << input.tellg()<<" ";
+        std::cout << input.tellg() << " ";
 
     } while (!input.eof());
 
     input.close();
 
     PersonArr Challanged;
-    Challange ivancho("niki", "kurnik", Challanged, ar);
+    Challange ivancho(ar[0].getName(), "kurnik", Challanged, ar);
     Challange *crr = new Challange[1];
 
     // // Challange *crr = new Challange[1]{ch};

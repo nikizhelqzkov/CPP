@@ -3,6 +3,7 @@
 //#include "PersonArr.hpp"
 #include <ctime>
 #include "Finish.hpp"
+#include <fstream>
 
 char *addChar(char *name, const char s)
 {
@@ -18,12 +19,50 @@ char *addChar(char *name, const char s)
 
 int main()
 {
+    // Person deeba;
+    // std::ifstream in("USERS.txt",std::ios::in);
+    // deeba.read(in);
+    // deeba.print(std::cout);
+    // in.close();
     Person *arr = new Person[1];
-    Person testUser("Ivancho", "n@", rand() % 100);
+    Person testUser("niki", "n@", rand() % 100);
     arr[0] = testUser;
     PersonArr ar(arr, 1);
+    std::ifstream input("USERS.txt", std::ios::in);
+
+    do
+    {
+        std::cout << input.tellg() << " ";
+
+        // if (input.tellg() == 0)
+        // {
+        //     break;
+        // }
+
+        // if (input.tellg() == 21)
+        // {
+        //     break;
+        // }
+        Person per;
+        per.read(input);
+
+        if (ar[0] == testUser)
+        {
+            ar[0] = per;
+        }
+        else
+        {
+            ar += per;
+        }
+        // ar.printArr(std::cout);
+        std::cout << input.tellg() << " ";
+
+    } while (!input.eof());
+
+    input.close();
+
     PersonArr Challanged;
-    Challange ivancho("Ivancho", "kurnik", Challanged, ar);
+    Challange ivancho(ar[0].getName(), "kurnik", Challanged, ar);
     Challange *crr = new Challange[1];
 
     // // Challange *crr = new Challange[1]{ch};
@@ -58,10 +97,30 @@ int main()
                     if (ar[0] == testUser)
                     {
                         ar[0] = user;
+                        std::ofstream outputFile("USERS.txt", std::ios::out | std::ios::app);
+                        if (!outputFile.is_open())
+                        {
+                            std::cout << "Error! The file cannot be opened!" << std::endl;
+                            return 0;
+                        }
+                        user.print(outputFile);
+                        // ar.printArr(outputFile);
+
+                        outputFile.close();
                     }
                     else
                     {
                         ar += user;
+                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        if (!outputFile.is_open())
+                        {
+                            std::cout << "Error! The file cannot be opened!" << std::endl;
+                            return 0;
+                        }
+                        user.print(outputFile);
+                        // ar.printArr(outputFile);
+
+                        outputFile.close();
                     }
                     //operator writing to person.txt
                     delete[] text;
@@ -75,10 +134,26 @@ int main()
                     if (ar[0] == testUser)
                     {
                         ar[0] = user2;
+                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        if (!outputFile.is_open())
+                        {
+                            std::cout << "Error! The file cannot be opened!" << std::endl;
+                            return 0;
+                        }
+                        user2.print(outputFile);
+                        outputFile.close();
                     }
                     else
                     {
                         ar += user2;
+                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        if (!outputFile.is_open())
+                        {
+                            std::cout << "Error! The file cannot be opened!" << std::endl;
+                            return 0;
+                        }
+                        user2.print(outputFile);
+                        outputFile.close();
                     }
                     //operator writing to person.txt
 
@@ -95,10 +170,26 @@ int main()
                     if (ar[0] == testUser)
                     {
                         ar[0] = user3;
+                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        if (!outputFile.is_open())
+                        {
+                            std::cout << "Error! The file cannot be opened!" << std::endl;
+                            return 0;
+                        }
+                        user3.print(outputFile);
+                        outputFile.close();
                     }
                     else
                     {
                         ar += user3;
+                        std::ofstream outputFile("USERS.txt", std::ios::app);
+                        if (!outputFile.is_open())
+                        {
+                            std::cout << "Error! The file cannot be opened!" << std::endl;
+                            return 0;
+                        }
+                        user3.print(outputFile);
+                        outputFile.close();
                     }
                     //operator writing to person.txt
 
@@ -172,7 +263,7 @@ int main()
                             //}
                         }
                         Challange userCHallange(name, tag, ChallangedUsers, ar);
-                        
+
                         if (cha[0] == ivancho)
                         {
                             cha[0] = userCHallange;

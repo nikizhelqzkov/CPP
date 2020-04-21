@@ -154,9 +154,12 @@ void Challange::setUser(const Person &other)
     this->chUsers += other;
     this->size++;
 }
-void Challange::printChallange(std::ostream& out) 
+void Challange::printChallange(std::ostream &out)
 {
-    std::cout << "User: " << this->User << " , Challange: #" << this->tag;
+    if (!out)
+        return;
+
+    out << "User: " << this->User << " , Challange: #" << this->tag;
 
     if (this->sustoqnie == 0)
     {
@@ -181,7 +184,7 @@ void Challange::printChallange(std::ostream& out)
             break;
         }
 
-        this->chUsers[i].print(out);
+        this->chUsers[i].profile_info(this->chUsers[i].getName());
     }
 }
 void Challange::setSustoqnie(int s)

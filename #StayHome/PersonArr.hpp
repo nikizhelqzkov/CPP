@@ -32,7 +32,7 @@ PersonArr &PersonArr::operator=(const PersonArr &other)
 }
 void PersonArr::SetArr(const Person *arr, size_t size)
 {
-    assert(arr && size >= 0);
+    //assert(arr && size >= 0);
     delete[] this->arr;
     this->size = size;
     this->arr = new Person[this->size];
@@ -53,8 +53,7 @@ void PersonArr::printArr(std::ostream &out)
 {
     for (size_t i = 0; i < this->size; i++)
     {
-     this->arr[i].print(out);
-     //profile_info(this->arr[i].getName());
+     this->arr[i].profile_info(this->arr[i].getName());
     }
 }
 Person &PersonArr::operator[](int i)

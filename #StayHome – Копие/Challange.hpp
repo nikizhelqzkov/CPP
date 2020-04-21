@@ -184,7 +184,7 @@ void Challange::printChallange(std::ostream &out)
             break;
         }
 
-        this->chUsers[i].print(out);
+        this->chUsers[i].profile_info(this->chUsers[i].getName());
     }
 }
 void Challange::setSustoqnie(int s)

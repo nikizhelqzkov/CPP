@@ -204,7 +204,7 @@ void Person::profile_info(const char *name) const
             std::cout << "YEARS: " << this->years << ", ";
         }
 
-        if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " ")
+        if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " " || this->email=="0null")
         {
             std::cout << "EMAIL: UNKNOWN, ";
         }
@@ -238,14 +238,14 @@ void Person::print(std::ostream &out)
 
     if (this->email == nullptr || this->email == "\0" || this->email == "" || this->email == " ")
     {
-        out << " "
+        out << "0null"
             << " ";
     }
     else
     {
         out << this->email << " ";
     }
-    out << this->id << " ";
+    out << this->id;
 }
 bool Person::operator==(const Person &other)
 {
