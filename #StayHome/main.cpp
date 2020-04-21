@@ -17,7 +17,6 @@ int main()
     {
         if (input.tellg() == -1)
             break;
-        std::cout << input.tellg() << " ";
         Person per;
         per.read(input);
 
