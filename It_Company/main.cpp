@@ -1,6 +1,6 @@
-#include "employ.cpp"
-#include "manager.cpp"
-#include "programmer.cpp"
+#include "employ.h"
+#include "manager.h"
+#include "programmer.h"
 
 Employ **RemoveViaExp(Employ **arr, size_t size)
 {

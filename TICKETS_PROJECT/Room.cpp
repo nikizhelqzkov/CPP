@@ -23,19 +23,15 @@ bool isItOkMatrix(int rows, int cols, std::vector<std::vector<Client>> m)
 Room::Room()
 {
     this->id = 0;
-    // this->places = nullptr;
-
+    //this->name = "";-->za event
     this->rows = 0;
     this->placeOnRow = 0;
 }
-Room::Room(Date eventDate,int id, const std::vector<std::vector<Client>> &place, int rows, int placeOnRow)
+Room::Room(/*Date eventDate,*/ int id, const std::vector<std::vector<Client>> &place, /*std::string name,*/ int rows, int placeOnRow)
+    : /*eventDate(eventDate),*/ id(id) /* name(name)*/
 {
-    this->eventDate = eventDate;
-    this->id = id;
-    assert(rows > 0 && placeOnRow > 0);
-    this->rows = rows;
-    this->placeOnRow = placeOnRow;
-
+    this->setRows(rows);
+    this->setCols(placeOnRow);
     assert(isItOkMatrix(this->rows, this->placeOnRow, place));
     this->matrix = place;
 }
@@ -47,22 +43,13 @@ Room::~Room()
     //     }
     //     delete[] this->places;
 }
-Room::Room(const Room &other)
+Room::Room(const Room &other) : /*eventDate(other.eventDate), */ id(other.id), /* name(other.name), */ rows(other.rows),
+                                placeOnRow(other.placeOnRow), matrix(other.matrix)
 {
-    this->id = other.id;
-    this->rows = other.rows;
-    this->placeOnRow = other.placeOnRow;
-    this->matrix = other.matrix;
-    //     this->places = new int *[this->rows];
-    //     for (int i = 0; i < this->rows; i++)
-    //     {
-    //         this->places[i] = new int[placeOnRow];
-    //         *(this->places[i]) = *(other.places[i]);
-    //     }
 }
-void Room::print()const
+void Room::print() const
 {
-    std::cout << "Number: " << this->id << ", Rows: " << this->rows << ", Columns: " << this->placeOnRow << "\n\n";
+    std::cout << /*"Name: " << this->name << "Date: " << this->eventDate << ",*/ "Number: " << this->id << ", Rows: " << this->rows << ", Columns: " << this->placeOnRow << "\n\n";
     for (auto vec : this->matrix)
     {
         for (auto x : vec)
@@ -72,6 +59,10 @@ void Room::print()const
         std::cout << "\n";
     }
 }
+// std::string Room::getName() const
+// {
+//     return this->name;
+// }
 int Room::getId() const
 {
     return this->id;
@@ -89,13 +80,18 @@ int Room::getCols() const
 {
     return this->placeOnRow;
 }
-Date Room::getDate()const{
-    return this->eventDate;
-}
+// Date Room::getDate() const
+// {
+//     return this->eventDate;
+// }
 void Room::setId(int id)
 {
     this->id = id;
 }
+// void Room::setName(std::string name)
+// {
+//     this->name = name;
+// }
 void Room::setMatrix(const std::vector<std::vector<Client>> &other)
 {
     assert(isItOkMatrix(this->rows, this->placeOnRow, other));
@@ -103,22 +99,33 @@ void Room::setMatrix(const std::vector<std::vector<Client>> &other)
 }
 void Room::setRows(int rows)
 {
+    assert(rows > 0);
     this->rows = rows;
 }
 void Room::setCols(int cols)
 {
+    assert(cols > 0);
     this->placeOnRow = cols;
 }
 std::ostream &operator<<(std::ostream &out, const Room &room)
 {
-       out << "Number: " << room.getId() << ", Rows: " <<room.getRows() << ", Columns: " <<room.getCols() << "\n\n";
+    out /*<<"Name: "<<room.getName()<<", Date: "<<room.getDate()*/ << "Number: " << room.getId() << ", Rows: " << room.getRows() << ", Columns: " << room.getCols() << "\n\n";
     for (auto vec : room.getplaces())
     {
         for (auto x : vec)
         {
             x.print();
         }
-       out << "\n";
+        out << "\n";
     }
     return out;
+}
+Room &Room::operator=(const Room &other){
+    if(this!=&other){
+         id = other.id;
+         this->matrix=other.matrix;
+         rows = other.rows;
+         placeOnRow = other.placeOnRow;
+    }
+    return *this;
 }

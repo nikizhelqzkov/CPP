@@ -11,13 +11,12 @@ private:
 public:
 	Date();
 	Date(unsigned, unsigned, unsigned);
-	Date(const Date&);
+	Date(const Date &);
 
 	void read();
 
-	
 	void print() const;
-	Date& operator=(const Date&);
+	Date &operator=(const Date &);
 
 	unsigned getDay() const;
 	void setDay(unsigned);
@@ -28,10 +27,11 @@ public:
 	unsigned getYear() const;
 	void setYear(unsigned);
 
-Date& getLiveData();
-	
+	Date &getLiveData();
+
 	bool isEqual(const Date &other) const;
 	bool isBefore(const Date &other) const;
+	friend std::ostream &operator<<(std::ostream &, const Date&);
 };
 
 #endif

@@ -2,7 +2,8 @@
 #include <iostream>
 RoomArr::RoomArr()
 {
-    this->size = this->data.size();
+    this->data.clear();
+    this->size = 0;
 }
 RoomArr::RoomArr(const std::vector<Room> &data, size_t size)
 {

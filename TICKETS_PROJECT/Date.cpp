@@ -149,6 +149,10 @@ Date &Date::getLiveData()
 Date &Date::operator=(const Date &other)
 {
 	this->day = other.day;
-	this->month  = other.month;
+	this->month = other.month;
 	this->year = other.year;
+}
+std::ostream &operator<<(std::ostream &out, const Date &date)
+{
+	out << date.year << '-' << date.month << '-' << date.day<<" ";
 }

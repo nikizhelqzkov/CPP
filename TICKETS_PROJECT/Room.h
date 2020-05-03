@@ -6,30 +6,34 @@
 #include "Client.h"
 class Room
 {
-private:
+protected:
     int id;
     //mestata shte sa ot obekti
    // int **places;
     std::vector<std::vector<Client>> matrix;
+    
     int rows;
     int placeOnRow;
-    Date eventDate;
+//    Date eventDate;-->za event
 
 public:
     Room();
-    Room(Date ,int,const std::vector<std::vector<Client>>&, int, int);
+    Room(/*Date*/ int,const std::vector<std::vector<Client>>&,/* std::string,*/int, int);
     Room(const Room &);
     ~Room();
     void print()const;
+    //std::string getName()const;->za event
     int getId()const;
     int getRows()const;
     int getCols()const;
     std::vector<std::vector<Client>>getplaces()const;
+   // void setName(std::string);-->za event
     void setId(int);
     void setRows(int rows);
     void setCols(int cols);
     void setMatrix(const std::vector<std::vector<Client>>&);
-    Date getDate()const;
+    Room& operator=(const Room&);
+   // Date getDate()const;-->za event
   
     //i->ti element
     //operaciq ravno

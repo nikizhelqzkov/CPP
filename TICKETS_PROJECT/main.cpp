@@ -3,14 +3,14 @@
 //datite da sa subota i  nedelq
 int main()
 {
-    Date d;
-    d.getLiveData();
-    d.print();
+    Date z1;
+    z1.getLiveData();
+    z1.print();
     Date d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12;
-    //     Client c,d,e;
-    //     c.read();d.read();
-    //     e.read();
-
+        Client c,d,e;
+        //c.read();d.read();
+        e.read();
+        
     std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v2(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v3(7, std::vector<Client>(7));
@@ -20,19 +20,18 @@ int main()
     std::vector<std::vector<Client>> v7(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v8(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v9(7, std::vector<Client>(7));
-    //     for (int i = 0; i < v.size(); i++)
-    //     {
-    //         for (int j = 0; j < v[i].size(); j++)
-    //         {
-    //             v[i][j].setName("FREE PLACE");
-    //         }
-    //     }
+        for (int i = 0; i < v.size(); i++)
+        {
+            for (int j = 0; j < v[i].size(); j++)
+            {
+                v[i][j].setName("FREE PLACE");
+            }
+        }
 
-    // v[c.getRow()-1][c.getCol()-1] = c;
-    // v[d.getRow()-1][d.getCol()-1] = d;
-    // v[e.getRow()-1][e.getCol()-1] = e;
+  
+    v[e.getRow()-1][e.getCol()-1] = e;
 
-    // // std::cout<<v[2].size();
+    // std::cout<<v[2].size();
     Room club(d1, 1, v, 7, 7);
     Room club2(d2, 1, v2, 7, 7);
     Room club3(d3, 1, v3, 7, 7);
@@ -43,7 +42,7 @@ int main()
     Room club8(d8, 1, v8, 7, 7);
     Room club9(d9, 1, v9, 7, 7);
 
-    // club.print();
+     club.print();
     //  Date date(25,06,2000);
     //  date.print();
     // size_t id = 3;
