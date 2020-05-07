@@ -152,6 +152,9 @@ Date &Date::operator=(const Date &other)
 	this->month = other.month;
 	this->year = other.year;
 }
+bool Date::operator==(const Date& other){
+	return day==other.day && month==other.month && year==other.year;
+}
 std::ostream &operator<<(std::ostream &out, const Date &date)
 {
 	out << date.year << '-' << date.month << '-' << date.day<<" ";

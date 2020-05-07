@@ -5,7 +5,7 @@ RoomArr::RoomArr()
     this->data.clear();
     this->size = 0;
 }
-RoomArr::RoomArr(const std::vector<Room> &data, size_t size)
+RoomArr::RoomArr(const std::vector<Event> &data, size_t size)
 {
     this->data = data;
     this->size = data.size();
@@ -23,15 +23,15 @@ void RoomArr::printArr() const
         this->data[i].print();
     }
 }
-Room &RoomArr::operator[](int i)
+Event &RoomArr::operator[](int i)
 {
     return this->data[i];
 }
-Room RoomArr::operator[](int i) const
+Event RoomArr::operator[](int i) const
 {
     return this->data[i];
 }
-bool RoomArr::addEvent(const Room &other)
+RoomArr& RoomArr::addEvent(const Event &other)
 {
     bool flag = true;
     if (!this->data.empty())
@@ -40,17 +40,18 @@ bool RoomArr::addEvent(const Room &other)
         this->size++;
         for (int i = 0; i < this->size; i++)
         {
-            if (data[i].getId() == other.getId())
+            if (data[i].getName() == other.getName() && data[i].getDate()==other.getDate())
             {
-                return false;
+                std::cout<<"ON THIS DATE THAT EVENT IS SAVED\n";
+                return *this;
             }
         }
     }
     this->data.push_back(other);
-    return true;
+    return *this;
 }
 
-bool RoomArr::removeEvent(const Room &other)
+bool RoomArr::removeEvent(const Event &other)
 {
     for (int i = 0; i < this->size; i++)
     {
@@ -67,7 +68,7 @@ int RoomArr::getSize() const
 {
     return this->size;
 }
-std::vector<Room> RoomArr::getData() const
+std::vector<Event> RoomArr::getData() const
 {
     return this->data;
 }

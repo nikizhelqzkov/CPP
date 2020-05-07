@@ -1,25 +1,25 @@
 #ifndef DATA_ROOM_H
 #define DATA_ROOM_H
-#include "Room.h"
+#include "Event.h"
 //#include <vector>
 class RoomArr
 {
 private:
-    std::vector<Room> data;
+    std::vector<Event> data;
     size_t size;
 
 public:
     RoomArr();
-    RoomArr(const std::vector<Room> &, size_t);
+    RoomArr(const std::vector<Event> &, size_t);
     RoomArr(const RoomArr &);
     ~RoomArr();
     void printArr() const;
-    Room &operator[](int i);
-    Room operator[](int) const;
-    bool addEvent(const Room &);
-    bool removeEvent(const Room &);
+    Event &operator[](int i);
+    Event operator[](int) const;
+    RoomArr& addEvent(const Event &);
+    bool removeEvent(const Event &);
     int getSize() const;
-    std::vector<Room> getData() const;
+    std::vector<Event> getData() const;
 };
 
 #endif

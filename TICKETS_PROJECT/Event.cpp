@@ -22,3 +22,19 @@ Event &Event::operator=(const Event &other)
     }
     return *this;
 }
+std::string Event::getName() const
+{
+    return name;
+}
+Date Event::getDate() const
+{
+    return eventDate;
+}
+void Event::setName(std::string _name)
+{
+    name = _name;
+}
+void Event::setDate(Date date)
+{
+    eventDate = date;
+}

@@ -11,11 +11,13 @@ private:
 public:
     Event();
     Event(const Date &, std::string, int, const std::vector<std::vector<Client>> &, int, int);
-    Event(const Event&);
+    Event(const Event &);
     ~Event();
-    Event& operator=(const Event&);
+    Event &operator=(const Event &);
+    std::string getName() const;
+    Date getDate() const;
+    void setName(std::string);
+    void setDate(Date);
 };
-
-
 
 #endif

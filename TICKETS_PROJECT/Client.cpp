@@ -7,24 +7,36 @@ Client::Client()
 {
     this->row = 0;
     this->col = 0;
-
+    this->reserve = false;
+    this->buy = false;
     this->note = "";
+    this->name = "";
+    this->serialNumber = 0;
 }
-Client::Client(int row, int col, Date date, std::string note)
+Client::Client(int row, int col, Date date, std::string name, std::string note) : row(row), col(col), reserve(false), buy(false), name(name), note(note)
 {
-    this->row = row;
-    this->col = col;
     this->date.setDay(date.getDay());
     this->date.setMonth(date.getMonth());
     this->date.setYear(date.getYear());
-
-    this->note = note;
 }
 void Client::print()
 {
-    std::cout << "CLIENT-> Row: " << this->row << ", Column: " << this->col << ",  DATE: ";
+    std::cout << "CLIENT-> Row: " << this->row << ", Column: " << this->col;
+    if (buy)
+        std::cout << ", TICKET BOUGHT";
+    else if (reserve)
+        std::cout << ", TICKED RESERVED";
+    std::cout << ",  DATE: ";
     this->date.print();
-    std::cout << " , Note: " << this->note << "; ";
+    std::cout << ", Name: " << name << " , Note: " << this->note;
+    if (buy)
+    {
+        std::cout << " , Ticket Number: " << serialNumber << "; ";
+    }
+    else
+    {
+        std::cout << " ;";
+    }
 }
 
 Date Client::getDate() const
@@ -34,7 +46,7 @@ Date Client::getDate() const
 void Client::read()
 {
     //RoomArr data;
-    // bool flag = true;
+
     // std::cout << "Date of Event: \n";
     // do
     // {
@@ -44,6 +56,28 @@ void Client::read()
     //  flag = this->getRooms(data);
 
     // } while (!flag);
+    bool flag = true;
+    do
+    {
+        flag = true;
+
+        std::cout << "BUY/RESERVE: ";
+        std::string type;
+        std::getline(std::cin, type);
+        if (type == "buy" || type == "BUY" || type == "Buy")
+        {
+            this->buy = true;
+        }
+        else if (type == "reserve" || type == "RESERVE" || type == "Reserve")
+        {
+            this->reserve = true;
+        }
+        else
+        {
+            std::cout << "Write again command:\n";
+            flag = false;
+        }
+    } while (!flag);
 
     std::cout << "Number of row: ";
     std::cin >> this->row;
@@ -53,9 +87,14 @@ void Client::read()
     std::cin.ignore(1, '\n');
     // std::cout << "\n";
     //std::string c;
-
+    std::cout << "Name: ";
+    std::getline(std::cin, this->name);
     std::cout << "Note: ";
     std::getline(std::cin, this->note);
+    if (buy)
+    {
+        serialNumber = 2 * (row + 1) + 4 * (col + 1) + this->date.getDay()*this->date.getMonth()*this->date.getYear();
+    }
 }
 int Client::getRow() const
 {
@@ -64,6 +103,19 @@ int Client::getRow() const
 int Client::getCol() const
 {
     return this->col;
+}
+std::string Client::getName() const
+{
+    return name;
+}
+
+std::string Client::getNote() const
+{
+    return note;
+}
+void Client::setName(std::string name)
+{
+    this->name = name;
 }
 // bool Client::getRooms(const RoomArr &data)
 // {
