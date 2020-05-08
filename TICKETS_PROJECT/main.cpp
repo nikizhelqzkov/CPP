@@ -15,6 +15,7 @@ void readTORoom(Client &c, std::vector<std::vector<Client>> &v)
         for (int j = 0; j < v[i].size(); j++)
         {
             v[i][j].setName("FREE PLACE");
+            
         }
     }
 
@@ -53,7 +54,7 @@ int main()
                   << "6)exit" << std::endl;
 
         std::cin >> a;
-        if (a == "open" || a == "Open" || a == "OPEN")
+        if (a == "open" || a == "Open" || a == "OPEN" || a=="1")
         {
             open = true;
             int num; //for returning back
@@ -63,23 +64,59 @@ int main()
                 open = false;
             }
         }
-        else if (a == "help" || a == "Help" || a == "HELP")
+        else if (a == "help" || a == "Help" || a == "HELP" || a=="2")
         {
             help = true;
+            bool helpFlag = true;
+            std::cout << "\n\nWELCOME TO THE HELPING CENTER\n";
+            do
+            {
+                std::cout << "Write that number if you are: \n";
+                std::cout << "1)Moderator\n2)Client\n";
+                int helpN;
+                std::cin >> helpN;
+                if (helpN == 1)
+                {
+                    std::cout << "\nWelcome Mod!\nThese are your using commands:\n";
+                    //all mod commands like new event etc
+                    std::cout << "PRESS THE b for back!\n";
+                    char back;
+                    bool flagHelp = true;
+                    do
+                    {
+                        std::cin >> back;
+                        if (back == 'b')
+                        {
+                            help = false;
+                        }
+                        else
+                        {
+                            flagHelp = false;
+                        }
+                    } while (!flagHelp);
+                    break;
+                }
+                else
+                {
+                    helpFlag = false;
+                    std::cout << "Wrong number!\n\n";
+                    break;
+                }
+            } while (!helpFlag);
         }
-        else if (a == "save" || a == "Save" || a == "SAVE")
+        else if (a == "save" || a == "Save" || a == "SAVE" || a=="3")
         {
             save = true;
         }
-        else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS" || a == "Save_As")
+        else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS" || a == "Save_As" || a=="4")
         {
             save_as = true;
         }
-        else if (a == "close" || a == "Close" || a == "CLOSE")
+        else if (a == "close" || a == "Close" || a == "CLOSE"||a=="5")
         {
             close = true;
-            std::cout << "YOU CLOSED THE FILE!!!!\n";
-            std::cout << "NOW WE WILL RETURN BACK TO THE START MENU!!!\n\n\n\n\n";
+            std::cout << "\n\nYOU CLOSED THE FILE!!!!\n";
+            std::cout << "NOW WE WILL RETURN BACK TO THE START MENU!!!\n\n\n";
             close = false;
         }
         else if (a == "help" || a == "Help" || a == "HELP")
@@ -96,7 +133,6 @@ int main()
         {
             std::cout << "WRITE AGAIN CORRECT COMMAND\n\n\n";
         }
-
     } while (!open && !help && !save && !save_as && !close && !exit);
 
     Date d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12;
@@ -137,13 +173,13 @@ int main()
     Room club8(rand() % 100, v8, 7, 7);
     Room club9(rand() % 100, v9, 7, 7);
 
-    club.print();
+    //club.print();
 
     Event kolos(d1, "kolos", club.getId(), v, 7, 7);
     kolos.print();
-     RoomArr studio;
+    RoomArr studio;
     studio.addEvent(kolos);
-    studio.freeseats("kolos",d1);
+    studio.freeseats("kolos", d1);
     //  Date date(25,06,2000);
     //  date.print();
     // size_t id = 3;

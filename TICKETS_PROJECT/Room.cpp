@@ -55,6 +55,7 @@ void Room::print() const
         for (auto x : vec)
         {
             x.print();
+            std::cout << "\n";
         }
         std::cout << "\n";
     }

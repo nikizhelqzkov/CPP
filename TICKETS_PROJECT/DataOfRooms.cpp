@@ -16,7 +16,7 @@ RoomArr::RoomArr(const RoomArr &other)
     this->size = other.size;
 }
 RoomArr::~RoomArr(){
-    
+
 }
 void RoomArr::printArr() const
 {
@@ -77,7 +77,7 @@ std::vector<Event> RoomArr::getData() const
 }
 void RoomArr::freeseats(std::string name, Date date)
 {
-    std::cout << "Free seats in " << name << " on " << date << "\n";
+    std::cout << "\n\nFree seats in " << name << " on " << date << ": \n\n";
     for (int i = 0; i < this->data.size(); i++)
     {
         if (data[i].getName() == name && data[i].getDate() == date)

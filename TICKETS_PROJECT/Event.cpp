@@ -44,9 +44,9 @@ void Event::printFreeSeats()
     {
         for (int j = 0; j < matrix[i].size(); j++)
         {
-            if (matrix[i][j].getName() == "FREE PLACE")
+            if (matrix[i][j].getName() == "FREE PLACE" || matrix[i][j].getName()=="")
             {
-                std::cout << "row: " << i << ", place: " << j << ", ";
+                std::cout << "row: " << i+1 << ", place: " << j+1 << " \n";
             }
         }
     }
