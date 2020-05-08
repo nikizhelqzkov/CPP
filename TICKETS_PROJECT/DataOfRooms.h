@@ -20,6 +20,7 @@ public:
     bool removeEvent(const Event &);
     int getSize() const;
     std::vector<Event> getData() const;
+    void freeseats(std::string name, Date date);
 };
 
 #endif

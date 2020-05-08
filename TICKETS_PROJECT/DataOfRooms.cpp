@@ -31,7 +31,7 @@ Event RoomArr::operator[](int i) const
 {
     return this->data[i];
 }
-RoomArr& RoomArr::addEvent(const Event &other)
+RoomArr &RoomArr::addEvent(const Event &other)
 {
     bool flag = true;
     if (!this->data.empty())
@@ -40,9 +40,9 @@ RoomArr& RoomArr::addEvent(const Event &other)
         this->size++;
         for (int i = 0; i < this->size; i++)
         {
-            if (data[i].getName() == other.getName() && data[i].getDate()==other.getDate())
+            if (data[i].getName() == other.getName() && data[i].getDate() == other.getDate())
             {
-                std::cout<<"ON THIS DATE THAT EVENT IS SAVED\n";
+                std::cout << "ON THIS DATE THAT EVENT IS SAVED\n";
                 return *this;
             }
         }
@@ -71,4 +71,15 @@ int RoomArr::getSize() const
 std::vector<Event> RoomArr::getData() const
 {
     return this->data;
+}
+void RoomArr::freeseats(std::string name, Date date)
+{
+    std::cout << "Free seats in " << name << " on " << date << "\n";
+    for (int i = 0; i < this->data.size(); i++)
+    {
+        if (data[i].getName() == name && data[i].getDate() == date)
+        {
+            data[i].printFreeSeats();
+        }
+    }
 }

@@ -18,6 +18,7 @@ public:
     Date getDate() const;
     void setName(std::string);
     void setDate(Date);
+    void printFreeSeats();
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include "Event.h"
-
+#include <iostream>
 Event::Event() : Room()
 {
     eventDate = eventDate.getLiveData();
@@ -38,3 +38,14 @@ void Event::setDate(Date date)
 {
     eventDate = date;
 }
+void Event::printFreeSeats()
+{
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            if(matrix[i][j].getName()=="FREE PLACE"){
+                std::cout<<"row: "<<i<<", place: "<<j<<", ";
+            }
+        }
+    }
