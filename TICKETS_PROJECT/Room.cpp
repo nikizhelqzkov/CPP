@@ -1,8 +1,8 @@
 #include "Room.h"
-#include "Date.cpp"
+//#include "Date.cpp"
 #include <iostream>
 #include <cassert>
-#include "Client.cpp"
+//#include "Client.cpp"
 
 bool isItOkMatrix(int rows, int cols, std::vector<std::vector<Client>> m)
 {

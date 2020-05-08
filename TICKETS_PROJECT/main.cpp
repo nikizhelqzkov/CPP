@@ -1,6 +1,11 @@
-#include "Room.cpp"
+#include "Date.h"
+#include "Client.h"
+#include "Room.h"
+#include "Event.h"
+#include "DataOfRooms.h"
 #include <ctime>
 #include <iostream>
+//g++ main.cpp Date.cpp Client.cpp Room.cpp Event.cpp DataOfRooms.cpp
 //datite da sa subota i  nedelq
 void readTORoom(Client &c, std::vector<std::vector<Client>> &v)
 {
@@ -51,9 +56,10 @@ int main()
         if (a == "open" || a == "Open" || a == "OPEN")
         {
             open = true;
-            int num;//for returning back
-            std::cin>>num;
-            if(num==1){
+            int num; //for returning back
+            std::cin >> num;
+            if (num == 1)
+            {
                 open = false;
             }
         }
@@ -61,36 +67,36 @@ int main()
         {
             help = true;
         }
-         else if (a == "save" || a == "Save" || a == "SAVE")
+        else if (a == "save" || a == "Save" || a == "SAVE")
         {
             save = true;
         }
-         else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS"|| a=="Save_As")
+        else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS" || a == "Save_As")
         {
             save_as = true;
         }
-         else if (a == "close" || a == "Close" || a == "CLOSE")
+        else if (a == "close" || a == "Close" || a == "CLOSE")
         {
             close = true;
-            std::cout<<"YOU CLOSED THE FILE!!!!\n";
-            std::cout<<"NOW WE WILL RETURN BACK TO THE START MENU!!!\n\n\n\n\n";
+            std::cout << "YOU CLOSED THE FILE!!!!\n";
+            std::cout << "NOW WE WILL RETURN BACK TO THE START MENU!!!\n\n\n\n\n";
             close = false;
         }
-         else if (a == "help" || a == "Help" || a == "HELP")
+        else if (a == "help" || a == "Help" || a == "HELP")
         {
             help = true;
         }
         else if (a == "exit" || a == "Exit" || a == "EXIT")
         {
             exit = true;
-            std::cout<<"GOOD BYE !!!\n";
+            std::cout << "GOOD BYE !!!\n";
             return 0;
         }
         else
         {
-            std::cout<<"WRITE AGAIN CORRECT COMMAND\n\n\n";
+            std::cout << "WRITE AGAIN CORRECT COMMAND\n\n\n";
         }
-        
+
     } while (!open && !help && !save && !save_as && !close && !exit);
 
     Date d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12;
@@ -108,6 +114,7 @@ int main()
     std::vector<std::vector<Client>> v8(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v9(7, std::vector<Client>(7));
     readTORoom(e, v);
+
     // for (int i = 0; i < v.size(); i++)
     // {
     //     for (int j = 0; j < v[i].size(); j++)
@@ -131,6 +138,12 @@ int main()
     Room club9(rand() % 100, v9, 7, 7);
 
     club.print();
+
+    Event kolos(d1, "kolos", club.getId(), v, 7, 7);
+    kolos.print();
+     RoomArr studio;
+    studio.addEvent(kolos);
+    studio.freeseats("kolos",d1);
     //  Date date(25,06,2000);
     //  date.print();
     // size_t id = 3;

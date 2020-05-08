@@ -15,6 +15,9 @@ RoomArr::RoomArr(const RoomArr &other)
     this->data = other.data;
     this->size = other.size;
 }
+RoomArr::~RoomArr(){
+    
+}
 void RoomArr::printArr() const
 {
     for (int i = 0; i < this->size; i++)
