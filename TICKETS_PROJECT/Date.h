@@ -28,10 +28,11 @@ public:
 	void setYear(unsigned);
 
 	Date &getLiveData();
-	bool operator==(const Date&);
+	bool operator==(const Date&)const;
 	bool isEqual(const Date &other) const;
 	bool isBefore(const Date &other) const;
 	friend std::ostream &operator<<(std::ostream &, const Date&);
+	bool operator<(const Date&)const;
 };
 
 #endif

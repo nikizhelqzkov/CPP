@@ -16,11 +16,13 @@ public:
     void printArr() const;
     Event &operator[](int i);
     Event operator[](int) const;
-    RoomArr& addEvent(const Event &);
+    RoomArr &addEvent(const Event &);
     bool removeEvent(const Event &);
     int getSize() const;
     std::vector<Event> getData() const;
-    void freeseats(std::string name, Date date);
+    void freeseats(std::string, Date);
+    void bookings(std::string, Date);
+    void checkTicket(long unsigned int serialNumber);
 };
 
 #endif

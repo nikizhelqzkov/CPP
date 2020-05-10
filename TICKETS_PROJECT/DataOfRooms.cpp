@@ -15,8 +15,8 @@ RoomArr::RoomArr(const RoomArr &other)
     this->data = other.data;
     this->size = other.size;
 }
-RoomArr::~RoomArr(){
-
+RoomArr::~RoomArr()
+{
 }
 void RoomArr::printArr() const
 {
@@ -39,8 +39,7 @@ RoomArr &RoomArr::addEvent(const Event &other)
     bool flag = true;
     if (!this->data.empty())
     {
-        this->data.resize(1);
-        this->size++;
+
         for (int i = 0; i < this->size; i++)
         {
             if (data[i].getName() == other.getName() && data[i].getDate() == other.getDate())
@@ -49,8 +48,10 @@ RoomArr &RoomArr::addEvent(const Event &other)
                 return *this;
             }
         }
+        this->data.resize(1);
     }
     this->data.push_back(other);
+    this->size++;
     return *this;
 }
 
@@ -84,5 +85,72 @@ void RoomArr::freeseats(std::string name, Date date)
         {
             data[i].printFreeSeats();
         }
+    }
+}
+void RoomArr::bookings(std::string name, Date date)
+{
+    bool res1 = false;
+    bool res2 = false;
+    bool res3 = false;
+    if (name == "")
+    {
+        std::cout << "\n\nReserve seats on " << date << ": \n\n";
+        for (int i = 0; i < this->data.size(); i++)
+        {
+            if (data[i].getDate() == date)
+            {
+
+                std::cout << "Event " << data[i].getName() << ":\n";
+                res1 = data[i].reserveFreeSeats();
+            }
+        }
+    }
+    else if (date.getYear() == 1)
+    {
+        std::cout << "\n\nReserve seats in " << name << ": \n\n";
+        for (int i = 0; i < this->data.size(); i++)
+        {
+            if (data[i].getName() == name)
+            {
+
+                std::cout << "Event on :" << data[i].getDate() << ":\n";
+                res2 = data[i].reserveFreeSeats();
+            }
+        }
+    }
+    else
+    {
+        std::cout << "\n\nReserve seats in " << name << " on " << date << ": \n\n";
+        for (int i = 0; i < this->data.size(); i++)
+        {
+            if (data[i].getName() == name && data[i].getDate() == date)
+            {
+
+                res3 = data[i].reserveFreeSeats();
+            }
+        }
+    }
+    if (!res1 && !res2 && !res3)
+    {
+        std::cout << "No reserved tickets !!!\n";
+    }
+}
+
+void RoomArr::checkTicket(long unsigned int serialNumber)
+{
+    bool flag = false;
+    bool valid = false;
+    for (int i = 0; i < this->data.size(); i++)
+    {
+        flag = false;
+        flag = data[i].checkCode(serialNumber);
+        if (flag)
+        {
+            valid = true;
+        }
+    }
+    if (!valid)
+    {
+        std::cout << "THAT TICKET NUMBER IS NOT VALID!!!\n";
     }
 }

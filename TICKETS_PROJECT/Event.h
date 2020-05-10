@@ -19,6 +19,8 @@ public:
     void setName(std::string);
     void setDate(Date);
     void printFreeSeats();
+    bool reserveFreeSeats();
+    bool checkCode(long unsigned int);
 };
 
 #endif

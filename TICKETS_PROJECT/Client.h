@@ -26,7 +26,12 @@ public:
     int getCol() const;
     std::string getName() const;
     std::string getNote() const;
+    long unsigned int getTicket() const;
     void setName(std::string);
+    bool getReserve() const;
+    bool getBuy() const;
+    void checkCode();
+
     // bool getRooms(const RoomArr &);
 };
 

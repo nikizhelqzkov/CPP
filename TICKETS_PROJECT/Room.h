@@ -27,6 +27,7 @@ public:
     int getRows()const;
     int getCols()const;
     std::vector<std::vector<Client>>getplaces()const;
+    std::vector<std::vector<Client>>getplaces();
    // void setName(std::string);-->za event
     void setId(int);
     void setRows(int rows);

@@ -5,21 +5,124 @@
 #include "DataOfRooms.h"
 #include <ctime>
 #include <iostream>
+//#include <algorithm>
 //g++ main.cpp Date.cpp Client.cpp Room.cpp Event.cpp DataOfRooms.cpp
 //datite da sa subota i  nedelq
-void readTORoom(Client &c, std::vector<std::vector<Client>> &v)
+bool dateComp(Date i, Date j) { return (i < j); }
+Event &readTORoom(Client &c,
+                  /*std::vector<std::vector<std::vector<Client>>> &v2*/
+                  Event &event)
 {
+    // std::cout << "Enter the event name: ";
+    // std::string name;
+    // std::getline(std::cin, name);
+    // std::cout << "\n Enter the day, month and year of a event: ";
+    // unsigned int d, m, y;
+    // std::cin >> d >> m >> y;
+    // Date date(d, m, y);
+    // for (size_t i = 0; i < studio.getSize(); i++)
+    // {
+    //     if (studio[i].getName() == name && studio[i].getDate() == date)
+    //     {
+    std::vector<std::vector<Client>> temp;
     c.read();
-    for (int i = 0; i < v.size(); i++)
-    {
-        for (int j = 0; j < v[i].size(); j++)
-        {
-            v[i][j].setName("FREE PLACE");
-            
-        }
-    }
+    //c.print();
+    temp = event.getplaces();
+    std::cout << temp.size();
+    temp[c.getRow() - 1][c.getCol() - 1] = c;
+    event.setMatrix(temp);
+    // event.setCols(c.getCol());
+    return event;
+    //         std::vector<std::vector<Client>> p;
+    //         p = v;
+    //         studio[i].setMatrix()
+    //     }
+    // }
 
-    v[c.getRow() - 1][c.getCol() - 1] = c;
+    //v2[0][0][0].
+}
+//
+bool helpCommander()
+
+{
+    bool help = true;
+    bool helpFlag = true;
+    std::cout << "\n\nWELCOME TO THE HELPING CENTER\n";
+    std::cout << "\nThese are the starting commands that you can use:\n\n";
+    std::cout << "1)open --> opens file\n2)save --> saves the opened file on his directory\n";
+    std::cout << "3)save_as --> saves the opened file on new directory\n4)close -->close opened file\n";
+    std::cout << "5)help --> give some information about your valid commands\n\n";
+    do
+    {
+        std::cout << "Write that number if you are: \n";
+        std::cout << "1)Moderator\n2)Client\n";
+        int helpN;
+        std::cin >> helpN;
+        if (helpN == 1)
+        {
+            std::cout << "\nWelcome Mod!\nThese are your using commands:\n";
+            //all mod commands like new event etc
+            std::cout << "1)addevent --> adding new event on EventBox \n2)freeseats --> report of freeseats on an event\n";
+            std::cout << "3)bookings --> report of reserved tickets on an event\n";
+            std::cout << "4)report --> report of bought tickets from one date to other date\n\n";
+            //za 4 shte sortirame masiva po data na eventa i shte shte vidim ot koq data da broim biletite
+            //std::sort (myvector.begin(), myvector.end(), dateComp);
+            std::cout << "PRESS THE b for back!\n";
+            char back;
+            bool flagHelp = true;
+            do
+            {
+                std::cin >> back;
+                if (back == 'b')
+                {
+                    help = false;
+                }
+                else
+                {
+                    flagHelp = false;
+                }
+            } while (!flagHelp);
+        }
+        else if (helpN == 2)
+        {
+            std::cout << "\nWelcome Client!\nThese are your using commands:\n";
+            //all mod commands like new event etc
+            std::cout << "\n1)book --> reserve a ticket with name and date of the event, your seat, your name and some note\n";
+            std::cout << "2)buy --> reserve a ticket with name and date of the event, your seat, your name and some note\n";
+            std::cout << "3)unbook --> cancel the reservation\n";
+            std::cout << "4)check --> checking your ticket whether is valid and returning information of the ticket\n\n";
+
+            std::cout << "PRESS THE b for back!\n";
+            char back;
+            bool flagHelp = true;
+            do
+            {
+                std::cin >> back;
+                if (back == 'b')
+                {
+                    help = false;
+                }
+                else
+                {
+                    flagHelp = false;
+                }
+            } while (!flagHelp);
+        }
+        else
+        {
+            helpFlag = false;
+            std::cout << "Wrong number!\n\n";
+        }
+    } while (!helpFlag);
+    return help;
+}
+bool closeCommander()
+{
+    bool close = true;
+    std::cout << "\n\nYOU CLOSED THE FILE!!!!\n";
+    std::cout << "NOW WE WILL RETURN BACK TO THE START MENU!!!\n\n\n";
+    close = false;
+    return close;
 }
 int main()
 {
@@ -54,7 +157,7 @@ int main()
                   << "6)exit" << std::endl;
 
         std::cin >> a;
-        if (a == "open" || a == "Open" || a == "OPEN" || a=="1")
+        if (a == "open" || a == "Open" || a == "OPEN" || a == "1")
         {
             open = true;
             int num; //for returning back
@@ -64,66 +167,23 @@ int main()
                 open = false;
             }
         }
-        else if (a == "help" || a == "Help" || a == "HELP" || a=="2")
+        else if (a == "help" || a == "Help" || a == "HELP" || a == "2")
         {
-            help = true;
-            bool helpFlag = true;
-            std::cout << "\n\nWELCOME TO THE HELPING CENTER\n";
-            do
-            {
-                std::cout << "Write that number if you are: \n";
-                std::cout << "1)Moderator\n2)Client\n";
-                int helpN;
-                std::cin >> helpN;
-                if (helpN == 1)
-                {
-                    std::cout << "\nWelcome Mod!\nThese are your using commands:\n";
-                    //all mod commands like new event etc
-                    std::cout << "PRESS THE b for back!\n";
-                    char back;
-                    bool flagHelp = true;
-                    do
-                    {
-                        std::cin >> back;
-                        if (back == 'b')
-                        {
-                            help = false;
-                        }
-                        else
-                        {
-                            flagHelp = false;
-                        }
-                    } while (!flagHelp);
-                    break;
-                }
-                else
-                {
-                    helpFlag = false;
-                    std::cout << "Wrong number!\n\n";
-                    break;
-                }
-            } while (!helpFlag);
+            help = helpCommander();
         }
-        else if (a == "save" || a == "Save" || a == "SAVE" || a=="3")
+        else if (a == "save" || a == "Save" || a == "SAVE" || a == "3")
         {
             save = true;
         }
-        else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS" || a == "Save_As" || a=="4")
+        else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS" || a == "Save_As" || a == "4")
         {
             save_as = true;
         }
-        else if (a == "close" || a == "Close" || a == "CLOSE"||a=="5")
+        else if (a == "close" || a == "Close" || a == "CLOSE" || a == "5")
         {
-            close = true;
-            std::cout << "\n\nYOU CLOSED THE FILE!!!!\n";
-            std::cout << "NOW WE WILL RETURN BACK TO THE START MENU!!!\n\n\n";
-            close = false;
+            close = closeCommander();
         }
-        else if (a == "help" || a == "Help" || a == "HELP")
-        {
-            help = true;
-        }
-        else if (a == "exit" || a == "Exit" || a == "EXIT")
+        else if (a == "exit" || a == "Exit" || a == "EXIT" || a == "6")
         {
             exit = true;
             std::cout << "GOOD BYE !!!\n";
@@ -135,11 +195,12 @@ int main()
         }
     } while (!open && !help && !save && !save_as && !close && !exit);
 
-    Date d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12;
+    Date d1(20, 6, 2020), d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12;
     Client c, d, e;
+
     //c.read();d.read();
     // e.read();
-
+    std::vector<std::vector<std::vector<Client>>> p2(7, std::vector<std::vector<Client>>(7));
     std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v2(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v3(7, std::vector<Client>(7));
@@ -149,8 +210,51 @@ int main()
     std::vector<std::vector<Client>> v7(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v8(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v9(7, std::vector<Client>(7));
-    readTORoom(e, v);
+    for (int i = 0; i < v.size(); i++)
+    {
+        for (int j = 0; j < v[i].size(); j++)
+        {
+            v[i][j].setName("FREE PLACE");
+        }
+    }
+    Event kolos(d1, "kolos", rand() % 100, v, 7, 7);
 
+    //kolos.print();
+    RoomArr studio;
+    studio.addEvent(kolos);
+
+    std::cin.ignore(1, '\n');
+    std::cout << "\n";
+    std::cout << "Enter the event name: ";
+    std::string name;
+
+    std::getline(std::cin, name);
+    std::cout << name;
+
+    //std::cout << "\n Enter the day, month and year of a event: ";
+    // unsigned int day, m, y;
+    // std::cin >> day >> m >> y;
+    //Date date(day, m, y);
+    bool isItHave = false;
+
+    for (size_t i = 0; i < studio.getSize(); i++)
+    {
+        std::cout << studio[i].getName() << "\n";
+        if (studio[i].getName() == name)
+        {
+            isItHave = true;
+            // studio[i].print();
+            // std::cout << "============================\n";
+            studio[i] = readTORoom(e, studio[i]);
+            studio[i] = readTORoom(c, studio[i]);
+        }
+        studio[i].print();
+    }
+    if (!isItHave)
+    {
+        std::cout << "The event on that date is missing!\n";
+    }
+    system("pause");
     // for (int i = 0; i < v.size(); i++)
     // {
     //     for (int j = 0; j < v[i].size(); j++)
@@ -163,23 +267,29 @@ int main()
 
     // std::cout<<v[2].size();
 
-    Room club(rand() % 100, v, 7, 7);
-    Room club2(rand() % 100, v2, 7, 7);
-    Room club3(rand() % 100, v3, 7, 7);
-    Room club4(rand() % 100, v4, 7, 7);
-    Room club5(rand() % 100, v5, 7, 7);
-    Room club6(rand() % 100, v6, 7, 7);
-    Room club7(rand() % 100, v7, 7, 7);
-    Room club8(rand() % 100, v8, 7, 7);
-    Room club9(rand() % 100, v9, 7, 7);
+    // Room club(rand() % 100, v, 7, 7);
+    // Room club2(rand() % 100, v2, 7, 7);
+    // Room club3(rand() % 100, v3, 7, 7);
+    // Room club4(rand() % 100, v4, 7, 7);
+    // Room club5(rand() % 100, v5, 7, 7);
+    // Room club6(rand() % 100, v6, 7, 7);
+    // Room club7(rand() % 100, v7, 7, 7);
+    // Room club8(rand() % 100, v8, 7, 7);
+    // Room club9(rand() % 100, v9, 7, 7);
 
     //club.print();
 
-    Event kolos(d1, "kolos", club.getId(), v, 7, 7);
-    kolos.print();
-    RoomArr studio;
-    studio.addEvent(kolos);
-    studio.freeseats("kolos", d1);
+    //studio.freeseats("kolos", d1);
+
+    //studio.bookings("kolos",d1);
+    // long unsigned int tN;
+    // std::cout<<"Your ticket number: ";
+    // std::cin>>tN;
+    // studio.checkTicket(tN);
+
+    // readTORoom(c, v);
+    // Room club(club.getId(), v, 7, 7);
+
     //  Date date(25,06,2000);
     //  date.print();
     // size_t id = 3;

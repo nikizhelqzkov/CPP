@@ -83,7 +83,7 @@ void Client::read()
     std::cin >> this->row;
     std::cout << "Number of column of " << this->row << " row: ";
     std::cin >> this->col;
-    this->date.read();
+   // this->date.read();
     std::cin.ignore(1, '\n');
     // std::cout << "\n";
     //std::string c;
@@ -93,7 +93,7 @@ void Client::read()
     std::getline(std::cin, this->note);
     if (buy)
     {
-        serialNumber = 2 * (row + 1) + 4 * (col + 1) + this->date.getDay()*this->date.getMonth()*this->date.getYear();
+        serialNumber = 2 * (row + 1) + 4 * (col + 1) + this->date.getDay() * this->date.getMonth() * this->date.getYear();
     }
 }
 int Client::getRow() const
@@ -117,6 +117,25 @@ void Client::setName(std::string name)
 {
     this->name = name;
 }
+bool Client::getReserve() const
+{
+    return reserve;
+}
+bool Client::getBuy() const
+{
+    return buy;
+}
+long unsigned int Client::getTicket()const{
+    return serialNumber;
+}
+
+void Client::checkCode()
+
+{
+    std::cout << "row:" << row + 1 << ", place on a row: " << col + 1 << std::endl;
+    std::cout << "Date: " << date;
+}
+
 // bool Client::getRooms(const RoomArr &data)
 // {
 //     bool flag = false;

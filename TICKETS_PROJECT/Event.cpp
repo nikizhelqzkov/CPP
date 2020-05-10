@@ -44,10 +44,41 @@ void Event::printFreeSeats()
     {
         for (int j = 0; j < matrix[i].size(); j++)
         {
-            if (matrix[i][j].getName() == "FREE PLACE" || matrix[i][j].getName()=="")
+            if (matrix[i][j].getName() == "FREE PLACE" || matrix[i][j].getName() == "" || matrix[i][j].getReserve() == true)
             {
-                std::cout << "row: " << i+1 << ", place: " << j+1 << " \n";
+                std::cout << "row: " << i + 1 << ", place: " << j + 1 << " \n";
             }
         }
     }
+}
+bool Event::reserveFreeSeats()
+{
+    bool flag = false;
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            if (matrix[i][j].getReserve() == true)
+            {
+                flag = true;
+                std::cout << "row: " << i + 1 << ", place: " << j + 1 << " \n";
+            }
+        }
+    }
+    return flag;
+}
+bool Event::checkCode(long unsigned int serialNumber)
+{
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            if (matrix[i][j].getTicket() == serialNumber)
+            {
+                matrix[i][j].checkCode();
+                return true;
+            }
+        }
+    }
+    return false;
 }

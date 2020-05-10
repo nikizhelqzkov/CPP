@@ -6,7 +6,7 @@ Date::Date()
 {
 	this->day = 1;
 	this->month = 1;
-	this->year = 2020;
+	this->year = 1;
 }
 
 Date::Date(unsigned d, unsigned m, unsigned y)
@@ -152,10 +152,13 @@ Date &Date::operator=(const Date &other)
 	this->month = other.month;
 	this->year = other.year;
 }
-bool Date::operator==(const Date& other){
+bool Date::operator==(const Date& other)const{
 	return day==other.day && month==other.month && year==other.year;
 }
 std::ostream &operator<<(std::ostream &out, const Date &date)
 {
 	out << date.year << '-' << date.month << '-' << date.day<<" ";
+}
+bool Date::operator<(const Date& date)const{
+return isBefore(date);
 }
