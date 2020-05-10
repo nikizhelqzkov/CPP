@@ -20,6 +20,7 @@ public:
     Client();
     Client(int, int, Date, std::string, std::string);
     Date getDate() const;
+    void setDate(const Date&);
     void read();
     void print();
     int getRow() const;
@@ -31,6 +32,7 @@ public:
     bool getReserve() const;
     bool getBuy() const;
     void checkCode();
+    Client& remove();
 
     // bool getRooms(const RoomArr &);
 };

@@ -154,3 +154,21 @@ void RoomArr::checkTicket(long unsigned int serialNumber)
         std::cout << "THAT TICKET NUMBER IS NOT VALID!!!\n";
     }
 }
+RoomArr& RoomArr::unbook(std::string name, Date date, int row, int col)
+{
+    bool flag = false;
+    for (size_t i = 0; i < this->data.size(); i++)
+    {
+        std::cout<<"here 1\n";
+        if (this->data[i].getName() == name && this->data[i].getDate() == date)
+        {
+            flag = true;
+            data[i] = data[i].unbook(row, col);
+        }
+    }
+    if (!flag)
+    {
+        std::cout << "Your reservation is not on this date or in this event\n";
+    }
+    return *this;
+}

@@ -23,6 +23,7 @@ public:
     void freeseats(std::string, Date);
     void bookings(std::string, Date);
     void checkTicket(long unsigned int serialNumber);
+    RoomArr& unbook(std::string name, Date date, int row, int col);
 };
 
 #endif

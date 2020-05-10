@@ -21,6 +21,7 @@ public:
     void printFreeSeats();
     bool reserveFreeSeats();
     bool checkCode(long unsigned int);
+    Event& unbook(int row, int col);
 };
 
 #endif

@@ -43,6 +43,10 @@ Date Client::getDate() const
 {
     return this->date;
 }
+void Client::setDate(const Date &date)
+{
+    this->date = date;
+}
 void Client::read()
 {
     //RoomArr data;
@@ -83,7 +87,7 @@ void Client::read()
     std::cin >> this->row;
     std::cout << "Number of column of " << this->row << " row: ";
     std::cin >> this->col;
-   // this->date.read();
+    // this->date.read();
     std::cin.ignore(1, '\n');
     // std::cout << "\n";
     //std::string c;
@@ -125,7 +129,8 @@ bool Client::getBuy() const
 {
     return buy;
 }
-long unsigned int Client::getTicket()const{
+long unsigned int Client::getTicket() const
+{
     return serialNumber;
 }
 
@@ -134,6 +139,20 @@ void Client::checkCode()
 {
     std::cout << "row:" << row + 1 << ", place on a row: " << col + 1 << std::endl;
     std::cout << "Date: " << date;
+}
+Client &Client::remove()
+{
+    this->row = 0;
+    this->col = 0;
+    this->reserve = false;
+    this->buy = false;
+    this->note = "";
+    this->name = "";
+    this->serialNumber = 0;
+    this->date.setDay(1);
+    this->date.setMonth(1);
+    this->date.setYear(1);
+    return *this;
 }
 
 // bool Client::getRooms(const RoomArr &data)
