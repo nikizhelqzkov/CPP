@@ -76,7 +76,7 @@ std::vector<std::vector<Client>> Room::getplaces() const
 {
     return this->matrix;
 }
-std::vector<std::vector<Client>> Room::getplaces() 
+std::vector<std::vector<Client>> Room::getplaces()
 {
     return this->matrix;
 }
@@ -105,7 +105,7 @@ void Room::setMatrix(const std::vector<std::vector<Client>> &other)
 void Room::setRows(int rows)
 {
     assert(rows > 0);
-   // std::cout<<rows;
+    // std::cout<<rows;
     this->rows = rows;
 }
 void Room::setCols(int cols)
@@ -136,4 +136,10 @@ Room &Room::operator=(const Room &other)
         placeOnRow = other.placeOnRow;
     }
     return *this;
+}
+void Room::remove()
+{
+    this->id = 0;
+    this->rows = 0;
+    this->placeOnRow = 0;
 }

@@ -34,6 +34,7 @@ public:
     void setCols(int cols);
     void setMatrix(const std::vector<std::vector<Client>>&);
     Room& operator=(const Room&);
+    void remove();
    // Date getDate()const;-->za event
   
     //i->ti element

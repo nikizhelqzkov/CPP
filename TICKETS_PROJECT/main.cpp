@@ -263,7 +263,7 @@ int main()
 
     //c.read();d.read();
     // e.read();
-    std::vector<std::vector<std::vector<Client>>> p2(7, std::vector<std::vector<Client>>(7));
+    // std::vector<std::vector<std::vector<Client>>> p2(7, std::vector<std::vector<Client>>(7));
     std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v2(7, std::vector<Client>(7));
     std::vector<std::vector<Client>> v3(7, std::vector<Client>(7));
@@ -280,23 +280,99 @@ int main()
             v[i][j].setName("FREE PLACE");
         }
     }
-    Event kolos(d1, "kolos", rand() % 100, v, 7, 7);
+    for (int i = 0; i < v2.size(); i++)
+    {
+        for (int j = 0; j < v2[i].size(); j++)
+        {
+            v2[i][j].setName("FREE PLACE");
+        }
+    }
+    std::cout << "\n";
+    std::cin.ignore(1, '\n');
+    std::cout << "\n";
+
+    std::cout << "Write the name of event: ";
+    std::string nameOfEvent;
+    std::getline(std::cin, nameOfEvent);
+    std::cout << "\n";
+    std::cout << "Enter the date: ";
+    int dayOfEvent, monthOfEvent, yearOfEvent;
+    std::cin >> dayOfEvent >> monthOfEvent >> yearOfEvent;
+    Date dateOfEvent;
+    dateOfEvent.setDay(dayOfEvent);
+    dateOfEvent.setMonth(monthOfEvent);
+    dateOfEvent.setYear(yearOfEvent);
+
+    Event event(dateOfEvent, nameOfEvent, rand() % 100, v, 7, 7);
 
     //kolos.print();
     RoomArr studio;
-    studio.addEvent(kolos);
+    studio.addEvent(event);
+    for (int i = 0; i < v.size(); i++)
+    {
+        for (int j = 0; j < v[i].size(); j++)
+        {
+            //v[i][j].setName("FREE PLACE");
+            v[i][j].remove();
+        }
+    }
+    std::cout << "\n";
+    std::cin.ignore(1, '\n');
+    std::cout << "Write the name of event: ";
+    std::getline(std::cin, nameOfEvent);
+    std::cout << "\n";
+    std::cout << "Enter the date: ";
+    std::cin >> dayOfEvent >> monthOfEvent >> yearOfEvent;
 
+    dateOfEvent.setDay(dayOfEvent);
+    dateOfEvent.setMonth(monthOfEvent);
+    dateOfEvent.setYear(yearOfEvent);
+    event.Remove();
+    event.setName(nameOfEvent);
+    event.setDate(dateOfEvent);
+    event.setId(rand() % 100);
+    event.setRows(7);
+    event.setCols(7);
+
+    studio.addEvent(event);
+    studio[0].Print();
+    std::cout << "==========================\n";
+    studio[1].Print();
+    std::cout << "\n";
     std::cin.ignore(1, '\n');
     std::cout << "\n";
+
     studio = read(studio, c);
     studio = read(studio, e);
     studio = unbook(studio);
 
     studio[0].print();
-    studio.freeseats("kolos", d1);
+    std::cout << "========================\n\n";
+    studio[1].print();
+    std::cin.ignore(1, '\n');
+    std::cout << "Enter the name of event for freeseats: ";
+    std::string freeSeats;
+    std::getline(std::cin, freeSeats);
     std::cout << "\n";
-    studio.bookings("kolos", d1);
+    int dF, mF, yF;
+    std::cout << "Enter the date of an event: ";
+    std::cin >> dF >> mF >> yF;
+    Date DF(dF, mF, yF);
+    std::cin.ignore(1, '\n');
+    studio.freeseats(freeSeats, DF); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
+    std::cout << "\n";
+    std::cout << "Enter the name of event for bookings: ";
+    std::string bookings;
+    std::getline(std::cin, freeSeats);
+    std::cout << "\n";
+    int dB, mB, yB;
+    std::cout << "Enter the date of an event: ";
+    std::cin >> dB >> mB >> yB;
+    Date DB(dB, mB, yB);
+    std::cin.ignore(1, '\n');
+    studio.bookings(bookings, DB); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
     checkTicket(studio);
+
     system("pause");
     // for (int i = 0; i < v.size(); i++)
     // {

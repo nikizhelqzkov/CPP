@@ -84,11 +84,21 @@ bool Event::checkCode(long unsigned int serialNumber)
 }
 Event &Event::unbook(int row, int col)
 {
-    if (matrix[row-1][col-1].getReserve() == false)
+    if (matrix[row - 1][col - 1].getReserve() == false)
     {
         std::cout << "That ticket is not reserved\n";
         return *this;
     }
-    matrix[row-1][col-1] = matrix[row-1][col-1].remove();
+    matrix[row - 1][col - 1] = matrix[row - 1][col - 1].remove();
     return *this;
+}
+void Event::Remove()
+{
+    Room::remove();
+    eventDate = eventDate.getLiveData();
+    this->name = "";
+}
+void Event::Print(){
+    std::cout<<this->name<<", "<<this->eventDate<<" , ";
+    Room::print();
 }
