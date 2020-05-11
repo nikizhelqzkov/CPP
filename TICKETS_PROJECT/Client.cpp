@@ -137,7 +137,7 @@ long unsigned int Client::getTicket() const
 void Client::checkCode()
 
 {
-    std::cout << "row:" << row + 1 << ", place on a row: " << col + 1 << std::endl;
+    std::cout << "row:" << row  << ", place on a row: " << col  << std::endl;
     std::cout << "Date: " << date;
 }
 Client &Client::remove()
@@ -147,7 +147,7 @@ Client &Client::remove()
     this->reserve = false;
     this->buy = false;
     this->note = "";
-    this->name = "";
+    this->name = "FREE PLACE";
     this->serialNumber = 0;
     this->date.setDay(1);
     this->date.setMonth(1);

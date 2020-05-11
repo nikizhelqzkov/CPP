@@ -124,6 +124,69 @@ bool closeCommander()
     close = false;
     return close;
 }
+RoomArr &read(RoomArr &studio, Client &c)
+{
+
+    std::cout << "Enter the event name: ";
+    std::string name;
+
+    std::getline(std::cin, name);
+    std::cout << name;
+
+    std::cout << "\n Enter the day, month and year of a event: ";
+    unsigned int day, m, y;
+    std::cin >> day >> m >> y;
+    Date date(day, m, y);
+    bool isItHave = false;
+
+    for (size_t i = 0; i < studio.getSize(); i++)
+    {
+        std::cin.ignore(1, '\n');
+
+        //std::cout << studio[i].getName() << "\n";
+        if (studio[i].getName() == name && studio[i].getDate() == date)
+        {
+            isItHave = true;
+            c.setDate(date);
+            // e.setDate(date);
+            // studio[i].print();
+            // std::cout << "============================\n";
+            // studio[i] = readTORoom(e, studio[i]);
+            studio[i] = readTORoom(c, studio[i]);
+        }
+    }
+    if (!isItHave)
+    {
+        std::cout << "The event on that date is missing!\n";
+    }
+    return studio;
+}
+
+RoomArr &unbook(RoomArr &studio)
+{
+    std::string nameCLose;
+    std::cout << "Name of event: ";
+    std::getline(std::cin, nameCLose);
+    std::cout << "\n Enter the day, month and year of a event: ";
+    unsigned int Day, month, year;
+    std::cin >> Day >> month >> year;
+    Date dateClose(Day, month, year);
+    std::cout << "Enter your row and seat of a row: ";
+    int row, col;
+    std::cin >> row >> col;
+    studio = studio.unbook(nameCLose, dateClose, row, col);
+    std::cout << "\n";
+    return studio;
+}
+void checkTicket(RoomArr &studio)
+{
+    long unsigned int tN;
+    std::cout << "Your ticket number: ";
+    std::cout << "\n";
+    std::cin >> tN;
+    studio.checkTicket(tN);
+    std::cout << "\n";
+}
 int main()
 {
     std::cout << "Live Date: ";
@@ -225,115 +288,72 @@ int main()
 
     std::cin.ignore(1, '\n');
     std::cout << "\n";
-    std::cout << "Enter the event name: ";
-    std::string name;
+    studio = read(studio, c);
+    studio = read(studio, e);
+    studio = unbook(studio);
 
-    std::getline(std::cin, name);
-    std::cout << name;
-
-    std::cout << "\n Enter the day, month and year of a event: ";
-    unsigned int day, m, y;
-    std::cin >> day >> m >> y;
-    Date date(day, m, y);
-    bool isItHave = false;
-
-    for (size_t i = 0; i < studio.getSize(); i++)
-    {
-        //std::cout << studio[i].getName() << "\n";
-        if (studio[i].getName() == name && studio[i].getDate() == date)
-        {
-            isItHave = true;
-            c.setDate(date);
-            e.setDate(date);
-            // studio[i].print();
-            // std::cout << "============================\n";
-            studio[i] = readTORoom(e, studio[i]);
-            studio[i] = readTORoom(c, studio[i]);
-        }
-    }
-    std::string nameCLose;
-    std::cout << "Name of event: ";
-    std::getline(std::cin, nameCLose);
-    std::cout << "\n Enter the day, month and year of a event: ";
-    unsigned int Day, month, year;
-    std::cin >> Day >> month >> year;
-    Date dateClose(Day, month, year);
-    std::cout << "Enter your row and seat of a row: ";
-    int row, col;
-    std::cin >> row >> col;
-    studio = studio.unbook(nameCLose, dateClose, row, col);
-    std::cout << "\n";
     studio[0].print();
+    studio.freeseats("kolos", d1);
+    std::cout << "\n";
+    studio.bookings("kolos", d1);
+    checkTicket(studio);
+    system("pause");
+    // for (int i = 0; i < v.size(); i++)
+    // {
+    //     for (int j = 0; j < v[i].size(); j++)
+    //     {
+    //         v[i][j].setName("FREE PLACE");
+    //     }
+    // }
 
-if (!isItHave)
-{
-    std::cout << "The event on that date is missing!\n";
-}
-system("pause");
-// for (int i = 0; i < v.size(); i++)
-// {
-//     for (int j = 0; j < v[i].size(); j++)
-//     {
-//         v[i][j].setName("FREE PLACE");
-//     }
-// }
+    // v[e.getRow() - 1][e.getCol() - 1] = e;
 
-// v[e.getRow() - 1][e.getCol() - 1] = e;
+    // std::cout<<v[2].size();
 
-// std::cout<<v[2].size();
+    // Room club(rand() % 100, v, 7, 7);
+    // Room club2(rand() % 100, v2, 7, 7);
+    // Room club3(rand() % 100, v3, 7, 7);
+    // Room club4(rand() % 100, v4, 7, 7);
+    // Room club5(rand() % 100, v5, 7, 7);
+    // Room club6(rand() % 100, v6, 7, 7);
+    // Room club7(rand() % 100, v7, 7, 7);
+    // Room club8(rand() % 100, v8, 7, 7);
+    // Room club9(rand() % 100, v9, 7, 7);
 
-// Room club(rand() % 100, v, 7, 7);
-// Room club2(rand() % 100, v2, 7, 7);
-// Room club3(rand() % 100, v3, 7, 7);
-// Room club4(rand() % 100, v4, 7, 7);
-// Room club5(rand() % 100, v5, 7, 7);
-// Room club6(rand() % 100, v6, 7, 7);
-// Room club7(rand() % 100, v7, 7, 7);
-// Room club8(rand() % 100, v8, 7, 7);
-// Room club9(rand() % 100, v9, 7, 7);
+    //club.print();
 
-//club.print();
+    // readTORoom(c, v);
+    // Room club(club.getId(), v, 7, 7);
 
-//studio.freeseats("kolos", d1);
+    //  Date date(25,06,2000);
+    //  date.print();
+    // size_t id = 3;
+    //int **a = new int *[3];
 
-//studio.bookings("kolos",d1);
-// long unsigned int tN;
-// std::cout<<"Your ticket number: ";
-// std::cin>>tN;
-// studio.checkTicket(tN);
+    // int row = 3;
+    // int col = 2;
+    // int counter = 1;
+    // for (int i = 0; i < row; ++i)
+    // {
+    //     a[i] = new int[col];
+    // }
+    // for (int i = 0; i < row; ++i)
+    // {
+    //     for (int j = 0; j < col; ++j)
+    //     {
+    //         std::cin>>a[i][j];
+    //     }
+    // }
 
-// readTORoom(c, v);
-// Room club(club.getId(), v, 7, 7);
+    // Room A(3, a, row, col);
 
-//  Date date(25,06,2000);
-//  date.print();
-// size_t id = 3;
-//int **a = new int *[3];
+    // A.print();
 
-// int row = 3;
-// int col = 2;
-// int counter = 1;
-// for (int i = 0; i < row; ++i)
-// {
-//     a[i] = new int[col];
-// }
-// for (int i = 0; i < row; ++i)
-// {
-//     for (int j = 0; j < col; ++j)
-//     {
-//         std::cin>>a[i][j];
-//     }
-// }
+    // for (size_t i = 0; i < row; i++)
+    // {
+    //     delete[] a[i];
+    // }
+    // delete[] a;
 
-// Room A(3, a, row, col);
-
-// A.print();
-
-// for (size_t i = 0; i < row; i++)
-// {
-//     delete[] a[i];
-// }
-// delete[] a;
-
-return 0;
+    return 0;
 }
