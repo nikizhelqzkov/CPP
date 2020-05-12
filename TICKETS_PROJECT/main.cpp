@@ -397,9 +397,10 @@ int main()
     Date DB(dB, mB, yB);
     std::cin.ignore(1, '\n');
     studio.bookings(bookings, DB); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
-    checkTicket(studio);
+    
 
-    system("pause");
+
+  
     // for (int i = 0; i < v.size(); i++)
     // {
     //     for (int j = 0; j < v[i].size(); j++)
