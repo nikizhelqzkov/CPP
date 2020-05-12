@@ -144,17 +144,15 @@ RoomArr &read(RoomArr &studio, Client &c)
     std::string name;
 
     std::getline(std::cin, name);
-    std::cout << name;
 
-    std::cout << "\n Enter the day, month and year of a event: ";
+    std::cout << "\nEnter the day, month and year of a event: ";
     unsigned int day, m, y;
     std::cin >> day >> m >> y;
     Date date(day, m, y);
     bool isItHave = false;
-
+    // std::cin.ignore(1, '\n');
     for (size_t i = 0; i < studio.getSize(); i++)
     {
-        std::cin.ignore(1, '\n');
 
         //std::cout << studio[i].getName() << "\n";
         if (studio[i].getName() == name && studio[i].getDate() == date)
@@ -317,7 +315,6 @@ int main()
     dateOfEvent.setDay(dayOfEvent);
     dateOfEvent.setMonth(monthOfEvent);
     dateOfEvent.setYear(yearOfEvent);
-
     Event event; //(dateOfEvent, nameOfEvent, rand() % 100, v, 7, 7);
     // event.Remove();
     // event.setName(nameOfEvent);
@@ -367,7 +364,7 @@ int main()
     // std::cout << "\n";
     // std::cin.ignore(1, '\n');
     std::cout << "\n";
-
+    std::cin.ignore(1, '\n');
     studio = read(studio, c);
     studio = read(studio, e);
     studio = unbook(studio);
@@ -397,10 +394,11 @@ int main()
     Date DB(dB, mB, yB);
     std::cin.ignore(1, '\n');
     studio.bookings(bookings, DB); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
-    
 
+    checkTicket(studio);
 
-  
+    system("pause");
+
     // for (int i = 0; i < v.size(); i++)
     // {
     //     for (int j = 0; j < v[i].size(); j++)
