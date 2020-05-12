@@ -5,9 +5,20 @@
 #include "DataOfRooms.h"
 #include <ctime>
 #include <iostream>
+#include <cassert>
 //#include <algorithm>
 //g++ main.cpp Date.cpp Client.cpp Room.cpp Event.cpp DataOfRooms.cpp
 //datite da sa subota i  nedelq
+Event &generate(Event &event, std::string nameOfEvent, Date dateOfEvent)
+{
+    event.Remove();
+    event.setName(nameOfEvent);
+    event.setDate(dateOfEvent);
+    event.setId(rand() % 100);
+    event.setRows(7);
+    event.setCols(7);
+    return event;
+}
 bool dateComp(Date i, Date j) { return (i < j); }
 Event &readTORoom(Client &c,
                   /*std::vector<std::vector<std::vector<Client>>> &v2*/
@@ -24,6 +35,8 @@ Event &readTORoom(Client &c,
     // {
     //     if (studio[i].getName() == name && studio[i].getDate() == date)
     //     {
+    std::cout << "\n";
+    std::cin.ignore(1, '\n');
     std::vector<std::vector<Client>> temp;
     c.read();
     //c.print();
@@ -189,6 +202,7 @@ void checkTicket(RoomArr &studio)
 }
 int main()
 {
+
     std::cout << "Live Date: ";
     srand(time(0));
     Date z1;
@@ -265,14 +279,14 @@ int main()
     // e.read();
     // std::vector<std::vector<std::vector<Client>>> p2(7, std::vector<std::vector<Client>>(7));
     std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
-    std::vector<std::vector<Client>> v2(7, std::vector<Client>(7));
-    std::vector<std::vector<Client>> v3(7, std::vector<Client>(7));
-    std::vector<std::vector<Client>> v4(7, std::vector<Client>(7));
-    std::vector<std::vector<Client>> v5(7, std::vector<Client>(7));
-    std::vector<std::vector<Client>> v6(7, std::vector<Client>(7));
-    std::vector<std::vector<Client>> v7(7, std::vector<Client>(7));
-    std::vector<std::vector<Client>> v8(7, std::vector<Client>(7));
-    std::vector<std::vector<Client>> v9(7, std::vector<Client>(7));
+    // std::vector<std::vector<Client>> v2(7, std::vector<Client>(7));
+    // std::vector<std::vector<Client>> v3(7, std::vector<Client>(7));
+    // std::vector<std::vector<Client>> v4(7, std::vector<Client>(7));
+    // std::vector<std::vector<Client>> v5(7, std::vector<Client>(7));
+    // std::vector<std::vector<Client>> v6(7, std::vector<Client>(7));
+    // std::vector<std::vector<Client>> v7(7, std::vector<Client>(7));
+    // std::vector<std::vector<Client>> v8(7, std::vector<Client>(7));
+    // std::vector<std::vector<Client>> v9(7, std::vector<Client>(7));
     for (int i = 0; i < v.size(); i++)
     {
         for (int j = 0; j < v[i].size(); j++)
@@ -280,13 +294,14 @@ int main()
             v[i][j].setName("FREE PLACE");
         }
     }
-    for (int i = 0; i < v2.size(); i++)
-    {
-        for (int j = 0; j < v2[i].size(); j++)
-        {
-            v2[i][j].setName("FREE PLACE");
-        }
-    }
+    // for (int i = 0; i < v2.size(); i++)
+    // {
+    //     for (int j = 0; j < v2[i].size(); j++)
+    //     {
+    //         v2[i][j].setName("FREE PLACE");
+    //     }
+    // }
+
     std::cout << "\n";
     std::cin.ignore(1, '\n');
     std::cout << "\n";
@@ -303,7 +318,15 @@ int main()
     dateOfEvent.setMonth(monthOfEvent);
     dateOfEvent.setYear(yearOfEvent);
 
-    Event event(dateOfEvent, nameOfEvent, rand() % 100, v, 7, 7);
+    Event event; //(dateOfEvent, nameOfEvent, rand() % 100, v, 7, 7);
+    // event.Remove();
+    // event.setName(nameOfEvent);
+    // event.setDate(dateOfEvent);
+    // event.setId(rand() % 100);
+    // event.setRows(7);
+    // event.setCols(7);
+    event = generate(event, nameOfEvent, dateOfEvent);
+    event.setMatrix(v);
 
     //kolos.print();
     RoomArr studio;
@@ -312,7 +335,7 @@ int main()
     {
         for (int j = 0; j < v[i].size(); j++)
         {
-            //v[i][j].setName("FREE PLACE");
+            v[i][j].setName("FREE PLACE");
             v[i][j].remove();
         }
     }
@@ -327,19 +350,22 @@ int main()
     dateOfEvent.setDay(dayOfEvent);
     dateOfEvent.setMonth(monthOfEvent);
     dateOfEvent.setYear(yearOfEvent);
-    event.Remove();
-    event.setName(nameOfEvent);
-    event.setDate(dateOfEvent);
-    event.setId(rand() % 100);
-    event.setRows(7);
-    event.setCols(7);
+    // event.Remove();
+    // event.setName(nameOfEvent);
+    // event.setDate(dateOfEvent);
+    // event.setId(rand() % 100);
+    // // event.setMatrix(v);
+    // event.setRows(7);
+    // event.setCols(7);
+    event = generate(event, nameOfEvent, dateOfEvent);
+    event.setMatrix(v);
 
     studio.addEvent(event);
-    studio[0].Print();
-    std::cout << "==========================\n";
-    studio[1].Print();
-    std::cout << "\n";
-    std::cin.ignore(1, '\n');
+    // studio[0].Print();
+    // std::cout << "==========================\n";
+    //studio[1].Print();
+    // std::cout << "\n";
+    // std::cin.ignore(1, '\n');
     std::cout << "\n";
 
     studio = read(studio, c);
