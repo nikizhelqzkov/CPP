@@ -1,0 +1,26 @@
+#include "stone.h"
+Stone::Stone() : Fire(), Water()
+{
+    reactWith = Fire::reactWith;
+    size_t size = reactWith.size();
+    bool isIn = false;
+    for (size_t i = 0; i < Water::reactWith.size(); i++)
+    {
+        isIn = false;
+        for (size_t j = 0; j < size; j++)
+        {
+            if (reactWith[j] == Water::reactWith[i])
+            {
+                isIn = true;
+            }
+        }
+        if (!isIn)
+        {
+            reactWith.push_back(Water::reactWith[i]);
+        }
+    }
+}
+
+Stone::~Stone()
+{
+}

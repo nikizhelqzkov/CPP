@@ -3,6 +3,11 @@
 #include "Room.h"
 #include "Event.h"
 #include "DataOfRooms.h"
+// #include "Date.cpp"
+// #include "Client.cpp"
+// #include "Room.cpp"
+// #include "Event.cpp"
+// #include "DataOfRooms.cpp"
 #include <ctime>
 #include <iostream>
 #include <cassert>
