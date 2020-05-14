@@ -19,3 +19,6 @@ std::string Air::getName() const
 {
     return this->name;
 }
+Elements *Air::clone() const {
+    return new Air(*this);
+}

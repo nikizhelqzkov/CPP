@@ -10,6 +10,7 @@
 // #include "spirit.h"
 //#include "stone.h"
 #include "energy.h"
+#include <tuple>
 //g++ main.cpp gold.cpp energy.cpp metal.cpp air.cpp fire.cpp earth.cpp water.cpp spirit.cpp stone.cpp
 
 int main()
@@ -29,5 +30,6 @@ int main()
     a.print();
     std::cout << "\n"
               << m.getName() << " " << f.getName() << " " << w.getName() << " " << a.getName() << std::endl;
+        
     return 0;
 }

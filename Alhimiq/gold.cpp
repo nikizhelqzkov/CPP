@@ -23,3 +23,6 @@ void Gold::print() const
         std::cout << g << "  ";
     }
 }
+Elements *Gold::clone() const {
+    return new Gold(*this);
+}

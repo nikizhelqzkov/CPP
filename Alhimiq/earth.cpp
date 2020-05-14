@@ -17,3 +17,6 @@ void Earth::print() const
         std::cout << e << "  ";
     }
 }
+Elements *Earth::clone() const {
+    return new Earth(*this);
+}

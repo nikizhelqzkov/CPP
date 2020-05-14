@@ -1,7 +1,9 @@
+#pragma once
+#include "elements.h"
 #include <string>
 #include <vector>
 #include <iostream>
-class Earth
+class Earth:public Elements
 {
 protected:
     std::string name = "Earth";
@@ -10,7 +12,8 @@ protected:
 public:
     Earth() = default;
     ~Earth();
-    std::vector<std::string> getReactings() const;
-    std::string getName() const;
-    void print() const;
+    virtual std::vector<std::string> getReactings() const override;
+    virtual std::string getName() const override;
+    virtual void print() const override;
+    virtual Elements *clone() const override;
 };

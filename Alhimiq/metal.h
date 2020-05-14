@@ -1,8 +1,10 @@
+#pragma once
+
 #include <string>
 #include <vector>
 #include "earth.h"
 #include "fire.h"
-class Metal : public Earth, public Fire
+class Metal :  public Earth, public Fire
 {
 protected:
     std::string name = "Metal";
@@ -11,7 +13,8 @@ protected:
 public:
     Metal();
     ~Metal();
-    std::vector<std::string> getReactings() const;
-    std::string getName() const;
-    void print() const;
+    virtual std::vector<std::string> getReactings() const override;
+    virtual std::string getName() const override;
+    virtual void print() const override;
+    virtual Elements *clone() const override;
 };

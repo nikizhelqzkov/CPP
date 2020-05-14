@@ -18,3 +18,6 @@ void Water::print() const
         std::cout << w << "  ";
     }
 }
+Elements *Water::clone() const {
+    return new Water(*this);
+}

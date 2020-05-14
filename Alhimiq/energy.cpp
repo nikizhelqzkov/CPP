@@ -39,3 +39,6 @@ void Energy::print() const
         std::cout << e << "  ";
     }
 }
+Elements *Energy::clone() const {
+    return new Energy(*this);
+}

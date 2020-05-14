@@ -19,3 +19,6 @@ void Fire::print() const
         std::cout << f << "  ";
     }
 }
+Elements *Fire::clone() const {
+    return new Fire(*this);
+}

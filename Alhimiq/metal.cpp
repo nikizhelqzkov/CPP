@@ -39,3 +39,6 @@ void Metal::print() const
         std::cout << m << "  ";
     }
 }
+Elements *Metal::clone() const {
+    return new Metal(*this);
+}
