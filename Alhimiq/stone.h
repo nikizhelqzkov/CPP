@@ -11,5 +11,7 @@ protected:
 public:
     Stone();
     ~Stone();
-    void print()const ;
+    std::vector<std::string> getReactings() const;
+    std::string getName() const;
+    void print() const;
 };

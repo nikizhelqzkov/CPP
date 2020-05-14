@@ -20,6 +20,14 @@ Stone::Stone() : Fire(), Water()
         }
     }
 }
+std::vector<std::string> Stone::getReactings() const
+{
+    return this->reactWith;
+}
+std::string Stone::getName() const
+{
+    return this->name;
+}
 
 Stone::~Stone()
 {

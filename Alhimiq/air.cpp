@@ -1,17 +1,21 @@
 #include "air.h"
-Air::Air()
-{
 
-}
 
 Air::~Air()
 {
-    
 }
 void Air::print() const
 {
     for (auto a : this->reactWith)
     {
-        std::cout<<a<<"  ";
+        std::cout << a << "  ";
     }
+}
+std::vector<std::string> Air::getReactings() const
+{
+    return this->reactWith;
+}
+std::string Air::getName() const
+{
+    return this->name;
 }

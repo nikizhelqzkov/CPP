@@ -1,14 +1,16 @@
 #include <string>
 #include <vector>
-#include<iostream>
+#include <iostream>
 class Water
 {
 protected:
     std::string name = "Water";
-    std::vector<std::string> reactWith{"Air","Fire"};
+    std::vector<std::string> reactWith{"Air", "Fire"};
 
 public:
-    Water();
+    Water() = default;
     ~Water();
-    void print()const ;
+    std::vector<std::string> getReactings() const;
+    std::string getName() const;
+    void print() const;
 };

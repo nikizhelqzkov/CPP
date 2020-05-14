@@ -8,8 +8,9 @@ protected:
     std::vector<std::string> reactWith{"Earth", "Water", "Fire"};
 
 public:
-    Fire();
+    Fire() = default;
     ~Fire();
-    std::vector<std::string> getEl() const;
-     void print() const;
+    std::vector<std::string> getReactings() const;
+    std::string getName() const;
+    void print() const;
 };

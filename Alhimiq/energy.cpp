@@ -24,10 +24,18 @@ Energy::Energy() : Water(), Air()
 Energy::~Energy()
 {
 }
+std::vector<std::string> Energy::getReactings() const
+{
+    return this->reactWith;
+}
+std::string Energy::getName() const
+{
+    return this->name;
+}
 void Energy::print() const
 {
     for (auto e : this->reactWith)
     {
-        std::cout<<e<<"  ";
+        std::cout << e << "  ";
     }
 }

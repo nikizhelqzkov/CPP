@@ -24,9 +24,18 @@ Metal::Metal() : Earth(), Fire()
 Metal::~Metal()
 {
 }
-void Metal::print()const{
-     for (auto m : this->reactWith)
+std::vector<std::string> Metal::getReactings() const
+{
+    return this->reactWith;
+}
+std::string Metal::getName() const
+{
+    return this->name;
+}
+void Metal::print() const
+{
+    for (auto m : this->reactWith)
     {
-        std::cout<<m<<"  ";
+        std::cout << m << "  ";
     }
 }
