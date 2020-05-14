@@ -22,3 +22,6 @@ void Spirit::print() const
         std::cout<<s<<"  ";
     }
 }
+Elements *Spirit::clone() const {
+    return new Spirit(*this);
+}

@@ -32,3 +32,6 @@ std::string Stone::getName() const
 Stone::~Stone()
 {
 }
+Elements *Stone::clone() const {
+    return new Stone(*this);
+}
