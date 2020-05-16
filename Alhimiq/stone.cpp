@@ -32,6 +32,13 @@ std::string Stone::getName() const
 Stone::~Stone()
 {
 }
+void Stone::print() const
+{
+    for (auto s : this->reactWith)
+    {
+        std::cout<<s<<"  ";
+    }
+}
 Elements *Stone::clone() const {
     return new Stone(*this);
 }

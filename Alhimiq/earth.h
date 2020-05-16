@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-class Earth:public Elements
+class Earth:virtual public Elements
 {
 protected:
     std::string name = "Earth";

@@ -1,8 +1,9 @@
 #pragma once
+#include "elements.h"
 #include <string>
 #include <vector>
 #include "metal.h"
-class Gold : public Metal
+class Gold : virtual public Elements,public Metal
 {
 protected:
     std::string name = "Gold";

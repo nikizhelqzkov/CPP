@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-class Air : public Elements
+class Air : virtual public Elements
 {
 protected:
     std::string name = "Air";

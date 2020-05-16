@@ -1,9 +1,10 @@
 #pragma once
+#include "elements.h"
 #include <string>
 #include <vector>
 #include "water.h"
 #include "air.h"
-class Energy : public Water, public Air
+class Energy : virtual public Elements, public Water, public Air
 {
 protected:
     std::string name = "Energy";

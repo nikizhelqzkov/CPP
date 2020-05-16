@@ -5,7 +5,7 @@ class Elements
 {
 
 public:
-    Elements(){};
+   // Elements(){};
     virtual ~Elements(){};
     virtual void print() const = 0;
     virtual Elements *clone() const = 0;
