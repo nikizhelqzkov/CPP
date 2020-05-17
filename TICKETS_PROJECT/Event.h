@@ -24,6 +24,7 @@ public:
     Event& unbook(int row, int col);
     void Remove();
     void Print();
+    void Print(std::ostream&) const;
 };
 
 #endif

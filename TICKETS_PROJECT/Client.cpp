@@ -38,6 +38,40 @@ void Client::print()
         std::cout << " ;";
     }
 }
+void Client::print(std::ostream &out)
+{
+    out << this->row << " " << this->col << " ";
+    if (buy)
+        out << "10";
+    else if (reserve)
+        out << "01";
+    else
+    {
+        out << "0";
+    }
+
+    out << " ";
+    this->date.print(out);
+    out << " " << name;
+    if (note == "0" || note == "" || note == " ")
+    {
+        out << " "
+            << "0";
+    }
+    else
+    {
+        out<<" "<<this->note;
+    }
+    
+    if (buy)
+    {
+        out << " " << serialNumber;
+    }
+    else
+    {
+        out << " 0";
+    }
+}
 
 Date Client::getDate() const
 {
@@ -48,6 +82,7 @@ void Client::setDate(const Date &date)
     this->date = date;
 }
 void Client::read()
+
 {
     //RoomArr data;
 
@@ -100,6 +135,36 @@ void Client::read()
         serialNumber = 2 * (row + 1) + 4 * (col + 1) + this->date.getDay() * this->date.getMonth() * this->date.getYear();
     }
 }
+void Client::read(std::istream &in)
+{
+    std::string bOrR;
+    in >> row >> col;
+    in >> bOrR;
+    int day, month, year;
+    in >> year >> month >> day;
+
+    Date d(day, month, year);
+    this->setDate(d);
+    if (bOrR == "01")
+    {
+        this->reserve = true;
+        this->buy = false;
+    }
+    else if (bOrR == "10")
+    {
+        this->buy = true;
+        this->reserve = false;
+    }
+    else if (bOrR == "0")
+    {
+        this->buy = false;
+        this->reserve = false;
+    }
+    in >> name;
+    in >> note;
+    in >> serialNumber;
+    // return in;
+}
 int Client::getRow() const
 {
     return this->row;
@@ -137,7 +202,7 @@ long unsigned int Client::getTicket() const
 void Client::checkCode()
 
 {
-    std::cout << "row:" << row  << ", place on a row: " << col  << std::endl;
+    std::cout << "row:" << row << ", place on a row: " << col << std::endl;
     std::cout << "Date: " << date;
 }
 Client &Client::remove()
@@ -147,7 +212,7 @@ Client &Client::remove()
     this->reserve = false;
     this->buy = false;
     this->note = "";
-    this->name = "FREE PLACE";
+    this->name = "FREE";
     this->serialNumber = 0;
     this->date.setDay(1);
     this->date.setMonth(1);

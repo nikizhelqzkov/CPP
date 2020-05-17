@@ -1,16 +1,17 @@
-#include "Date.h"
-#include "Client.h"
-#include "Room.h"
-#include "Event.h"
-#include "DataOfRooms.h"
-// #include "Date.cpp"
-// #include "Client.cpp"
-// #include "Room.cpp"
-// #include "Event.cpp"
-// #include "DataOfRooms.cpp"
+// #include "Date.h"
+// #include "Client.h"
+// #include "Room.h"
+// #include "Event.h"
+// #include "DataOfRooms.h"
+#include "Date.cpp"
+#include "Client.cpp"
+#include "Room.cpp"
+#include "Event.cpp"
+#include "DataOfRooms.cpp"
 #include <ctime>
 #include <iostream>
 #include <cassert>
+#include <fstream>
 //#include <algorithm>
 //g++ main.cpp Date.cpp Client.cpp Room.cpp Event.cpp DataOfRooms.cpp
 //datite da sa subota i  nedelq
@@ -220,6 +221,7 @@ int main()
     bool close = false;
     bool exit = false;
     std::cout << "WELCOME TO THE TICKET CENTER!" << std::endl;
+    RoomArr st;
     do
     {
         open = false;
@@ -237,15 +239,60 @@ int main()
                   << "6)exit" << std::endl;
 
         std::cin >> a;
+
         if (a == "open" || a == "Open" || a == "OPEN" || a == "1")
         {
             open = true;
             int num; //for returning back
-            std::cin >> num;
-            if (num == 1)
+            // std::cin >> num;
+            // if (num == 1)
+            // {
+            //     open = false;
+            // }
+            // std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
+            int size;
+            std::ifstream in("file.txt");
+            in >> size;
+
+            for (size_t i = 0; i < size; i++)
             {
-                open = false;
+
+                std::string NameOfEvent;
+                in >> NameOfEvent;
+
+                int dayOfEvent, monthOfEvent, yearOfEvent, id, rows, cols;
+                in >> yearOfEvent >> monthOfEvent >> dayOfEvent;
+                in >> id >> rows >> cols;
+                Date dateOfEvent;
+                dateOfEvent.setDay(dayOfEvent);
+                dateOfEvent.setMonth(monthOfEvent);
+                dateOfEvent.setYear(yearOfEvent);
+                Event s;
+                s.setName(NameOfEvent);
+                s.setDate(dateOfEvent);
+                s.setId(id);
+                s.setRows(rows);
+                s.setCols(cols);
+                // std::cout << s.getName() << " " << s.getDate() << " " << s.getId() << " " << s.getRows() << " " << s.getCols() << "\n";
+                std::vector<std::vector<Client>> temp(rows, std::vector<Client>(cols));
+                for (size_t j = 0; j < rows; j++)
+                {
+                    for (size_t k = 0; k < cols; k++)
+                    {
+                        Client cl; //vlqzul sum iventa, prochel sum dannite bez problem i vlizam da cheta dannite ot printnatiq vekor
+                        cl.read(in);
+                        //cl.print();
+                        //std::cout << "\n";
+                        temp[j][k] = cl;
+                    }
+                }
+                s.setMatrix(temp);
+                st.addEvent(s);
+                st[i].Print();
             }
+            in.close();
+            std::cout<<"YOUR FILE IS OPEN!\n";
+            open = false;
         }
         else if (a == "help" || a == "Help" || a == "HELP" || a == "2")
         {
@@ -254,6 +301,48 @@ int main()
         else if (a == "save" || a == "Save" || a == "SAVE" || a == "3")
         {
             save = true;
+            std::cout << "\n";
+            std::cin.ignore(1, '\n');
+            std::cout << "\n";
+
+            std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
+            for (int i = 0; i < v.size(); i++)
+            {
+                for (int j = 0; j < v[i].size(); j++)
+                {
+                    v[i][j].setName("FREE");
+                }
+            }
+            std::cout << "Write the name of event: ";
+            std::string nameOfEvent;
+            std::getline(std::cin, nameOfEvent);
+            std::cout << "\n";
+            std::cout << "Enter the date: ";
+            int dayOfEvent2, monthOfEvent2, yearOfEvent2;
+            std::cin >> dayOfEvent2 >> monthOfEvent2 >> yearOfEvent2;
+            Date dateOfEvent2;
+            dateOfEvent2.setDay(dayOfEvent2);
+            dateOfEvent2.setMonth(monthOfEvent2);
+            dateOfEvent2.setYear(yearOfEvent2);
+
+            Event event;
+            event = generate(event, nameOfEvent, dateOfEvent2);
+            event.setMatrix(v);
+
+            st = st.addEvent(event);
+            st[2].Print();
+            std::cout << st.getSize() << "\n";
+            for (int i = 0; i < v.size(); i++)
+            {
+                for (int j = 0; j < v[i].size(); j++)
+                {
+                    v[i][j].setName("FREE");
+                    v[i][j].remove();
+                }
+            }
+            std::ofstream out("file.txt");
+            st.printArr(out);
+            out.close();
         }
         else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS" || a == "Save_As" || a == "4")
         {
@@ -275,83 +364,79 @@ int main()
         }
     } while (!open && !help && !save && !save_as && !close && !exit);
 
-    Date d1(20, 6, 2020), d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12;
-    Client c, d, e;
+    // Date d1(20, 6, 2020), d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12;
+    // Client c, d, e;
 
     //c.read();d.read();
     // e.read();
     // std::vector<std::vector<std::vector<Client>>> p2(7, std::vector<std::vector<Client>>(7));
-    std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
-    // std::vector<std::vector<Client>> v2(7, std::vector<Client>(7));
-    // std::vector<std::vector<Client>> v3(7, std::vector<Client>(7));
-    // std::vector<std::vector<Client>> v4(7, std::vector<Client>(7));
-    // std::vector<std::vector<Client>> v5(7, std::vector<Client>(7));
-    // std::vector<std::vector<Client>> v6(7, std::vector<Client>(7));
-    // std::vector<std::vector<Client>> v7(7, std::vector<Client>(7));
-    // std::vector<std::vector<Client>> v8(7, std::vector<Client>(7));
-    // std::vector<std::vector<Client>> v9(7, std::vector<Client>(7));
-    for (int i = 0; i < v.size(); i++)
-    {
-        for (int j = 0; j < v[i].size(); j++)
-        {
-            v[i][j].setName("FREE PLACE");
-        }
-    }
-    // for (int i = 0; i < v2.size(); i++)
+    // std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
+
+    // for (int i = 0; i < v.size(); i++)
     // {
-    //     for (int j = 0; j < v2[i].size(); j++)
+    //     for (int j = 0; j < v[i].size(); j++)
     //     {
-    //         v2[i][j].setName("FREE PLACE");
+    //         v[i][j].setName("FREE");
     //     }
     // }
 
-    std::cout << "\n";
-    std::cin.ignore(1, '\n');
-    std::cout << "\n";
+    // std::cout << "\n";
+    // std::cin.ignore(1, '\n');
+    // std::cout << "\n";
 
-    std::cout << "Write the name of event: ";
-    std::string nameOfEvent;
-    std::getline(std::cin, nameOfEvent);
-    std::cout << "\n";
-    std::cout << "Enter the date: ";
-    int dayOfEvent, monthOfEvent, yearOfEvent;
-    std::cin >> dayOfEvent >> monthOfEvent >> yearOfEvent;
-    Date dateOfEvent;
-    dateOfEvent.setDay(dayOfEvent);
-    dateOfEvent.setMonth(monthOfEvent);
-    dateOfEvent.setYear(yearOfEvent);
-    Event event; //(dateOfEvent, nameOfEvent, rand() % 100, v, 7, 7);
+    // std::cout << "Write the name of event: ";
+    // std::string nameOfEvent;
+    // std::getline(std::cin, nameOfEvent);
+    // std::cout << "\n";
+    // std::cout << "Enter the date: ";
+    // int dayOfEvent2, monthOfEvent2, yearOfEvent2;
+    // std::cin >> dayOfEvent2 >> monthOfEvent2 >> yearOfEvent2;
+    // Date dateOfEvent2;
+    // dateOfEvent2.setDay(dayOfEvent2);
+    // dateOfEvent2.setMonth(monthOfEvent2);
+    // dateOfEvent2.setYear(yearOfEvent2);
+
+    // Event event;
+
+    //---------------
+    //(dateOfEvent, nameOfEvent, rand() % 100, v, 7, 7);
     // event.Remove();
     // event.setName(nameOfEvent);
-    // event.setDate(dateOfEvent);
+    // event.setDate(dateOfEvent2);
     // event.setId(rand() % 100);
     // event.setRows(7);
     // event.setCols(7);
-    event = generate(event, nameOfEvent, dateOfEvent);
-    event.setMatrix(v);
 
-    //kolos.print();
-    RoomArr studio;
-    studio.addEvent(event);
-    for (int i = 0; i < v.size(); i++)
-    {
-        for (int j = 0; j < v[i].size(); j++)
-        {
-            v[i][j].setName("FREE PLACE");
-            v[i][j].remove();
-        }
-    }
-    std::cout << "\n";
-    std::cin.ignore(1, '\n');
-    std::cout << "Write the name of event: ";
-    std::getline(std::cin, nameOfEvent);
-    std::cout << "\n";
-    std::cout << "Enter the date: ";
-    std::cin >> dayOfEvent >> monthOfEvent >> yearOfEvent;
+    // event = generate(event, nameOfEvent, dateOfEvent2);
+    // event.setMatrix(v);
 
-    dateOfEvent.setDay(dayOfEvent);
-    dateOfEvent.setMonth(monthOfEvent);
-    dateOfEvent.setYear(yearOfEvent);
+    // //kolos.print();
+
+    // st = st.addEvent(event);
+    // st[2].Print();
+    // std::cout<<st.getSize()<<"\n";
+    // for (int i = 0; i < v.size(); i++)
+    // {
+    //     for (int j = 0; j < v[i].size(); j++)
+    //     {
+    //         v[i][j].setName("FREE");
+    //         v[i][j].remove();
+    //     }
+    //  }
+
+    //st[1].Print();
+    // std::cout << "\n";
+    // std::cin.ignore(1, '\n');
+    // std::cout << "Write the name of event: ";
+    // std::getline(std::cin, nameOfEvent);
+    // std::cout << "\n";
+    // std::cout << "Enter the date: ";
+    // std::cin >> dayOfEvent >> monthOfEvent >> yearOfEvent;
+
+    // dateOfEvent.setDay(dayOfEvent);
+    // dateOfEvent.setMonth(monthOfEvent);
+    // dateOfEvent.setYear(yearOfEvent);
+
     // event.Remove();
     // event.setName(nameOfEvent);
     // event.setDate(dateOfEvent);
@@ -359,24 +444,26 @@ int main()
     // // event.setMatrix(v);
     // event.setRows(7);
     // event.setCols(7);
-    event = generate(event, nameOfEvent, dateOfEvent);
-    event.setMatrix(v);
+    // event = generate(event, nameOfEvent, dateOfEvent);
+    // event.setMatrix(v);
 
-    studio.addEvent(event);
+    // st.addEvent(event);
+
     // studio[0].Print();
     // std::cout << "==========================\n";
     //studio[1].Print();
     // std::cout << "\n";
     // std::cin.ignore(1, '\n');
-    std::cout << "\n";
-    std::cin.ignore(1, '\n');
-    studio = read(studio, c);
-    studio = read(studio, e);
-    studio = unbook(studio);
+    // std::cout << "\n";
+    // std::cin.ignore(1, '\n');
+    // st = read(st, c);
+    // st = read(st, e);
 
-    studio[0].print();
+    //st = unbook(st);
+
+    //st[0].print();
     std::cout << "========================\n\n";
-    studio[1].print();
+    // st[1].print();
     std::cin.ignore(1, '\n');
     std::cout << "Enter the name of event for freeseats: ";
     std::string freeSeats;
@@ -387,7 +474,7 @@ int main()
     std::cin >> dF >> mF >> yF;
     Date DF(dF, mF, yF);
     std::cin.ignore(1, '\n');
-    studio.freeseats(freeSeats, DF); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
+    st.freeseats(freeSeats, DF); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
     std::cout << "\n";
     std::cout << "Enter the name of event for bookings: ";
     std::string bookings;
@@ -398,9 +485,9 @@ int main()
     std::cin >> dB >> mB >> yB;
     Date DB(dB, mB, yB);
     std::cin.ignore(1, '\n');
-    studio.bookings(bookings, DB); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
+    st.bookings(bookings, DB); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
 
-    checkTicket(studio);
+    checkTicket(st);
 
     system("pause");
 

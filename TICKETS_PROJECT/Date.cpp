@@ -52,6 +52,10 @@ void Date::print() const
 {
 	std::cout << this->year << '-' << this->month << '-' << this->day;
 }
+void Date::print(std::ostream& out) const
+{
+	out << this->year << ' ' << this->month << ' ' << this->day;
+}
 
 bool Date::isValidDate(unsigned short d, unsigned short m, unsigned short y)
 {
@@ -157,7 +161,9 @@ bool Date::operator==(const Date& other)const{
 }
 std::ostream &operator<<(std::ostream &out, const Date &date)
 {
-	out << date.year << '-' << date.month << '-' << date.day<<" ";
+	// out << date.year << '-' << date.month << '-' << date.day<<" ";
+		 out << date.year << ' ' << date.month << ' ' << date.day<<' ';
+
 }
 bool Date::operator<(const Date& date)const{
 return isBefore(date);

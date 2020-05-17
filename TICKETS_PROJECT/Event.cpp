@@ -44,7 +44,7 @@ void Event::printFreeSeats()
     {
         for (int j = 0; j < matrix[i].size(); j++)
         {
-            if (matrix[i][j].getName() == "FREE PLACE" || matrix[i][j].getName() == "" || matrix[i][j].getReserve() == true)
+            if (matrix[i][j].getName() == "FREE" || matrix[i][j].getName() == "" || matrix[i][j].getReserve() == true)
             {
                 std::cout << "row: " << i + 1 << ", place: " << j + 1 << " \n";
             }
@@ -98,7 +98,13 @@ void Event::Remove()
     eventDate = eventDate.getLiveData();
     this->name = "";
 }
-void Event::Print(){
-    std::cout<<this->name<<", "<<this->eventDate<<" , ";
+void Event::Print()
+{
+    std::cout << this->name << ", " << this->eventDate << " , ";
     Room::print();
+}
+void Event::Print(std::ostream &out) const
+{
+    out << this->name << " " << this->eventDate;
+    Room::print(out);
 }

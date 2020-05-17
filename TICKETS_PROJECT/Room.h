@@ -22,6 +22,7 @@ public:
     Room(const Room &);
     ~Room();
     void print()const;
+    void print(std::ostream&)const;
     //std::string getName()const;->za event
     int getId()const;
     int getRows()const;

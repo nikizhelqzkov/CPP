@@ -13,6 +13,7 @@ public:
     RoomArr(const std::vector<Event> &, size_t);
     RoomArr(const RoomArr &);
     ~RoomArr();
+    void printArr(std::ostream&) const;
     void printArr() const;
     Event &operator[](int i);
     Event operator[](int) const;

@@ -18,6 +18,16 @@ RoomArr::RoomArr(const RoomArr &other)
 RoomArr::~RoomArr()
 {
 }
+void RoomArr::printArr(std::ostream& out) const
+{
+    out<<this->size<<"\n";
+    for (int i = 0; i < this->size; i++)
+    {
+        this->data[i].Print(out);
+        // std::cout << this->data[i];
+        
+    }
+}
 void RoomArr::printArr() const
 {
     for (int i = 0; i < this->size; i++)
@@ -48,7 +58,7 @@ RoomArr &RoomArr::addEvent(const Event &other)
                 return *this;
             }
         }
-        this->data.resize(1);
+        //this->data.resize(1);
     }
     this->data.push_back(other);
     this->size++;

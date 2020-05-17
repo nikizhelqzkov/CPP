@@ -22,7 +22,9 @@ public:
     Date getDate() const;
     void setDate(const Date&);
     void read();
+    void read(std::istream&);
     void print();
+    void print(std::ostream&);
     int getRow() const;
     int getCol() const;
     std::string getName() const;

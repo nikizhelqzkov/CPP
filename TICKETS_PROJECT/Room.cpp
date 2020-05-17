@@ -60,6 +60,19 @@ void Room::print() const
         std::cout << "\n";
     }
 }
+void Room::print(std::ostream& out) const
+{
+    out <<this->id<<" "<< this->rows << " " << this->placeOnRow << "\n";
+    for (auto vec : this->matrix)
+    {
+        for (auto x : vec)
+        {
+            x.print(out);
+            out << "\n";
+        }
+        
+    }
+}
 // std::string Room::getName() const
 // {
 //     return this->name;

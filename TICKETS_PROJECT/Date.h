@@ -16,6 +16,7 @@ public:
 	void read();
 
 	void print() const;
+	void print(std::ostream&) const;
 	Date &operator=(const Date &);
 
 	unsigned getDay() const;
