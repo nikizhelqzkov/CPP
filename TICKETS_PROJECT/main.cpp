@@ -413,9 +413,31 @@ int main()
                                 }
                                 else if (mV == "3" || mV == "bookings" || mV == "Bookings" || mV == "BOOKINGS")
                                 {
+                                    std::cin.ignore(1, '\n');
+                                    std::cout << "Enter the name of event for bookings: ";
+                                    std::string bookings;
+                                    std::getline(std::cin, bookings);
+                                    std::cout << "\n";
+                                    int dB, mB, yB;
+                                    std::cout << "Enter the date of an event: ";
+                                    std::cin >> dB >> mB >> yB;
+                                    Date DB(dB, mB, yB);
+                                    std::cin.ignore(1, '\n');
+                                    st.bookings(bookings, DB);
                                 }
                                 else if (mV == "4" || mV == "report" || mV == "Report" || mV == "REPORT")
                                 {
+                                    std::cin.ignore(1, '\n');
+                                    std::cout << "Enter the name of event for report: ";
+                                    std::string report;
+                                    std::getline(std::cin, report);
+                                    std::cout << "\n";
+                                    int dR, mR, yR;
+                                    std::cout << "Enter the date of an event: ";
+                                    std::cin >> dR >> mR >> yR;
+                                    Date DR(dR, mR, yR);
+                                    std::cin.ignore(1, '\n');
+                                    st.report(report, DR);
                                 }
                                 else if (mV == "5" || mV == "back" || mV == "Back" || mV == "BACK")
                                 {
@@ -689,16 +711,16 @@ int main()
     // st.freeseats(freeSeats, DF); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
     // std::cout << "\n";
 
-    std::cout << "Enter the name of event for bookings: ";
-    std::string bookings;
-    std::getline(std::cin, bookings);
-    std::cout << "\n";
-    int dB, mB, yB;
-    std::cout << "Enter the date of an event: ";
-    std::cin >> dB >> mB >> yB;
-    Date DB(dB, mB, yB);
-    std::cin.ignore(1, '\n');
-    st.bookings(bookings, DB); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
+    // std::cout << "Enter the name of event for bookings: ";
+    // std::string bookings;
+    // std::getline(std::cin, bookings);
+    // std::cout << "\n";
+    // int dB, mB, yB;
+    // std::cout << "Enter the date of an event: ";
+    // std::cin >> dB >> mB >> yB;
+    // Date DB(dB, mB, yB);
+    // std::cin.ignore(1, '\n');
+    // st.bookings(bookings, DB); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
 
     checkTicket(st);
 

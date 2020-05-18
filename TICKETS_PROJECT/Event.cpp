@@ -67,6 +67,22 @@ bool Event::reserveFreeSeats()
     }
     return flag;
 }
+bool Event::report()
+{
+    bool flag = false;
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            if (matrix[i][j].getBuy() == true)
+            {
+                flag = true;
+                std::cout << "row: " << i + 1 << ", place: " << j + 1 << " \n";
+            }
+        }
+    }
+    return flag;
+}
 bool Event::checkCode(long unsigned int serialNumber)
 {
     for (int i = 0; i < matrix.size(); i++)

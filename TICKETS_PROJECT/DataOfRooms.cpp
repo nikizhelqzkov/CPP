@@ -146,6 +146,56 @@ void RoomArr::bookings(std::string name, Date date)
     }
 }
 
+
+void RoomArr::report(std::string name, Date date)
+{
+    bool res1 = false;
+    bool res2 = false;
+    bool res3 = false;
+    if (name == "")
+    {
+        std::cout << "\n\nBought seats on " << date << ": \n\n";
+        for (int i = 0; i < this->data.size(); i++)
+        {
+            if (data[i].getDate() == date)
+            {
+
+                std::cout << "Event " << data[i].getName() << ":\n";
+                res1 = data[i].report();
+            }
+        }
+    }
+    else if (date.getYear() == 1)
+    {
+        std::cout << "\n\nBought seats in " << name << ": \n\n";
+        for (int i = 0; i < this->data.size(); i++)
+        {
+            if (data[i].getName() == name)
+            {
+
+                std::cout << "Event on :" << data[i].getDate() << ":\n";
+                res2 = data[i].report();
+            }
+        }
+    }
+    else
+    {
+        std::cout << "\n\nBought seats in " << name << " on " << date << ": \n\n";
+        for (int i = 0; i < this->data.size(); i++)
+        {
+            if (data[i].getName() == name && data[i].getDate() == date)
+            {
+
+                res3 = data[i].report();
+            }
+        }
+    }
+    if (!res1 && !res2 && !res3)
+    {
+        std::cout << "No bought tickets !!!\n";
+    }
+}
+
 void RoomArr::checkTicket(long unsigned int serialNumber)
 {
     bool flag = false;

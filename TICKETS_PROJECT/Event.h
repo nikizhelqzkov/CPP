@@ -20,6 +20,7 @@ public:
     void setDate(Date);
     void printFreeSeats();
     bool reserveFreeSeats();
+    bool report();
     bool checkCode(long unsigned int);
     Event& unbook(int row, int col);
     void Remove();

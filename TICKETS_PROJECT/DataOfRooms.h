@@ -23,6 +23,7 @@ public:
     std::vector<Event> getData() const;
     void freeseats(std::string, Date);
     void bookings(std::string, Date);
+    void report(std::string, Date);
     void checkTicket(long unsigned int serialNumber);
     RoomArr& unbook(std::string name, Date date, int row, int col);
 };
