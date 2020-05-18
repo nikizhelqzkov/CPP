@@ -222,6 +222,9 @@ int main()
     bool exit = false;
     std::cout << "WELCOME TO THE TICKET CENTER!" << std::endl;
     RoomArr st;
+    bool canOpen = true;
+    std::string fileName;
+    bool closeC = true;
     do
     {
         open = false;
@@ -242,57 +245,165 @@ int main()
 
         if (a == "open" || a == "Open" || a == "OPEN" || a == "1")
         {
-            open = true;
-            int num; //for returning back
-            // std::cin >> num;
-            // if (num == 1)
-            // {
-            //     open = false;
-            // }
-            // std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
-            int size;
-            std::ifstream in("file.txt");
-            in >> size;
 
-            for (size_t i = 0; i < size; i++)
+            if (canOpen == false)
             {
-
-                std::string NameOfEvent;
-                in >> NameOfEvent;
-
-                int dayOfEvent, monthOfEvent, yearOfEvent, id, rows, cols;
-                in >> yearOfEvent >> monthOfEvent >> dayOfEvent;
-                in >> id >> rows >> cols;
-                Date dateOfEvent;
-                dateOfEvent.setDay(dayOfEvent);
-                dateOfEvent.setMonth(monthOfEvent);
-                dateOfEvent.setYear(yearOfEvent);
-                Event s;
-                s.setName(NameOfEvent);
-                s.setDate(dateOfEvent);
-                s.setId(id);
-                s.setRows(rows);
-                s.setCols(cols);
-                // std::cout << s.getName() << " " << s.getDate() << " " << s.getId() << " " << s.getRows() << " " << s.getCols() << "\n";
-                std::vector<std::vector<Client>> temp(rows, std::vector<Client>(cols));
-                for (size_t j = 0; j < rows; j++)
-                {
-                    for (size_t k = 0; k < cols; k++)
-                    {
-                        Client cl; //vlqzul sum iventa, prochel sum dannite bez problem i vlizam da cheta dannite ot printnatiq vekor
-                        cl.read(in);
-                        //cl.print();
-                        //std::cout << "\n";
-                        temp[j][k] = cl;
-                    }
-                }
-                s.setMatrix(temp);
-                st.addEvent(s);
-                st[i].Print();
+                std::cout << " YOU CAN NOT OPEN AGAIN THE FILE! YOU CAN SAVE IT OR CLOSE IT!!!\n\n\n";
             }
-            in.close();
-            std::cout<<"YOUR FILE IS OPEN!\n";
-            open = false;
+            else if (canOpen == true)
+            {
+                closeC = true;
+                int num;
+                std::cout << "WRITE NAME OF THE FILE FOR SAVING: ";
+
+                std::cin >> fileName;
+                //for returning back
+                // std::cin >> num;
+                // if (num == 1)
+                // {
+                //     open = false;
+                // }
+                // std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
+                int size;
+                std::ifstream in(fileName);
+                if (!in.is_open())
+                {
+                    std::cout << "That file is missing\n\n\n";
+
+                    in.close();
+                }
+                else
+                {
+                    open = true;
+                    canOpen = false;
+                    in >> size;
+
+                    for (size_t i = 0; i < size; i++)
+                    {
+
+                        std::string NameOfEvent;
+                        in >> NameOfEvent;
+
+                        int dayOfEvent, monthOfEvent, yearOfEvent, id, rows, cols;
+                        in >> yearOfEvent >> monthOfEvent >> dayOfEvent;
+                        in >> id >> rows >> cols;
+                        Date dateOfEvent;
+                        dateOfEvent.setDay(dayOfEvent);
+                        dateOfEvent.setMonth(monthOfEvent);
+                        dateOfEvent.setYear(yearOfEvent);
+                        Event s;
+                        s.setName(NameOfEvent);
+                        s.setDate(dateOfEvent);
+                        s.setId(id);
+                        s.setRows(rows);
+                        s.setCols(cols);
+                        // std::cout << s.getName() << " " << s.getDate() << " " << s.getId() << " " << s.getRows() << " " << s.getCols() << "\n";
+                        std::vector<std::vector<Client>> temp(rows, std::vector<Client>(cols));
+                        for (size_t j = 0; j < rows; j++)
+                        {
+                            for (size_t k = 0; k < cols; k++)
+                            {
+                                Client cl; //vlqzul sum iventa, prochel sum dannite bez problem i vlizam da cheta dannite ot printnatiq vekor
+                                cl.read(in);
+                                //cl.print();
+                                //std::cout << "\n";
+                                temp[j][k] = cl;
+                            }
+                        }
+                        s.setMatrix(temp);
+                        st.addEvent(s);
+                        st[i].Print();
+                    }
+                    in.close();
+                    std::cout << "YOUR FILE IS OPEN!\n";
+
+                    //-----pochvat funkciite
+                    std::cout << "NOW YOU CAN USE SEVERAL MODS! --> IT HAS DIFFERENT MODS FOR MODERATOR AND CLIENT\n\n";
+                    std::cout << "DO you want help for methods? y or n: ";
+                    char h;
+                    std::cin >> h;
+                    if (h == 'y')
+                    {
+                        bool he;
+                        he = helpCommander();
+                    }
+
+                    char modOrCLient;
+                    bool mOC = false;
+                    do
+                    {
+                        std::cout << "You are moderator or client? --> write m for moderator and c for client and b for back:\n";
+                        std::cin >> modOrCLient;
+                        if (modOrCLient == 'm')
+                        {
+                            mOC = true;
+                            bool m = false;
+                            do
+                            {
+                                std::cout << "\nWelcome Mod!\nThese are your using commands:\n";
+                                //all mod commands like new event etc
+                                std::string mV;
+                                std::cout << "1)addevent --> adding new event on EventBox \n2)freeseats --> report of freeseats on an event\n";
+                                std::cout << "3)bookings --> report of reserved tickets on an event\n";
+                                std::cout << "4)report --> report of bought tickets from one date to other date\n";
+                                std::cout << "5)back\n";
+                                std::cout << "WRITE THE NAME OF COMMAND OR THE NUMBER: \n";
+                                std::cin >> mV;
+                                if (mV == "1" || mV == "addevent" || mV == "Addevent" || mV == "ADDEVENT" || mV == "AddEvent")
+                                {
+                                    m = true;
+                                    mOC = false;
+                                }
+                                else if (mV == "2" || mV == "freeseats" || mV == "Freeseats" || mV == "FREESEATS" || mV == "FreeSeats")
+                                {
+                                }
+                                else if (mV == "3" || mV == "bookings" || mV == "Bookings" || mV == "BOOKINGS")
+                                {
+                                }
+                                else if (mV == "4" || mV == "report" || mV == "Report" || mV == "REPORT")
+                                {
+                                }
+                                else if (mV == "5" || mV == "back" || mV == "Back" || mV == "BACK")
+                                {
+                                }
+                                else
+                                {
+                                    std::cout << "\nUNVALID COMMAND!!! WRITE AGAIN!!!\n";
+                                    m = false;
+                                }
+
+                            } while (!m);
+                        }
+                        else if (modOrCLient == 'c')
+                        {
+                            mOC = true;
+                            bool cl = false;
+                            do
+                            {
+
+                            } while (!cl);
+                        }
+                        else if (modOrCLient == 'b')
+                        {
+                            std::cout << "ARE YOU SURE THAT YOU WANT TO LEAVE\n";
+                            std::cout << "(IF PRESS y you will have chance to save your new updates but if you not save and press again open you will lost your saves)\n";
+                            std::cout << "y/n: ";
+                            char YN;
+                            std::cin >> YN;
+                            if (YN == 'y' || YN == 'Y')
+                            {
+                                mOC = true;
+                            }
+                        }
+                        else if (modOrCLient != 'c' && modOrCLient != 'm')
+                        {
+                            std::cout << "Write again your decision: \n";
+                        }
+                    } while (!mOC);
+
+                    open = false;
+                }
+            }
         }
         else if (a == "help" || a == "Help" || a == "HELP" || a == "2")
         {
@@ -300,57 +411,86 @@ int main()
         }
         else if (a == "save" || a == "Save" || a == "SAVE" || a == "3")
         {
-            save = true;
-            std::cout << "\n";
-            std::cin.ignore(1, '\n');
-            std::cout << "\n";
-
-            std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
-            for (int i = 0; i < v.size(); i++)
+            if (closeC == false)
             {
-                for (int j = 0; j < v[i].size(); j++)
-                {
-                    v[i][j].setName("FREE");
-                }
+                std::cout << "YOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n\n";
             }
-            std::cout << "Write the name of event: ";
-            std::string nameOfEvent;
-            std::getline(std::cin, nameOfEvent);
-            std::cout << "\n";
-            std::cout << "Enter the date: ";
-            int dayOfEvent2, monthOfEvent2, yearOfEvent2;
-            std::cin >> dayOfEvent2 >> monthOfEvent2 >> yearOfEvent2;
-            Date dateOfEvent2;
-            dateOfEvent2.setDay(dayOfEvent2);
-            dateOfEvent2.setMonth(monthOfEvent2);
-            dateOfEvent2.setYear(yearOfEvent2);
-
-            Event event;
-            event = generate(event, nameOfEvent, dateOfEvent2);
-            event.setMatrix(v);
-
-            st = st.addEvent(event);
-            st[2].Print();
-            std::cout << st.getSize() << "\n";
-            for (int i = 0; i < v.size(); i++)
+            else
             {
-                for (int j = 0; j < v[i].size(); j++)
+                save = true;
+                std::cout << "\n";
+                std::cin.ignore(1, '\n');
+                std::cout << "\n";
+
+                std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
+                for (int i = 0; i < v.size(); i++)
                 {
-                    v[i][j].setName("FREE");
-                    v[i][j].remove();
+                    for (int j = 0; j < v[i].size(); j++)
+                    {
+                        v[i][j].setName("FREE");
+                    }
                 }
+                std::cout << "Write the name of event: ";
+                std::string nameOfEvent;
+                std::getline(std::cin, nameOfEvent);
+                std::cout << "\n";
+                std::cout << "Enter the date: ";
+                int dayOfEvent2, monthOfEvent2, yearOfEvent2;
+                std::cin >> dayOfEvent2 >> monthOfEvent2 >> yearOfEvent2;
+                Date dateOfEvent2;
+                dateOfEvent2.setDay(dayOfEvent2);
+                dateOfEvent2.setMonth(monthOfEvent2);
+                dateOfEvent2.setYear(yearOfEvent2);
+
+                Event event;
+                event = generate(event, nameOfEvent, dateOfEvent2);
+                event.setMatrix(v);
+
+                st = st.addEvent(event);
+                st[2].Print();
+                std::cout << st.getSize() << "\n";
+                for (int i = 0; i < v.size(); i++)
+                {
+                    for (int j = 0; j < v[i].size(); j++)
+                    {
+                        v[i][j].setName("FREE");
+                        v[i][j].remove();
+                    }
+                }
+                // std::cout << "WRITE NAME OF THE FILE FOR SAVING: ";
+                // std::string fileName;
+                // std::cin >> fileName;
+
+                std::ofstream out(fileName);
+                st.printArr(out);
+                out.close();
+                canOpen = true;
+                save = false;
             }
-            std::ofstream out("file.txt");
-            st.printArr(out);
-            out.close();
         }
         else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS" || a == "Save_As" || a == "4")
         {
-            save_as = true;
+            if (closeC == false)
+            {
+                std::cout << "YOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n\n";
+            }
+            else
+            {
+                save_as = true;
+                std::cout << "WRITE NAME OF THE FILE FOR SAVING: ";
+                std::string fileName2;
+                std::cin >> fileName2;
+                std::ofstream out(fileName2);
+                st.printArr(out);
+                out.close();
+                canOpen = true;
+            }
         }
         else if (a == "close" || a == "Close" || a == "CLOSE" || a == "5")
         {
             close = closeCommander();
+            closeC = false;
+            canOpen = true;
         }
         else if (a == "exit" || a == "Exit" || a == "EXIT" || a == "6")
         {
