@@ -249,7 +249,7 @@ int main()
 
             if (canOpen == false)
             {
-                std::cout << " YOU CAN NOT OPEN AGAIN THE FILE! YOU CAN SAVE IT OR CLOSE IT!!!\n\n\n";
+                std::cout << "\n\n YOU CAN NOT OPEN AGAIN THE FILE! YOU CAN SAVE IT OR CLOSE IT!!!\n\n\n";
             }
             else if (canOpen == true)
             {
@@ -321,7 +321,7 @@ int main()
 
                     //-----pochvat funkciite
                     std::cout << "NOW YOU CAN USE SEVERAL MODS! --> IT HAS DIFFERENT MODS FOR MODERATOR AND CLIENT\n\n";
-                    std::cout << "DO you want help for methods? y or n: ";
+                    std::cout << "Do you want help for methods? y or n: ";
                     char h;
                     std::cin >> h;
                     if (h == 'y')
@@ -355,9 +355,61 @@ int main()
                                 {
                                     m = true;
                                     mOC = false;
+
+                                    std::cout << "\n";
+                                    std::cin.ignore(1, '\n');
+                                    std::cout << "\n";
+
+                                    std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
+                                    for (int i = 0; i < v.size(); i++)
+                                    {
+                                        for (int j = 0; j < v[i].size(); j++)
+                                        {
+                                            v[i][j].setName("FREE");
+                                        }
+                                    }
+                                    std::cout << "Write the name of event: ";
+                                    std::string nameOfEvent;
+                                    std::getline(std::cin, nameOfEvent);
+                                    std::cout << "\n";
+                                    std::cout << "Enter the date: ";
+                                    int dayOfEvent2, monthOfEvent2, yearOfEvent2;
+                                    std::cin >> dayOfEvent2 >> monthOfEvent2 >> yearOfEvent2;
+                                    Date dateOfEvent2;
+                                    dateOfEvent2.setDay(dayOfEvent2);
+                                    dateOfEvent2.setMonth(monthOfEvent2);
+                                    dateOfEvent2.setYear(yearOfEvent2);
+
+                                    Event event;
+                                    event = generate(event, nameOfEvent, dateOfEvent2);
+                                    event.setMatrix(v);
+
+                                    st = st.addEvent(event);
+                                    // st[2].Print();
+                                    std::cout << st.getSize() << "\n";
+                                    for (int i = 0; i < v.size(); i++)
+                                    {
+                                        for (int j = 0; j < v[i].size(); j++)
+                                        {
+                                            v[i][j].setName("FREE");
+                                            v[i][j].remove();
+                                        }
+                                    }
                                 }
                                 else if (mV == "2" || mV == "freeseats" || mV == "Freeseats" || mV == "FREESEATS" || mV == "FreeSeats")
                                 {
+                                    std::cin.ignore(1, '\n');
+                                    std::cout << "Enter the name of event for freeseats: ";
+                                    std::string freeSeats;
+                                    std::getline(std::cin, freeSeats);
+                                    std::cout << "\n";
+                                    int dF, mF, yF;
+                                    std::cout << "Enter the date of an event: ";
+                                    std::cin >> dF >> mF >> yF;
+                                    Date DF(dF, mF, yF);
+                                    std::cin.ignore(1, '\n');
+                                    st.freeseats(freeSeats, DF); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
+                                    std::cout << "\n";
                                 }
                                 else if (mV == "3" || mV == "bookings" || mV == "Bookings" || mV == "BOOKINGS")
                                 {
@@ -367,6 +419,8 @@ int main()
                                 }
                                 else if (mV == "5" || mV == "back" || mV == "Back" || mV == "BACK")
                                 {
+                                    m = true;
+                                    mOC = false;
                                 }
                                 else
                                 {
@@ -415,50 +469,52 @@ int main()
         {
             if (closeC == false || isOpen == false)
             {
-                std::cout << "YOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n\n";
+                std::cout << "\n\nYOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n";
             }
             else
             {
                 save = true;
-                std::cout << "\n";
-                std::cin.ignore(1, '\n');
-                std::cout << "\n";
+                std::cout << "YOUR FILE IS SAVED ON " << fileName << " !!! \n\n";
+                // std::cout << "\n";
+                // std::cin.ignore(1, '\n');
+                // std::cout << "\n";
 
-                std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
-                for (int i = 0; i < v.size(); i++)
-                {
-                    for (int j = 0; j < v[i].size(); j++)
-                    {
-                        v[i][j].setName("FREE");
-                    }
-                }
-                std::cout << "Write the name of event: ";
-                std::string nameOfEvent;
-                std::getline(std::cin, nameOfEvent);
-                std::cout << "\n";
-                std::cout << "Enter the date: ";
-                int dayOfEvent2, monthOfEvent2, yearOfEvent2;
-                std::cin >> dayOfEvent2 >> monthOfEvent2 >> yearOfEvent2;
-                Date dateOfEvent2;
-                dateOfEvent2.setDay(dayOfEvent2);
-                dateOfEvent2.setMonth(monthOfEvent2);
-                dateOfEvent2.setYear(yearOfEvent2);
+                // std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
+                // for (int i = 0; i < v.size(); i++)
+                // {
+                //     for (int j = 0; j < v[i].size(); j++)
+                //     {
+                //         v[i][j].setName("FREE");
+                //     }
+                // }
+                // std::cout << "Write the name of event: ";
+                // std::string nameOfEvent;
+                // std::getline(std::cin, nameOfEvent);
+                // std::cout << "\n";
+                // std::cout << "Enter the date: ";
+                // int dayOfEvent2, monthOfEvent2, yearOfEvent2;
+                // std::cin >> dayOfEvent2 >> monthOfEvent2 >> yearOfEvent2;
+                // Date dateOfEvent2;
+                // dateOfEvent2.setDay(dayOfEvent2);
+                // dateOfEvent2.setMonth(monthOfEvent2);
+                // dateOfEvent2.setYear(yearOfEvent2);
 
-                Event event;
-                event = generate(event, nameOfEvent, dateOfEvent2);
-                event.setMatrix(v);
+                // Event event;
+                // event = generate(event, nameOfEvent, dateOfEvent2);
+                // event.setMatrix(v);
 
-                st = st.addEvent(event);
-                st[2].Print();
-                std::cout << st.getSize() << "\n";
-                for (int i = 0; i < v.size(); i++)
-                {
-                    for (int j = 0; j < v[i].size(); j++)
-                    {
-                        v[i][j].setName("FREE");
-                        v[i][j].remove();
-                    }
-                }
+                // st = st.addEvent(event);
+                // st[2].Print();
+                // std::cout << st.getSize() << "\n";
+                // for (int i = 0; i < v.size(); i++)
+                // {
+                //     for (int j = 0; j < v[i].size(); j++)
+                //     {
+                //         v[i][j].setName("FREE");
+                //         v[i][j].remove();
+                //     }
+                // }
+
                 // std::cout << "WRITE NAME OF THE FILE FOR SAVING: ";
                 // std::string fileName;
                 // std::cin >> fileName;
@@ -474,17 +530,20 @@ int main()
         {
             if (closeC == false || isOpen == false)
             {
-                std::cout << "YOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n\n";
+                std::cout << "\n\nYOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n";
             }
             else
             {
-                save_as = true;
+                save_as = false;
                 std::cout << "WRITE NAME OF THE FILE FOR SAVING: ";
                 std::string fileName2;
                 std::cin >> fileName2;
                 std::ofstream out(fileName2);
                 st.printArr(out);
                 out.close();
+                std::cout << "YOUR FILE IS SAVED ON " << fileName2 << " !!! \n\n";
+                fileName = fileName2;
+
                 canOpen = true;
             }
         }
@@ -492,7 +551,7 @@ int main()
         {
             if (isOpen == false)
             {
-                std::cout << "YOU CAN NOT CLOSE THE EMPTY FILE!!!!\n\n\n";
+                std::cout << "\n\nYOU CAN NOT CLOSE THE EMPTY FILE!!!!\n\n";
             }
             else
             {
@@ -500,6 +559,8 @@ int main()
                 closeC = false;
                 canOpen = true;
                 isOpen = false;
+                RoomArr t;
+                st = t;
             }
         }
         else if (a == "exit" || a == "Exit" || a == "EXIT" || a == "6")
@@ -614,21 +675,23 @@ int main()
     //st[0].print();
     std::cout << "========================\n\n";
     // st[1].print();
-    std::cin.ignore(1, '\n');
-    std::cout << "Enter the name of event for freeseats: ";
-    std::string freeSeats;
-    std::getline(std::cin, freeSeats);
-    std::cout << "\n";
-    int dF, mF, yF;
-    std::cout << "Enter the date of an event: ";
-    std::cin >> dF >> mF >> yF;
-    Date DF(dF, mF, yF);
-    std::cin.ignore(1, '\n');
-    st.freeseats(freeSeats, DF); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
-    std::cout << "\n";
+
+    // std::cin.ignore(1, '\n');
+    // std::cout << "Enter the name of event for freeseats: ";
+    // std::string freeSeats;
+    // std::getline(std::cin, freeSeats);
+    // std::cout << "\n";
+    // int dF, mF, yF;
+    // std::cout << "Enter the date of an event: ";
+    // std::cin >> dF >> mF >> yF;
+    // Date DF(dF, mF, yF);
+    // std::cin.ignore(1, '\n');
+    // st.freeseats(freeSeats, DF); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
+    // std::cout << "\n";
+
     std::cout << "Enter the name of event for bookings: ";
     std::string bookings;
-    std::getline(std::cin, freeSeats);
+    std::getline(std::cin, bookings);
     std::cout << "\n";
     int dB, mB, yB;
     std::cout << "Enter the date of an event: ";
