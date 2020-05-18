@@ -225,6 +225,7 @@ int main()
     bool canOpen = true;
     std::string fileName;
     bool closeC = true;
+    bool isOpen = false;
     do
     {
         open = false;
@@ -254,7 +255,7 @@ int main()
             {
                 closeC = true;
                 int num;
-                std::cout << "WRITE NAME OF THE FILE FOR SAVING: ";
+                std::cout << "WRITE NAME OF THE FILE FOR READING: ";
 
                 std::cin >> fileName;
                 //for returning back
@@ -274,6 +275,7 @@ int main()
                 }
                 else
                 {
+                    isOpen = true;
                     open = true;
                     canOpen = false;
                     in >> size;
@@ -411,7 +413,7 @@ int main()
         }
         else if (a == "save" || a == "Save" || a == "SAVE" || a == "3")
         {
-            if (closeC == false)
+            if (closeC == false || isOpen == false)
             {
                 std::cout << "YOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n\n";
             }
@@ -470,7 +472,7 @@ int main()
         }
         else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS" || a == "Save_As" || a == "4")
         {
-            if (closeC == false)
+            if (closeC == false || isOpen == false)
             {
                 std::cout << "YOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n\n";
             }
@@ -488,9 +490,17 @@ int main()
         }
         else if (a == "close" || a == "Close" || a == "CLOSE" || a == "5")
         {
-            close = closeCommander();
-            closeC = false;
-            canOpen = true;
+            if (isOpen == false)
+            {
+                std::cout << "YOU CAN NOT CLOSE THE EMPTY FILE!!!!\n\n\n";
+            }
+            else
+            {
+                close = closeCommander();
+                closeC = false;
+                canOpen = true;
+                isOpen = false;
+            }
         }
         else if (a == "exit" || a == "Exit" || a == "EXIT" || a == "6")
         {
