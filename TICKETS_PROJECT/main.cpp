@@ -1,13 +1,13 @@
-// #include "Date.h"
-// #include "Client.h"
-// #include "Room.h"
-// #include "Event.h"
-// #include "DataOfRooms.h"
-#include "Date.cpp"
-#include "Client.cpp"
-#include "Room.cpp"
-#include "Event.cpp"
-#include "DataOfRooms.cpp"
+#include "Date.h"
+#include "Client.h"
+#include "Room.h"
+#include "Event.h"
+#include "DataOfRooms.h"
+// #include "Date.cpp"
+// #include "Client.cpp"
+// #include "Room.cpp"
+// #include "Event.cpp"
+// #include "DataOfRooms.cpp"
 #include <ctime>
 #include <iostream>
 #include <cassert>
@@ -326,7 +326,7 @@ int main()
                         }
                         s.setMatrix(temp);
                         st.addEvent(s);
-                        st[i].Print();
+                        //st[i].Print();
                     }
                     in.close();
                     std::cout << "YOUR FILE IS OPEN!\n";
@@ -572,15 +572,30 @@ int main()
                         }
                         else if (modOrCLient == 'b')
                         {
-                            std::cout << "ARE YOU SURE THAT YOU WANT TO LEAVE\n";
-                            std::cout << "(IF PRESS y you will have chance to save your new updates but if you not save and press again open you will lost your saves)\n";
-                            std::cout << "y/n: ";
-                            char YN;
-                            std::cin >> YN;
-                            if (YN == 'y' || YN == 'Y')
+                            bool t = true;
+                            do
                             {
-                                mOC = true;
-                            }
+                                std::cout << "ARE YOU SURE THAT YOU WANT TO LEAVE\n";
+                                std::cout << "(IF PRESS y you will have chance to save your new updates but if you not save and press again open you will lost your saves)\n";
+                                std::cout << "y/n: ";
+                                char YN;
+                                std::cin >> YN;
+                                if (YN == 'y' || YN == 'Y')
+                                {
+                                    mOC = true;
+                                    t = true;
+                                }
+                                else if (YN == 'n' || YN == 'N')
+                                {
+
+                                    t = true;
+                                }
+                                else if (YN != 'y' && YN != 'Y' && YN != 'n' && YN != 'N')
+                                {
+                                    std::cout << "INVALID COMMAND!!!\n";
+                                    t = false;
+                                }
+                            } while (!t);
                         }
                         else if (modOrCLient != 'c' && modOrCLient != 'm')
                         {
