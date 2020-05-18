@@ -119,10 +119,9 @@ bool helpCommander()
         {
             std::cout << "\nWelcome Client!\nThese are your using commands:\n";
             //all mod commands like new event etc
-            std::cout << "\n1)book --> reserve a ticket with name and date of the event, your seat, your name and some note\n";
-            std::cout << "2)buy --> reserve a ticket with name and date of the event, your seat, your name and some note\n";
-            std::cout << "3)unbook --> cancel the reservation\n";
-            std::cout << "4)check --> checking your ticket whether is valid and returning information of the ticket\n\n";
+            std::cout << "\n1)ticket --> reserve or buy a ticket with name and date of the event, your seat, your name and some note\n";
+            std::cout << "2)unbook --> cancel the reservation\n";
+            std::cout << "3)check --> checking your ticket whether is valid and returning information of the ticket\n\n";
 
             std::cout << "PRESS THE b for back!\n";
             char back;
@@ -556,7 +555,7 @@ int main()
                                 else if (cV == "3" || cV == "check" || cV == "Check" || cV == "CHECK")
                                 {
                                     std::cin.ignore(1, '\n');
-                                   checkTicket(st);
+                                    checkTicket(st);
                                 }
                                 else if (cV == "4" || cV == "back" || cV == "Back" || cV == "BACK")
                                 {
