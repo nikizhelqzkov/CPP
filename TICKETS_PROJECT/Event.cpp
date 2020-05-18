@@ -91,6 +91,7 @@ bool Event::checkCode(long unsigned int serialNumber)
         {
             if (matrix[i][j].getTicket() == serialNumber)
             {
+                std::cout<<"\n\nEvent name: "<<this->name<<"\n";
                 matrix[i][j].checkCode();
                 return true;
             }

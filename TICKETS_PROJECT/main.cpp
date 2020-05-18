@@ -30,6 +30,7 @@ Event &readTORoom(Client &c,
                   /*std::vector<std::vector<std::vector<Client>>> &v2*/
                   Event &event)
 {
+    bool f = true;
     // std::cout << "Enter the event name: ";
     // std::string name;
     // std::getline(std::cin, name);
@@ -43,13 +44,25 @@ Event &readTORoom(Client &c,
     //     {
     std::cout << "\n";
     std::cin.ignore(1, '\n');
-    std::vector<std::vector<Client>> temp;
-    c.read();
-    //c.print();
-    temp = event.getplaces();
+    do
+    {
 
-    temp[c.getRow() - 1][c.getCol() - 1] = c;
-    event.setMatrix(temp);
+        std::vector<std::vector<Client>> temp;
+        c.read();
+        //c.print();`
+        temp = event.getplaces();
+        if (temp[c.getRow() - 1][c.getCol() - 1].getRow() == c.getRow() && temp[c.getRow() - 1][c.getCol() - 1].getCol() == c.getCol())
+        {
+            std::cout << "THIS PLACE IS BUSY! WRITE NEW SEAT:\n\n";
+            f = false;
+        }
+        else
+        {
+            f = true;
+            temp[c.getRow() - 1][c.getCol() - 1] = c;
+            event.setMatrix(temp);
+        }
+    } while (!f);
     // event.setCols(c.getCol());
     return event;
     //         std::vector<std::vector<Client>> p;
@@ -202,7 +215,7 @@ void checkTicket(RoomArr &studio)
     std::cout << "\n";
     std::cin >> tN;
     studio.checkTicket(tN);
-    std::cout << "\n";
+    std::cout << "\n\n";
 }
 int main()
 {
@@ -458,6 +471,103 @@ int main()
                             bool cl = false;
                             do
                             {
+                                std::cout << "\nWelcome Client!\nThese are your using commands:\n";
+                                std::string cV;
+
+                                std::cout << "\n1)ticket --> reserve or buy a ticket with name and date of the event, your seat, your name and some note\n";
+                                std::cout << "2)unbook --> cancel the reservation\n";
+                                std::cout << "3)check --> checking your ticket whether is valid and returning information of the ticket\n\n";
+                                std::cout << "4)back\n";
+                                std::cout << "WRITE THE NAME OF COMMAND OR THE NUMBER: \n";
+                                std::cin >> cV;
+                                if (cV == "1" || cV == "ticket" || cV == "Ticket" || cV == "TICKET")
+                                {
+                                    cl = true;
+                                    mOC = false;
+
+                                    std::cout << "\n";
+                                    std::cin.ignore(1, '\n');
+                                    std::cout << "\n";
+                                    std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
+                                    for (int i = 0; i < v.size(); i++)
+                                    {
+                                        for (int j = 0; j < v[i].size(); j++)
+                                        {
+                                            v[i][j].setName("FREE");
+                                        }
+                                    }
+
+                                    // std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
+                                    // for (int i = 0; i < v.size(); i++)
+                                    // {
+                                    //     for (int j = 0; j < v[i].size(); j++)
+                                    //     {
+                                    //         v[i][j].setName("FREE");
+                                    //     }
+                                    // }
+                                    // std::cout << "Write the name of event: ";
+                                    // std::string nameOfEvent;
+                                    // std::getline(std::cin, nameOfEvent);
+                                    // std::cout << "\n";
+                                    // std::cout << "Enter the date: ";
+                                    // int dayOfEvent2, monthOfEvent2, yearOfEvent2;
+                                    // std::cin >> dayOfEvent2 >> monthOfEvent2 >> yearOfEvent2;
+                                    // Date dateOfEvent2;
+                                    // dateOfEvent2.setDay(dayOfEvent2);
+                                    // dateOfEvent2.setMonth(monthOfEvent2);
+                                    // dateOfEvent2.setYear(yearOfEvent2);
+
+                                    // Event event;
+                                    // event = generate(event, nameOfEvent, dateOfEvent2);
+                                    // event.setMatrix(v);
+
+                                    // st = st.addEvent(event);
+                                    // // st[2].Print();
+                                    // std::cout << st.getSize() << "\n";
+                                    // for (int i = 0; i < v.size(); i++)
+                                    // {
+                                    //     for (int j = 0; j < v[i].size(); j++)
+                                    //     {
+                                    //         v[i][j].setName("FREE");
+                                    //         v[i][j].remove();
+                                    //     }
+                                    // }
+
+                                    Client c;
+
+                                    st = read(st, c);
+
+                                    // event.setName(nameOfEvent);
+                                    // event.setDate(dateOfEvent);
+                                    // event.setId(rand() % 100);
+                                    // // event.setMatrix(v);
+                                    // event.setRows(7);
+                                    // event.setCols(7);
+                                    // event = generate(event, nameOfEvent, dateOfEvent);
+                                    // event.setMatrix(v);
+
+                                    // st.addEvent(event);
+                                }
+                                else if (cV == "2" || cV == "unbook" || cV == "Unbook" || cV == "UNBOOK")
+                                {
+                                    std::cin.ignore(1, '\n');
+                                    st = unbook(st);
+                                }
+                                else if (cV == "3" || cV == "check" || cV == "Check" || cV == "CHECK")
+                                {
+                                    std::cin.ignore(1, '\n');
+                                   checkTicket(st);
+                                }
+                                else if (cV == "4" || cV == "back" || cV == "Back" || cV == "BACK")
+                                {
+                                    cl = true;
+                                    mOC = false;
+                                }
+                                else
+                                {
+                                    std::cout << "\nUNVALID COMMAND!!! WRITE AGAIN!!!\n";
+                                    cl = false;
+                                }
 
                             } while (!cl);
                         }
@@ -695,7 +805,7 @@ int main()
     //st = unbook(st);
 
     //st[0].print();
-    std::cout << "========================\n\n";
+    // std::cout << "========================\n\n";
     // st[1].print();
 
     // std::cin.ignore(1, '\n');
@@ -722,7 +832,7 @@ int main()
     // std::cin.ignore(1, '\n');
     // st.bookings(bookings, DB); //neka da e s vuvezhdane imeto i ako go nqma da kazhe nema
 
-    checkTicket(st);
+    // checkTicket(st);
 
     system("pause");
 

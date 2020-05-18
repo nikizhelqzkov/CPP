@@ -60,9 +60,9 @@ void Client::print(std::ostream &out)
     }
     else
     {
-        out<<" "<<this->note;
+        out << " " << this->note;
     }
-    
+
     if (buy)
     {
         out << " " << serialNumber;
@@ -202,8 +202,8 @@ long unsigned int Client::getTicket() const
 void Client::checkCode()
 
 {
+    std::cout << "Date: " << date << "\n";
     std::cout << "row:" << row << ", place on a row: " << col << std::endl;
-    std::cout << "Date: " << date;
 }
 Client &Client::remove()
 {
