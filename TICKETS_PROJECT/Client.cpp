@@ -31,11 +31,11 @@ void Client::print()
     std::cout << ", Name: " << name << " , Note: " << this->note;
     if (buy)
     {
-        std::cout << " , Ticket Number: " << serialNumber << "; ";
+        std::cout << " , Ticket Number: " << serialNumber << " \n";
     }
     else
     {
-        std::cout << " ;";
+        std::cout << " \n";
     }
 }
 void Client::print(std::ostream &out)
@@ -134,6 +134,7 @@ void Client::read()
     {
         serialNumber = 2 * (row + 1) + 4 * (col + 1) + this->date.getDay() * this->date.getMonth() * this->date.getYear();
     }
+
 }
 void Client::read(std::istream &in)
 {

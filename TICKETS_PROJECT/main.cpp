@@ -63,7 +63,8 @@ Event &readTORoom(Client &c,
             event.setMatrix(temp);
         }
     } while (!f);
-    // event.setCols(c.getCol());
+    c.print();
+    // e]vvent.setCols(c.getCol());
     return event;
     //         std::vector<std::vector<Client>> p;
     //         p = v;
