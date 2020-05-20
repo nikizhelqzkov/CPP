@@ -1,50 +1,49 @@
-#include "DataOfRooms.h"
+#include "EventArr.h"
 #include <iostream>
-RoomArr::RoomArr()
+EventArr::EventArr()
 {
     this->data.clear();
     this->size = 0;
 }
-RoomArr::RoomArr(const std::vector<Event> &data, size_t size)
+EventArr::EventArr(const std::vector<Event> &data, size_t size)
 {
     this->data = data;
     this->size = data.size();
 }
-RoomArr::RoomArr(const RoomArr &other)
+EventArr::EventArr(const EventArr &other)
 {
     this->data = other.data;
     this->size = other.size;
 }
-RoomArr::~RoomArr()
+EventArr::~EventArr()
 {
 }
-void RoomArr::printArr(std::ostream& out) const
+void EventArr::printArr(std::ostream &out) const
 {
-    out<<this->size<<"\n";
+    out << this->size << "\n";
     for (int i = 0; i < this->size; i++)
     {
         this->data[i].Print(out);
         // std::cout << this->data[i];
-        
     }
 }
-void RoomArr::printArr() const
+void EventArr::printArr() const
 {
     for (int i = 0; i < this->size; i++)
     {
         // std::cout << this->data[i];
-        this->data[i].print();
+        this->data[i].Print(std::cout);
     }
 }
-Event &RoomArr::operator[](int i)
+Event &EventArr::operator[](int i)
 {
     return this->data[i];
 }
-Event RoomArr::operator[](int i) const
+Event EventArr::operator[](int i) const
 {
     return this->data[i];
 }
-RoomArr &RoomArr::addEvent(const Event &other)
+EventArr &EventArr::addEvent(const Event &other)
 {
     bool flag = true;
     if (!this->data.empty())
@@ -65,7 +64,7 @@ RoomArr &RoomArr::addEvent(const Event &other)
     return *this;
 }
 
-bool RoomArr::removeEvent(const Event &other)
+bool EventArr::removeEvent(const Event &other)
 {
     for (int i = 0; i < this->size; i++)
     {
@@ -78,15 +77,15 @@ bool RoomArr::removeEvent(const Event &other)
     }
     return false;
 }
-int RoomArr::getSize() const
+int EventArr::getSize() const
 {
     return this->size;
 }
-std::vector<Event> RoomArr::getData() const
+std::vector<Event> EventArr::getData() const
 {
     return this->data;
 }
-void RoomArr::freeseats(std::string name, Date date)
+void EventArr::freeseats(std::string name, Date date)
 {
     std::cout << "\n\nFree seats in " << name << " on " << date << ": \n\n";
     for (int i = 0; i < this->data.size(); i++)
@@ -97,7 +96,7 @@ void RoomArr::freeseats(std::string name, Date date)
         }
     }
 }
-void RoomArr::bookings(std::string name, Date date)
+void EventArr::bookings(std::string name, Date date)
 {
     bool res1 = false;
     bool res2 = false;
@@ -146,8 +145,7 @@ void RoomArr::bookings(std::string name, Date date)
     }
 }
 
-
-void RoomArr::report(std::string name, Date date)
+void EventArr::boughtTickets(std::string name, Date date)
 {
     bool res1 = false;
     bool res2 = false;
@@ -196,7 +194,7 @@ void RoomArr::report(std::string name, Date date)
     }
 }
 
-void RoomArr::checkTicket(long unsigned int serialNumber)
+void EventArr::checkTicket(long unsigned int serialNumber)
 {
     bool flag = false;
     bool valid = false;
@@ -214,12 +212,12 @@ void RoomArr::checkTicket(long unsigned int serialNumber)
         std::cout << "THAT TICKET NUMBER IS NOT VALID!!!\n";
     }
 }
-RoomArr& RoomArr::unbook(std::string name, Date date, int row, int col)
+EventArr &EventArr::unbook(std::string name, Date date, int row, int col)
 {
     bool flag = false;
     for (size_t i = 0; i < this->data.size(); i++)
     {
-        std::cout<<"here 1\n";
+        std::cout << "here 1\n";
         if (this->data[i].getName() == name && this->data[i].getDate() == date)
         {
             flag = true;
@@ -231,4 +229,28 @@ RoomArr& RoomArr::unbook(std::string name, Date date, int row, int col)
         std::cout << "Your reservation is not on this date or in this event\n";
     }
     return *this;
+}
+void EventArr::report(Date from, Date to)
+{
+    bool hasBought;
+    std::cout << "\n";
+    for (auto e : this->data)
+    {
+        if (from < e.getDate() && e.getDate() < to)
+        {
+
+            std::cout << "Event -> " << e.getName() << " , Date: " << e.getDate() << "\n";
+
+            hasBought = e.report();
+            if (!hasBought)
+            {
+                std::cout << "NO BOUGHT TICKETS!!! \n";
+            }
+            else
+            {
+                std::cout << "\n";
+            }
+            std::cout << "\n";
+        }
+    }
 }

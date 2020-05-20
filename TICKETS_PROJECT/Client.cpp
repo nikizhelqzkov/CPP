@@ -84,7 +84,7 @@ void Client::setDate(const Date &date)
 void Client::read()
 
 {
-    //RoomArr data;
+    //EventArr data;
 
     // std::cout << "Date of Event: \n";
     // do
@@ -221,7 +221,7 @@ Client &Client::remove()
     return *this;
 }
 
-// bool Client::getRooms(const RoomArr &data)
+// bool Client::getRooms(const EventArr &data)
 // {
 //     bool flag = false;
 //     for (int i = 0; i < data.getSize(); i++)

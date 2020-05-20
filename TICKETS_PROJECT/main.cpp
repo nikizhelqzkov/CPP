@@ -2,18 +2,21 @@
 #include "Client.h"
 #include "Room.h"
 #include "Event.h"
-#include "DataOfRooms.h"
+#include "EventArr.h"
+#include "SortClass.h"
 // #include "Date.cpp"
 // #include "Client.cpp"
 // #include "Room.cpp"
 // #include "Event.cpp"
-// #include "DataOfRooms.cpp"
+// #include "EventArr.cpp"
+//#include "SortClass.cpp"
 #include <ctime>
 #include <iostream>
 #include <cassert>
 #include <fstream>
-//#include <algorithm>
-//g++ main.cpp Date.cpp Client.cpp Room.cpp Event.cpp DataOfRooms.cpp
+#include <functional>
+
+//g++ main.cpp Date.cpp Client.cpp Room.cpp Event.cpp EventArr.cpp SortClass.cpp
 //datite da sa subota i  nedelq
 Event &generate(Event &event, std::string nameOfEvent, Date dateOfEvent)
 {
@@ -25,7 +28,7 @@ Event &generate(Event &event, std::string nameOfEvent, Date dateOfEvent)
     event.setCols(7);
     return event;
 }
-bool dateComp(Date i, Date j) { return (i < j); }
+// bool dateComp(Date i, Date j) { return (i < j); }
 Event &readTORoom(Client &c,
                   /*std::vector<std::vector<std::vector<Client>>> &v2*/
                   Event &event)
@@ -97,7 +100,8 @@ bool helpCommander()
             //all mod commands like new event etc
             std::cout << "1)addevent --> adding new event on EventBox \n2)freeseats --> report of freeseats on an event\n";
             std::cout << "3)bookings --> report of reserved tickets on an event\n";
-            std::cout << "4)report --> report of bought tickets from one date to other date\n\n";
+            std::cout << "4)bought --> report of bought tickets on an event\n";
+            std::cout << "5)report --> report of bought tickets from one date to other date\n\n";
             //za 4 shte sortirame masiva po data na eventa i shte shte vidim ot koq data da broim biletite
             //std::sort (myvector.begin(), myvector.end(), dateComp);
             std::cout << "PRESS THE b for back!\n";
@@ -156,7 +160,7 @@ bool closeCommander()
     close = false;
     return close;
 }
-RoomArr &read(RoomArr &studio, Client &c)
+EventArr &read(EventArr &studio, Client &c)
 {
 
     std::cout << "Enter the event name: ";
@@ -192,7 +196,7 @@ RoomArr &read(RoomArr &studio, Client &c)
     return studio;
 }
 
-RoomArr &unbook(RoomArr &studio)
+EventArr &unbook(EventArr &studio)
 {
     std::string nameCLose;
     std::cout << "Name of event: ";
@@ -208,7 +212,7 @@ RoomArr &unbook(RoomArr &studio)
     std::cout << "\n";
     return studio;
 }
-void checkTicket(RoomArr &studio)
+void checkTicket(EventArr &studio)
 {
     long unsigned int tN;
     std::cout << "Your ticket number: ";
@@ -216,6 +220,21 @@ void checkTicket(RoomArr &studio)
     std::cin >> tN;
     studio.checkTicket(tN);
     std::cout << "\n\n";
+}
+
+void reportFromTo(EventArr &st)
+{
+
+    std::cout << "\n\nWELCOME TO THE REPORT MODE!\nWrite the date from: ";
+    int day, month, year;
+    std::cin >> day >> month >> year;
+    std::cout << "\nWrite the date to: ";
+    int day2, month2, year2;
+    std::cin >> day2 >> month2 >> year2;
+    Date from(day, month, year);
+    Date to(day2, month2, year2);
+    SortClass::sort(st, st.getSize(), [](Event a, Event b) { return b.getDate() < a.getDate(); });
+    st.report(from,to);
 }
 int main()
 {
@@ -234,7 +253,7 @@ int main()
     bool close = false;
     bool exit = false;
     std::cout << "WELCOME TO THE TICKET CENTER!" << std::endl;
-    RoomArr st;
+    EventArr st;
     bool canOpen = true;
     std::string fileName;
     bool closeC = true;
@@ -331,7 +350,6 @@ int main()
                     }
                     in.close();
                     std::cout << "YOUR FILE IS OPEN!\n";
-
                     //-----pochvat funkciite
                     std::cout << "NOW YOU CAN USE SEVERAL MODS! --> IT HAS DIFFERENT MODS FOR MODERATOR AND CLIENT\n\n";
                     std::cout << "Do you want help for methods? y or n: ";
@@ -358,10 +376,12 @@ int main()
                                 std::cout << "\nWelcome Mod!\nThese are your using commands:\n";
                                 //all mod commands like new event etc
                                 std::string mV;
-                                std::cout << "1)addevent --> adding new event on EventBox \n2)freeseats --> report of freeseats on an event\n";
+                                std::cout << "1)addevent --> adding new event on EventBox \n";
+                                std::cout << "2)freeseats --> report of freeseats on an event\n";
                                 std::cout << "3)bookings --> report of reserved tickets on an event\n";
-                                std::cout << "4)report --> report of bought tickets from one date to other date\n";
-                                std::cout << "5)back\n";
+                                std::cout << "4)bought --> report of bought tickets on an event\n";
+                                std::cout << "5)report --> report of bought tickets from one date to other date\n";
+                                std::cout << "6)back\n";
                                 std::cout << "WRITE THE NAME OF COMMAND OR THE NUMBER: \n";
                                 std::cin >> mV;
                                 if (mV == "1" || mV == "addevent" || mV == "Addevent" || mV == "ADDEVENT" || mV == "AddEvent")
@@ -438,21 +458,25 @@ int main()
                                     std::cin.ignore(1, '\n');
                                     st.bookings(bookings, DB);
                                 }
-                                else if (mV == "4" || mV == "report" || mV == "Report" || mV == "REPORT")
+                                else if (mV == "4" || mV == "bought" || mV == "Bought" || mV == "BOUGHT")
                                 {
                                     std::cin.ignore(1, '\n');
                                     std::cout << "Enter the name of event for report: ";
-                                    std::string report;
-                                    std::getline(std::cin, report);
+                                    std::string bT;
+                                    std::getline(std::cin, bT);
                                     std::cout << "\n";
                                     int dR, mR, yR;
                                     std::cout << "Enter the date of an event: ";
                                     std::cin >> dR >> mR >> yR;
                                     Date DR(dR, mR, yR);
                                     std::cin.ignore(1, '\n');
-                                    st.report(report, DR);
+                                    st.boughtTickets(bT, DR);
                                 }
-                                else if (mV == "5" || mV == "back" || mV == "Back" || mV == "BACK")
+                                else if (mV == "5" || mV == "report" || mV == "Report" || mV == "REPORT")
+                                {
+                                    reportFromTo(st);
+                                }
+                                else if (mV == "6" || mV == "back" || mV == "Back" || mV == "BACK")
                                 {
                                     m = true;
                                     mOC = false;
@@ -622,50 +646,6 @@ int main()
             {
                 save = true;
                 std::cout << "YOUR FILE IS SAVED ON " << fileName << " !!! \n\n";
-                // std::cout << "\n";
-                // std::cin.ignore(1, '\n');
-                // std::cout << "\n";
-
-                // std::vector<std::vector<Client>> v(7, std::vector<Client>(7));
-                // for (int i = 0; i < v.size(); i++)
-                // {
-                //     for (int j = 0; j < v[i].size(); j++)
-                //     {
-                //         v[i][j].setName("FREE");
-                //     }
-                // }
-                // std::cout << "Write the name of event: ";
-                // std::string nameOfEvent;
-                // std::getline(std::cin, nameOfEvent);
-                // std::cout << "\n";
-                // std::cout << "Enter the date: ";
-                // int dayOfEvent2, monthOfEvent2, yearOfEvent2;
-                // std::cin >> dayOfEvent2 >> monthOfEvent2 >> yearOfEvent2;
-                // Date dateOfEvent2;
-                // dateOfEvent2.setDay(dayOfEvent2);
-                // dateOfEvent2.setMonth(monthOfEvent2);
-                // dateOfEvent2.setYear(yearOfEvent2);
-
-                // Event event;
-                // event = generate(event, nameOfEvent, dateOfEvent2);
-                // event.setMatrix(v);
-
-                // st = st.addEvent(event);
-                // st[2].Print();
-                // std::cout << st.getSize() << "\n";
-                // for (int i = 0; i < v.size(); i++)
-                // {
-                //     for (int j = 0; j < v[i].size(); j++)
-                //     {
-                //         v[i][j].setName("FREE");
-                //         v[i][j].remove();
-                //     }
-                // }
-
-                // std::cout << "WRITE NAME OF THE FILE FOR SAVING: ";
-                // std::string fileName;
-                // std::cin >> fileName;
-
                 std::ofstream out(fileName);
                 st.printArr(out);
                 out.close();
@@ -706,7 +686,7 @@ int main()
                 closeC = false;
                 canOpen = true;
                 isOpen = false;
-                RoomArr t;
+                EventArr t;
                 st = t;
             }
         }

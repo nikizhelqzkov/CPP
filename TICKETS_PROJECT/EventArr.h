@@ -1,31 +1,32 @@
-#ifndef DATA_ROOM_H
-#define DATA_ROOM_H
+#ifndef Event_Arr
+#define Event_Arr
 #include "Event.h"
 #include <vector>
-class RoomArr
+class EventArr
 {
 private:
     std::vector<Event> data;
     size_t size;
 
 public:
-    RoomArr();
-    RoomArr(const std::vector<Event> &, size_t);
-    RoomArr(const RoomArr &);
-    ~RoomArr();
+    EventArr();
+    EventArr(const std::vector<Event> &, size_t);
+    EventArr(const EventArr &);
+    ~EventArr();
     void printArr(std::ostream&) const;
     void printArr() const;
     Event &operator[](int i);
     Event operator[](int) const;
-    RoomArr &addEvent(const Event &);
+    EventArr &addEvent(const Event &);
     bool removeEvent(const Event &);
     int getSize() const;
     std::vector<Event> getData() const;
     void freeseats(std::string, Date);
     void bookings(std::string, Date);
-    void report(std::string, Date);
+    void boughtTickets(std::string, Date);
     void checkTicket(long unsigned int serialNumber);
-    RoomArr& unbook(std::string name, Date date, int row, int col);
+    void report(Date, Date);
+    EventArr& unbook(std::string name, Date date, int row, int col);
 };
 
 #endif

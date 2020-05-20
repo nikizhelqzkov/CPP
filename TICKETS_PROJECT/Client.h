@@ -36,7 +36,7 @@ public:
     void checkCode();
     Client& remove();
 
-    // bool getRooms(const RoomArr &);
+    // bool getRooms(const EventArr &);
 };
 
 #endif
