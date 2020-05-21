@@ -249,6 +249,11 @@ void reportFromTo(EventArr st)
     std::cin >> day2 >> month2 >> year2;
     Date from(day, month, year);
     Date to(day2, month2, year2);
+    /**
+     * @brief Използваме статичния клас SortClass и ламда функцията(статичния метод)sort
+     * функцията сорт използва логиката за работа на std::sort от библиоткета algorithm
+     * Сравнява по две дати от събитията във вектора от събития и сортира в ред от най-ранна към по-късни дати
+     */
     SortClass::sort(st, st.getSize(), [](Event a, Event b) { return b.getDate() < a.getDate(); });
     st.report(from, to);
 }
