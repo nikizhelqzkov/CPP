@@ -67,7 +67,7 @@ bool Event::reserveFreeSeats()
     }
     return flag;
 }
-bool Event::report()
+bool Event::bought()
 {
     bool flag = false;
     for (int i = 0; i < matrix.size(); i++)

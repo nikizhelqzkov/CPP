@@ -164,7 +164,6 @@ void Client::read(std::istream &in)
     in >> name;
     in >> note;
     in >> serialNumber;
-    // return in;
 }
 int Client::getRow() const
 {

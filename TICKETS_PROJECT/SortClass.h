@@ -10,7 +10,6 @@ class SortClass
 public:
     using comparatorFunction = std::function<bool(Event, Event)>;
 
-    static void sort(EventArr &arr, size_t size, comparatorFunction func);
+    static void sort(EventArr &, size_t, comparatorFunction);
 };
-
 

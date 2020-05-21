@@ -159,7 +159,7 @@ void EventArr::boughtTickets(std::string name, Date date)
             {
 
                 std::cout << "Event " << data[i].getName() << ":\n";
-                res1 = data[i].report();
+                res1 = data[i].bought();
             }
         }
     }
@@ -172,7 +172,7 @@ void EventArr::boughtTickets(std::string name, Date date)
             {
 
                 std::cout << "Event on :" << data[i].getDate() << ":\n";
-                res2 = data[i].report();
+                res2 = data[i].bought();
             }
         }
     }
@@ -184,7 +184,7 @@ void EventArr::boughtTickets(std::string name, Date date)
             if (data[i].getName() == name && data[i].getDate() == date)
             {
 
-                res3 = data[i].report();
+                res3 = data[i].bought();
             }
         }
     }
@@ -241,7 +241,7 @@ void EventArr::report(Date from, Date to)
 
             std::cout << "Event -> " << e.getName() << " , Date: " << e.getDate() << "\n";
 
-            hasBought = e.report();
+            hasBought = e.bought();
             if (!hasBought)
             {
                 std::cout << "NO BOUGHT TICKETS!!! \n";
