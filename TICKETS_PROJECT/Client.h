@@ -4,7 +4,10 @@
 #include "Date.h"
 #include <string>
 //#include "DataOfRooms.h"
-
+/**
+ * @brief Класът Client съдържа данни за едно място в една зала както и за данни при покупка или ресервиране на билет 
+ * 
+ */
 class Client
 {
     

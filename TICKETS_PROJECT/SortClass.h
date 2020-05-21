@@ -5,6 +5,10 @@
 #include "Event.h"
 #include "EventArr.h"
 #include <functional>
+/**
+ * @brief Класът SortClass съдържа статична член данна за сортиране използвана в мейн файла като начин за сортиране чрез ламда функция
+ * 
+ */
 class SortClass
 {
 public:

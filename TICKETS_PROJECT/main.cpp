@@ -17,7 +17,14 @@
 #include <functional>
 
 //g++ main.cpp Date.cpp Client.cpp Room.cpp Event.cpp EventArr.cpp SortClass.cpp
-
+/**
+ * @brief Изчиства данни от старо събитие и гопълни с данни
+ * 
+ * @param event 
+ * @param nameOfEvent 
+ * @param dateOfEvent 
+ * @return Event& 
+ */
 Event &generate(Event &event, std::string nameOfEvent, Date dateOfEvent)
 {
     event.Remove();
@@ -28,10 +35,14 @@ Event &generate(Event &event, std::string nameOfEvent, Date dateOfEvent)
     event.setCols(7);
     return event;
 }
-
-Event &readTORoom(Client &c,
-
-                  Event &event)
+/**
+ * @brief Чете данни на клиент , пълни ги във матрицата с места и обновява събитието като връща Event&
+ * 
+ * @param c 
+ * @param event 
+ * @return Event& 
+ */
+Event &readTORoom(Client &c, Event &event)
 {
     bool f = true;
 
@@ -58,7 +69,11 @@ Event &readTORoom(Client &c,
     c.print();
     return event;
 }
-
+/**
+ * @brief Функция, която е в помощ на UI на проекта и командата help
+ * @return true 
+ * @return false 
+ */
 bool helpCommander()
 
 {
@@ -129,6 +144,12 @@ bool helpCommander()
     } while (!helpFlag);
     return help;
 }
+/**
+ * @brief Функция, която е в помощ на UI на проекта и командата close
+
+ * @return true 
+ * @return false 
+ */
 bool closeCommander()
 {
     bool close = true;
@@ -137,6 +158,13 @@ bool closeCommander()
     close = false;
     return close;
 }
+/**
+ * @brief Четене на данните за вектора от събития и връщайки EventArr&
+ * 
+ * @param studio 
+ * @param c 
+ * @return EventArr& 
+ */
 EventArr &read(EventArr &studio, Client &c)
 {
 
@@ -166,7 +194,13 @@ EventArr &read(EventArr &studio, Client &c)
     }
     return studio;
 }
-
+/**
+ * @brief Функция, която е в помощ на UI на проекта и командата unbook
+ * 
+ * 
+ * @param studio 
+ * @return EventArr& 
+ */
 EventArr &unbook(EventArr &studio)
 {
     std::string nameCLose;
@@ -183,6 +217,12 @@ EventArr &unbook(EventArr &studio)
     std::cout << "\n";
     return studio;
 }
+/**
+ * @brief Функция, която е в помощ на UI на проекта и командата check
+ * 
+ * 
+ * @param studio 
+ */
 void checkTicket(EventArr &studio)
 {
     long unsigned int tN;
@@ -192,7 +232,12 @@ void checkTicket(EventArr &studio)
     studio.checkTicket(tN);
     std::cout << "\n\n";
 }
-
+/**
+ * @brief Функция, която е в помощ на UI на проекта и командата report
+ * 
+ * 
+ * @param st 
+ */
 void reportFromTo(EventArr st)
 {
 
@@ -207,9 +252,17 @@ void reportFromTo(EventArr st)
     SortClass::sort(st, st.getSize(), [](Event a, Event b) { return b.getDate() < a.getDate(); });
     st.report(from, to);
 }
+/**
+ * @brief Мейн функцията на проекта, в която са нужните обекти от класовете, различни променливи и UI  на проекта
+ * 
+ * @return int 
+ */
 int main()
 {
-
+    /**
+ * @brief Извеждане на Текуща дата и задействане на функцията за произволно число
+ * 
+ */
     std::cout << "Live Date: ";
     srand(time(0));
     Date z1;
@@ -223,12 +276,24 @@ int main()
     bool save_as = false;
     bool close = false;
     bool exit = false;
+    /**
+     * @brief Начало на UI
+     * 
+     */
     std::cout << "WELCOME TO THE TICKET CENTER!" << std::endl;
+    /**
+     * @brief Необходими променливи
+     * 
+     */
     EventArr st;
     bool canOpen = true;
     std::string fileName;
     bool closeC = true;
     bool isOpen = false;
+    /**
+     * @brief Основното меню е в do while конструкция, за да може лесно да се връща потребителя назад
+     * 
+     */
     do
     {
         open = false;
@@ -237,6 +302,10 @@ int main()
         save_as = false;
         close = false;
         exit = false;
+        /**
+         * @brief Показване на командите, от основното меню
+         * 
+         */
         std::cout << "Write one of the commands: " << std::endl
                   << "1)open" << std::endl
                   << "2)help" << std::endl
@@ -249,7 +318,14 @@ int main()
 
         if (a == "open" || a == "Open" || a == "OPEN" || a == "1")
         {
-
+            /**
+            * @brief Construct a new if object
+            * Потребителя е влезнал в open.
+            * Ако преди е бил влезнал и не е затворил с командата close, няма да може да отвори отворен файл
+            * Трбява да избере име на файла, от който чете и след това ще се разбере дали той съществува и може да се чете от него.
+            * След като извлече данните от четенето ще може да работи със системата
+            * 
+            */
             if (canOpen == false)
             {
                 std::cout << "\n\n YOU CAN NOT OPEN AGAIN THE FILE! YOU CAN SAVE IT OR CLOSE IT!!!\n\n\n";
@@ -271,6 +347,10 @@ int main()
                 }
                 else
                 {
+                    /**
+                     * @brief Успешно четене и начало на четенето от файл
+                     * 
+                     */
                     isOpen = true;
                     open = true;
                     canOpen = false;
@@ -310,7 +390,13 @@ int main()
                     }
                     in.close();
                     std::cout << "YOUR FILE IS OPEN!\n";
-
+                    /**
+                     * @brief Навлиане в основните методи на платформата след като е отворен файла.
+                     * Преди това има следните възможности:
+                     * - За напускане на командата open и така връщане към основното меню;
+                     * - За отваряне на help и четене на основните методи на проекта.
+                     * - Продължение към методите
+                     */
                     std::cout << "NOW YOU CAN USE SEVERAL MODS! --> IT HAS DIFFERENT MODS FOR MODERATOR AND CLIENT\n\n";
                     std::cout << "Do you want help for methods? y or n: ";
                     char h;
@@ -325,12 +411,21 @@ int main()
                     bool mOC = false;
                     do
                     {
+                        /**
+                         * @brief Избор дали да се отворят методите за Модератор или да се отворят методите за Клиент
+                         * 
+                         */
                         std::cout << "You are moderator or client? --> write m for moderator and c for client and b for back:\n";
                         std::cin >> modOrCLient;
                         if (modOrCLient == 'm')
                         {
                             mOC = true;
                             bool m = false;
+                            /**
+                             * @brief Знае се, че вече сме Модератори
+                             * Вижда се на конзолата какво можем да ползваме и си избираме
+                             * 
+                             */
                             do
                             {
                                 std::cout << "\nWelcome Mod!\nThese are your using commands:\n";
@@ -345,6 +440,10 @@ int main()
                                 std::cin >> mV;
                                 if (mV == "1" || mV == "addevent" || mV == "Addevent" || mV == "ADDEVENT" || mV == "AddEvent")
                                 {
+                                    /**
+                                     * @brief Създаване на събитие
+                                     * 
+                                     */
                                     m = true;
                                     mOC = false;
 
@@ -377,7 +476,7 @@ int main()
                                     event.setMatrix(v);
 
                                     st = st.addEvent(event);
-                                    
+
                                     for (int i = 0; i < v.size(); i++)
                                     {
                                         for (int j = 0; j < v[i].size(); j++)
@@ -389,6 +488,10 @@ int main()
                                 }
                                 else if (mV == "2" || mV == "freeseats" || mV == "Freeseats" || mV == "FREESEATS" || mV == "FreeSeats")
                                 {
+                                    /**
+                                     * @brief Информация за свободните места
+                                     * 
+                                     */
                                     std::cin.ignore(1, '\n');
                                     std::cout << "Enter the name of event for freeseats: ";
                                     std::string freeSeats;
@@ -404,6 +507,10 @@ int main()
                                 }
                                 else if (mV == "3" || mV == "bookings" || mV == "Bookings" || mV == "BOOKINGS")
                                 {
+                                    /**
+                                     * @brief Информация за резервираните места
+                                     * 
+                                     */
                                     std::cin.ignore(1, '\n');
                                     std::cout << "Enter the name of event for bookings: ";
                                     std::string bookings;
@@ -418,6 +525,10 @@ int main()
                                 }
                                 else if (mV == "4" || mV == "bought" || mV == "Bought" || mV == "BOUGHT")
                                 {
+                                    /**
+                                     * @brief Информация за купените билети
+                                     * 
+                                     */
                                     std::cin.ignore(1, '\n');
                                     std::cout << "Enter the name of event for report: ";
                                     std::string bT;
@@ -432,10 +543,18 @@ int main()
                                 }
                                 else if (mV == "5" || mV == "report" || mV == "Report" || mV == "REPORT")
                                 {
+                                    /**
+                                     * @brief Construct a new report From To object
+                                     * Отчет за купените билети от една дата до друга дата
+                                     */
                                     reportFromTo(st);
                                 }
                                 else if (mV == "6" || mV == "back" || mV == "Back" || mV == "BACK")
                                 {
+                                    /**
+                                     * @brief Напускане на режим Модератори стъпка назад
+                                     * 
+                                     */
                                     m = true;
                                     mOC = false;
                                 }
@@ -449,6 +568,11 @@ int main()
                         }
                         else if (modOrCLient == 'c')
                         {
+                            /**
+                             * @brief Знае се, че вече сме Клиенти
+                             * Вижда се на конзолата какво можем да ползваме и си избираме
+                             * 
+                             */
                             mOC = true;
                             bool cl = false;
                             do
@@ -464,6 +588,11 @@ int main()
                                 std::cin >> cV;
                                 if (cV == "1" || cV == "ticket" || cV == "Ticket" || cV == "TICKET")
                                 {
+                                    /**
+                                     * @brief Според името на събитието и датата можем да:
+                                     * - Купим билет за събитието
+                                     * - Резервираме място за събитието
+                                     */
                                     cl = true;
                                     mOC = false;
 
@@ -485,16 +614,30 @@ int main()
                                 }
                                 else if (cV == "2" || cV == "unbook" || cV == "Unbook" || cV == "UNBOOK")
                                 {
+                                    /**
+                                     * @brief Отменяме резервация подавайки:
+                                     * - Име на събитие
+                                     * - Дата на събитието
+                                     * - Ред и място в реда, където ни е било резервирно
+                                     */
                                     std::cin.ignore(1, '\n');
                                     st = unbook(st);
                                 }
                                 else if (cV == "3" || cV == "check" || cV == "Check" || cV == "CHECK")
                                 {
+                                    /**
+                                     * @brief Информация за билета ни дали е валиден и информацията в него
+                                     * 
+                                     */
                                     std::cin.ignore(1, '\n');
                                     checkTicket(st);
                                 }
                                 else if (cV == "4" || cV == "back" || cV == "Back" || cV == "BACK")
                                 {
+                                    /**
+                                     * @brief Напускане на режим Client и  стъпка назад
+                                     * 
+                                     */
                                     cl = true;
                                     mOC = false;
                                 }
@@ -508,6 +651,10 @@ int main()
                         }
                         else if (modOrCLient == 'b')
                         {
+                            /**
+                             * @brief Напускане на основното меню с последно запитване преди да го напуснем дали сме сигурни в това решение
+                             * 
+                             */
                             bool t = true;
                             do
                             {
@@ -545,10 +692,19 @@ int main()
         }
         else if (a == "help" || a == "Help" || a == "HELP" || a == "2")
         {
+            /**
+             * @brief Отваря помощния център, където да разберем за методите в проекта
+             * 
+             */
             help = helpCommander();
         }
         else if (a == "save" || a == "Save" || a == "SAVE" || a == "3")
         {
+            /**
+             * @brief Construct a new if object
+             * Запазва данните на системата във файла, който е бил отворен в open
+             * Ако не е бил отворен файл или е бил затвоен, извежда, че не може да запише празен файл
+             */
             if (closeC == false || isOpen == false)
             {
                 std::cout << "\n\nYOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n";
@@ -566,6 +722,12 @@ int main()
         }
         else if (a == "save_as" || a == "Save_as" || a == "SAVE_AS" || a == "Save_As" || a == "4")
         {
+
+            /**
+             * @brief Construct a new if object
+             * Запазва данните на системата във файл, който е написан от потребителя
+             * Ако не е бил отворен файл или е бил затвоен, извежда, че не може да запише празен файл
+             */
             if (closeC == false || isOpen == false)
             {
                 std::cout << "\n\nYOU CAN NOT SAVE THE EMPTY FILE!!!!\n\n";
@@ -587,6 +749,10 @@ int main()
         }
         else if (a == "close" || a == "Close" || a == "CLOSE" || a == "5")
         {
+            /**
+             * @brief Construct a new if object
+             * Затваря отворения файл и отклюва възможността за отваряне на файл. Ако не са запазени данните преди затваряне , те се изгубват
+             */
             if (isOpen == false)
             {
                 std::cout << "\n\nYOU CAN NOT CLOSE THE EMPTY FILE!!!!\n\n";
@@ -603,6 +769,10 @@ int main()
         }
         else if (a == "exit" || a == "Exit" || a == "EXIT" || a == "6")
         {
+            /**
+             * @brief Спиране на приложението
+             * 
+             */
             exit = true;
             std::cout << "GOOD BYE !!!\n";
             return 0;

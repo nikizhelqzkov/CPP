@@ -1,23 +1,47 @@
 #include "EventArr.h"
 #include <iostream>
+/**
+ * @brief Construct a new Event Arr:: Event Arr object
+ * 
+ */
 EventArr::EventArr()
 {
     this->data.clear();
     this->size = 0;
 }
+/**
+ * @brief Construct a new Event Arr:: Event Arr object
+ * 
+ * @param data 
+ * @param size 
+ */
 EventArr::EventArr(const std::vector<Event> &data, size_t size)
 {
     this->data = data;
     this->size = data.size();
 }
+/**
+ * @brief Construct a new Event Arr:: Event Arr object
+ * 
+ * @param other 
+ */
 EventArr::EventArr(const EventArr &other)
 {
     this->data = other.data;
     this->size = other.size;
 }
+/**
+ * @brief Destroy the Event Arr:: Event Arr object
+ * 
+ */
 EventArr::~EventArr()
 {
 }
+/**
+ * @brief Отпечатва цялата система от събития, зали, клиенти през файлов поток
+ * 
+ * @param out 
+ */
 void EventArr::printArr(std::ostream &out) const
 {
     out << this->size << "\n";
@@ -27,6 +51,10 @@ void EventArr::printArr(std::ostream &out) const
         // std::cout << this->data[i];
     }
 }
+/**
+ * @brief Отпечатва на конзолата данните за всички събития и места във всяко събитие
+ * 
+ */
 void EventArr::printArr() const
 {
     for (int i = 0; i < this->size; i++)
@@ -35,14 +63,33 @@ void EventArr::printArr() const
         this->data[i].Print(std::cout);
     }
 }
+/**
+ * @brief Оператор [] връщаш оригинала на позиция от вектора(събитие на тази позиция), не е константен
+ * 
+ * @param i 
+ * @return Event& 
+ */
 Event &EventArr::operator[](int i)
 {
     return this->data[i];
 }
+/**
+ * @brief Оператор [] връщащ копие на данните за позиция от вектора(събитие на тази позиция), константен е и не се променя
+ * 
+ * @param i 
+ * @return Event 
+ */
 Event EventArr::operator[](int i) const
 {
     return this->data[i];
 }
+/**
+ * @brief Метод, който добаея събития във вектора от събития.
+ * Ако съвпаднат име на събитие и датата, връща че е запазено такова събитие и не добавя още веднъж
+ * 
+ * @param other 
+ * @return EventArr& 
+ */
 EventArr &EventArr::addEvent(const Event &other)
 {
     bool flag = true;
@@ -63,7 +110,13 @@ EventArr &EventArr::addEvent(const Event &other)
     this->size++;
     return *this;
 }
-
+/**
+ * @brief Премахва събитие от вектора със събития, ако бъде намерено това събитие по id 
+ * 
+ * @param other 
+ * @return true 
+ * @return false 
+ */
 bool EventArr::removeEvent(const Event &other)
 {
     for (int i = 0; i < this->size; i++)
@@ -77,14 +130,30 @@ bool EventArr::removeEvent(const Event &other)
     }
     return false;
 }
+/**
+ * @brief Мутатор извеждащ стойността на член-данната size
+ * 
+ * @return int 
+ */
 int EventArr::getSize() const
 {
     return this->size;
 }
+/**
+ * @brief Мутатор извеждащ стойността на член-данната data
+ * 
+ * @return std::vector<Event> 
+ */
 std::vector<Event> EventArr::getData() const
 {
     return this->data;
 }
+/**
+ * @brief Метод, чрез който да изведем след проверка в йерахиите за свободните места по зададено име и дата на събитие
+ * 
+ * @param name 
+ * @param date 
+ */
 void EventArr::freeseats(std::string name, Date date)
 {
     std::cout << "\n\nFree seats in " << name << " on " << date << ": \n\n";
@@ -96,6 +165,10 @@ void EventArr::freeseats(std::string name, Date date)
         }
     }
 }
+/**
+ * @brief Метод, чрез който да изведем след проверка в йерахиите за резервираните места по зададено име и дата на събитие
+ * 
+ */
 void EventArr::bookings(std::string name, Date date)
 {
     bool res1 = false;
@@ -144,7 +217,12 @@ void EventArr::bookings(std::string name, Date date)
         std::cout << "No reserved tickets !!!\n";
     }
 }
-
+/**
+ * @brief Метод, чрез който да изведем след проверка в йерахиите за купените билети по зададено име и дата на събитие
+ * 
+ * @param name 
+ * @param date 
+ */
 void EventArr::boughtTickets(std::string name, Date date)
 {
     bool res1 = false;
@@ -193,7 +271,11 @@ void EventArr::boughtTickets(std::string name, Date date)
         std::cout << "No bought tickets !!!\n";
     }
 }
-
+/**
+ * @brief Метод, чрез който по номер на билет извежда данните за мястото му в събитието, съсържащо номера му , ако изобщо го има и е валиден билета
+ * 
+ * @param serialNumber 
+ */
 void EventArr::checkTicket(long unsigned int serialNumber)
 {
     bool flag = false;
@@ -212,6 +294,16 @@ void EventArr::checkTicket(long unsigned int serialNumber)
         std::cout << "THAT TICKET NUMBER IS NOT VALID!!!\n";
     }
 }
+/**
+ * @brief Отменя резервация по дадено име и дата на събитие и ред и място в реда ,където му е било запазено
+ * Ако няма резервиран такъв билет, се съобщава за грешка
+ * 
+ * @param name 
+ * @param date 
+ * @param row 
+ * @param col 
+ * @return EventArr& 
+ */
 EventArr &EventArr::unbook(std::string name, Date date, int row, int col)
 {
     bool flag = false;
@@ -230,6 +322,12 @@ EventArr &EventArr::unbook(std::string name, Date date, int row, int col)
     }
     return *this;
 }
+/**
+ * @brief Отчет за купените билети според събитията при зададени начална дата и крайна дата, през които да бъдат разгледани отчетите
+ * 
+ * @param from 
+ * @param to 
+ */
 void EventArr::report(Date from, Date to)
 {
     bool hasBought;

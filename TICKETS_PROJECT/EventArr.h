@@ -2,6 +2,10 @@
 #define Event_Arr
 #include "Event.h"
 #include <vector>
+/**
+ * @brief Класът EventArr  съдържа вктор от събитията на проекта и големината му + методи
+ * 
+ */
 class EventArr
 {
 private:

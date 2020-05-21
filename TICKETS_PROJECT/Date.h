@@ -1,6 +1,10 @@
 #ifndef DATE_H_INCLUDED
 #define DATE_H_INCLUDED
 #include<iostream>
+/**
+ * @brief Класът Date е основен за проекта, защото от него зависи датата на всички събития в системата
+ * 
+ */
 class Date
 {
 private:

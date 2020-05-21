@@ -31,7 +31,7 @@ Client::Client(int row, int col, Date date, std::string name, std::string note) 
     this->date.setMonth(date.getMonth());
     this->date.setYear(date.getYear());
 }/**
- * @brief print in a console the data of the client object
+ * @brief Печата на конзола стойностите на член-данните на класа
  * 
  */
 void Client::print()
@@ -54,7 +54,7 @@ void Client::print()
     }
 }
 /**
- * @brief print in file 
+ * @brief Изпраща стойностите на член-данните от класа към файл чрез ostream поток
  * 
  * @param out 
  */
@@ -93,7 +93,7 @@ void Client::print(std::ostream &out)
     }
 }
 /**
- * @brief get date
+ * @brief Мутатор извеждащ стойността на член-данната date
  * 
  * @return Date 
  */
@@ -102,7 +102,7 @@ Date Client::getDate() const
     return this->date;
 }
 /**
- * @brief set date
+ * @brief Мутатор с аргумент, който се вкарва в член-данната date
  * 
  * @param date 
  */
@@ -111,23 +111,13 @@ void Client::setDate(const Date &date)
     this->date = date;
 }
 /**
- * @brief read from console
+ * @brief Четене на данни за клиента от конзолата. От този метод зависи къде ще седне клиента и дали ще е с резервиран билет или купен 
  * 
  */
 void Client::read()
 
 {
-    //EventArr data;
 
-    // std::cout << "Date of Event: \n";
-    // do
-    // {
-    // this->date.read();
-
-    //this->getRooms(data);
-    //  flag = this->getRooms(data);
-
-    // } while (!flag);
     bool flag = true;
     do
     {
@@ -170,7 +160,7 @@ void Client::read()
 
 }
 /**
- * @brief read from file
+ * @brief Четене на данни за клиента от файлов поток
  * 
  * @param in 
  */
@@ -204,7 +194,7 @@ void Client::read(std::istream &in)
     in >> serialNumber;
 }
 /**
- * @brief get row
+ * @brief Мутатор извеждащ стойността на член-данната row
  * 
  * @return int 
  */
@@ -213,7 +203,7 @@ int Client::getRow() const
     return this->row;
 }
 /**
- * @brief get column
+ * @brief Мутатор извеждащ стойността на член-данната col (column)
  * 
  * @return int 
  */
@@ -222,7 +212,7 @@ int Client::getCol() const
     return this->col;
 }
 /**
- * @brief get name of the Client
+ * @brief Мутатор извеждащ стойността на член-данната name
  * 
  * @return std::string 
  */
@@ -231,7 +221,7 @@ std::string Client::getName() const
     return name;
 }
 /**
- * @brief get some notes
+ * @brief Мутатор извеждащ стойността на член-данната note
  * 
  * @return std::string 
  */
@@ -240,7 +230,7 @@ std::string Client::getNote() const
     return note;
 }
 /**
- * @brief set name of the client
+ * @brief Мутатор с аргумент, който се вкарва в член-данната name
  * 
  * @param name 
  */
@@ -249,7 +239,7 @@ void Client::setName(std::string name)
     this->name = name;
 }
 /**
- * @brief get the bool value if the ticket is reserved
+ * @brief Мутатор извеждащ булевата стойност на reserve(дали билета е ресервиран или не) 
  * 
  * @return true 
  * @return false 
@@ -259,7 +249,7 @@ bool Client::getReserve() const
     return reserve;
 }
 /**
- * @brief get the bool value if the ticket is bought
+ * @brief Мутатор извеждащ булевата стойност на buy(дали билета е купен или не)
  * 
  * @return true 
  * @return false 
@@ -269,7 +259,7 @@ bool Client::getBuy() const
     return buy;
 }
 /**
- * @brief 
+ * @brief Мутатор извеждащ стойността на serialnumber(дава достъп до номера на билета на клиента)
  * 
  * @return long unsigned int 
  */
@@ -277,13 +267,21 @@ long unsigned int Client::getTicket() const
 {
     return serialNumber;
 }
-
+/**
+ * @brief Функция, която извежда на конзолата данни на дата , ред и стълб на клиента в дадена зала след като провери билета си
+ * 
+ */
 void Client::checkCode()
 
 {
     std::cout << "Date: " << date << "\n";
     std::cout << "row:" << row << ", place on a row: " << col << std::endl;
 }
+/**
+ * @brief Изчиства данните на клиент
+ * 
+ * @return Client& 
+ */
 Client &Client::remove()
 {
     this->row = 0;
@@ -298,23 +296,3 @@ Client &Client::remove()
     this->date.setYear(1);
     return *this;
 }
-
-// bool Client::getRooms(const EventArr &data)
-// {
-//     bool flag = false;
-//     for (int i = 0; i < data.getSize(); i++)
-//     {
-//         if (data[i].getDate().isEqual(this->date))
-//         {
-//             flag = true;
-//             std::cout << data[i].getId() << "  ";
-//         }
-//     }
-
-//     if (!flag)
-//     {
-//         std::cout << "No events on this Date!\n";
-//         return false;
-//     }
-//     return true;
-// }

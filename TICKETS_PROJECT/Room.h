@@ -4,6 +4,10 @@
 #include <string>
 //#include "Date.h"
 #include "Client.h"
+/**
+ * @brief Класът Room  има за цел да съдържа базовите член-данни на една зала в някое събитие + някои спомагателни методи
+ * 
+ */
 class Room
 {
 protected:

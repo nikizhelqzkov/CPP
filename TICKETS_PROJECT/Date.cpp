@@ -21,20 +21,14 @@ Date::Date()
  */
 Date::Date(unsigned d, unsigned m, unsigned y)
 {
-	/**
-	 * @brief Construct a new if object
-	 * 
-	 */
+	
 	if (isValidDate(d, m, y))
 	{
 		this->day = d;
 		this->month = m;
 		this->year = y;
 	}
-	/**
-	 * @brief basic date values
-	 * 
-	 */
+
 	else
 	{
 		this->day = 1;
@@ -54,7 +48,7 @@ Date::Date(const Date &other)
 	this->year = other.year;
 }
 /**
- * @brief reading date values while they are not valid
+ * @brief Четене от конзола на дата докато тя не е валидна според условията за валидност
  * 
  */
 void Date::read()
@@ -76,19 +70,25 @@ void Date::read()
 	this->year = year;
 }
 /**
- * @brief print date for console and print date for file
+ * @brief Принтиране на член-данните за дата в стандартен тип
  * 
  */
 void Date::print() const
 {
 	std::cout << this->year << '-' << this->month << '-' << this->day;
 }
+/**
+ * @brief Изпращане на член-данните за датата във файл чрез файлов поток
+ * 
+ * @param out 
+ */
 void Date::print(std::ostream& out) const
 {
 	out << this->year << ' ' << this->month << ' ' << this->day;
 }
 /**
- * @brief Is a valide date
+ * @brief Проверка дали има правилен номер на месец(0<месец<=12) и според месеца проверка дали съществува такъв ден като номер при условие дали е високосна годината или не
+ *  и връща дали е правилна датата
  * 
  * @param d 
  * @param m 
@@ -126,7 +126,7 @@ bool Date::isValidDate(unsigned short d, unsigned short m, unsigned short y)
 	return d > 0 && d <= maxDays;
 }
 /**
- * @brief get day
+ * @briefМутатор извеждащ стойността на член-данната day
  * 
  * @return unsigned 
  */
@@ -135,7 +135,7 @@ unsigned Date::getDay() const
 	return this->day;
 }
 /**
- * @brief setting Day
+ * @brief Мутатор с аргумент, който се вкарва в член-данната day
  * 
  * @param newDay 
  */
@@ -145,7 +145,7 @@ void Date::setDay(unsigned newDay)
 		this->day = newDay;
 }
 /**
- * @brief get month
+ * @brief Мутатор извеждащ стойността на член-данната month
  * 
  * @return unsigned 
  */
@@ -154,7 +154,7 @@ unsigned Date::getMonth() const
 	return this->month;
 }
 /**
- * @brief set Month
+ * @brief Мутатор с аргумент, който се вкарва в член-данната month
  * 
  * @param newMonth 
  */
@@ -164,7 +164,7 @@ void Date::setMonth(unsigned newMonth)
 		this->month = newMonth;
 }
 /**
- * @brief get year
+ * @brief Мутатор извеждащ стойността на член-данната year
  * 
  * @return unsigned 
  */
@@ -173,7 +173,7 @@ unsigned Date::getYear() const
 	return this->year;
 }
 /**
- * @brief set year
+ * @brief Мутатор с аргумент, който се вкарва в член-данната year
  * 
  * @param newYear 
  */
@@ -183,7 +183,7 @@ void Date::setYear(unsigned newYear)
 		this->year = newYear;
 }
 /**
- * @brief is it equal date
+ * @brief Булева функция проверяваща дали две дати съвпадат
  * 
  * @param other 
  * @return true 
@@ -194,7 +194,7 @@ bool Date::isEqual(const Date &other) const
 	return this->day == other.day && this->month == other.month && this->year == other.year;
 }
 /**
- * @brief is it before other date
+ * @brief Булева функция проверяваща дали една дата е преди друга дата
  * 
  * @param other 
  * @return true 
@@ -215,7 +215,7 @@ bool Date::isBefore(const Date &other) const
 	return this->day < other.day;
 }
 /**
- * @brief returning the live date
+ * @brief Функция която чрез библиотекта ctime и специална структора за време извежда текущата дата 
  * 
  * @return Date& 
  */
@@ -231,7 +231,7 @@ Date &Date::getLiveData()
 	return *this;
 }
 /**
- * @brief operator =
+ * @brief Оператор за присвояване на 2 дати
  * 
  * @param other 
  * @return Date& 
@@ -243,7 +243,7 @@ Date &Date::operator=(const Date &other)
 	this->year = other.year;
 }
 /**
- * @brief operator ==
+ * @brief Булев оператор проверяващ дали две дати съвпадат
  * 
  * @param other 
  * @return true 
@@ -253,7 +253,7 @@ bool Date::operator==(const Date& other)const{
 	return day==other.day && month==other.month && year==other.year;
 }
 /**
- * @brief operator <<
+ * @brief Оператор за извеждане на данни в поток
  * 
  * @param out 
  * @param date 
@@ -266,7 +266,7 @@ std::ostream &operator<<(std::ostream &out, const Date &date)
 
 }
 /**
- * @brief operator <
+ * @brief Булев оператор извеждащ дали една дата е преди друга дата
  * 
  * @param date 
  * @return true 

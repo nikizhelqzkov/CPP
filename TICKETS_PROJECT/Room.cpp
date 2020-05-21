@@ -2,8 +2,8 @@
 #include <iostream>
 #include <cassert>
 /**
- * @brief validation for matrix -> vector of vectors . Connection between the vector of vectors and value of rows and columns
- * 
+ * @brief Валидация на матрицата съдържаща клиенти -> вектор от вектори.
+ * Има връзка между стойностите на член-данните rows и columns и вектора от вектори 
  * @param rows 
  * @param cols 
  * @param m 
@@ -69,7 +69,7 @@ Room::Room(const Room &other) :  id(other.id),rows(other.rows),
 {
 }
 /**
- * @brief print to console the room
+ * @brief Принтира на конзолата стойностите на член-данните на класа
  * 
  */
 void Room::print() const
@@ -86,7 +86,7 @@ void Room::print() const
     }
 }
 /**
- * @brief print the room at file
+ * @brief Извежда през поток към файл стойнсотите на член-данните на класа
  * 
  * @param out 
  */
@@ -104,7 +104,7 @@ void Room::print(std::ostream& out) const
     }
 }
 /**
- * @brief get of id
+ * @brief Мутатор извеждащ стойността на член-данната id
  * 
  * @return int 
  */
@@ -113,7 +113,7 @@ int Room::getId() const
     return this->id;
 }
 /**
- * @brief get of rows
+ * @brief Мутатор извеждащ стойността на член-данната rows
  * 
  * @return int 
  */
@@ -122,7 +122,7 @@ int Room::getRows() const
     return this->rows;
 }
 /**
- * @brief get the room places 
+ * @brief Мутатор извеждащ стойността на член-данната matrix 
  * 
  * @return std::vector<std::vector<Client>> 
  */
@@ -131,7 +131,7 @@ std::vector<std::vector<Client>> Room::getplaces() const
     return this->matrix;
 }
 /**
- * @brief  get the room places but no const
+ * @brief Мутатор извеждащ стойността на член-данната matrix, но не е константен
  * 
  * @return std::vector<std::vector<Client>> 
  */
@@ -140,7 +140,7 @@ std::vector<std::vector<Client>> Room::getplaces()
     return this->matrix;
 }
 /**
- * @brief return columns value
+ * @brief Мутатор извеждащ стойността на член-данната placeOnRow 
  * 
  * @return int 
  */
@@ -149,7 +149,7 @@ int Room::getCols() const
     return this->placeOnRow;
 }
 /**
- * @brief setting id
+ * @brief Мутатор с аргумент, който се вкарва в член-данната id
  * 
  * @param id 
  */
@@ -158,7 +158,7 @@ void Room::setId(int id)
     this->id = id;
 }
 /**
- * @brief setting the matrix
+ * @brief Мутатор с аргумент, който се вкарва в член-данната matrix
  * 
  * @param other 
  */
@@ -168,7 +168,7 @@ void Room::setMatrix(const std::vector<std::vector<Client>> &other)
     this->matrix = other;
 }
 /**
- * @brief set the value of rows
+ * @briefМутатор с аргумент, който се вкарва в член-данната rows
  * 
  * @param rows 
  */
@@ -179,7 +179,7 @@ void Room::setRows(int rows)
     this->rows = rows;
 }
 /**
- * @brief setting the value of columns
+ * @brief Мутатор с аргумент, който се вкарва в член-данната placeOnRow
  * 
  * @param cols 
  */
@@ -189,7 +189,7 @@ void Room::setCols(int cols)
     this->placeOnRow = cols;
 }
 /**
- * @brief returning data for the room with ostream operator << for output
+ * @brief оператор за извеждане в поток на член-данните на класа
  * 
  * @param out 
  * @param room 
@@ -209,7 +209,7 @@ std::ostream &operator<<(std::ostream &out, const Room &room)
     return out;
 }
 /**
- * @brief opeartor = between 2 rooms
+ * @brief Оператор за присвояване между 2 зали
  * 
  * @param other 
  * @return Room& 
@@ -226,7 +226,7 @@ Room &Room::operator=(const Room &other)
     return *this;
 }
 /**
- * @brief remove one room
+ * @brief Изчистване на данните на една зала
  * 
  */
 void Room::remove()
