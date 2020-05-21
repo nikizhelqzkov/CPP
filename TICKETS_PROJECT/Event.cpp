@@ -1,14 +1,43 @@
 #include "Event.h"
 #include <iostream>
+/**
+ * @brief Construct a new Event:: Event object , Room is his father and Event use his methods
+ * 
+ */
 Event::Event() : Room()
 {
     eventDate = eventDate.getLiveData();
     this->name = "";
 }
+/**
+ * @brief Construct a new Event:: Event object
+ * 
+ * @param eventDate 
+ * @param name 
+ * @param id 
+ * @param place 
+ * @param rows 
+ * @param placeOnRow 
+ */
 Event::Event(const Date &eventDate, std::string name, int id, const std::vector<std::vector<Client>> &place, int rows, int placeOnRow)
     : Room(id, place, rows, placeOnRow), eventDate(eventDate), name(name) {}
+    /**
+     * @brief Construct a new Event:: Event object
+     * 
+     * @param other 
+     */
 Event::Event(const Event &other) : Room(other), eventDate(other.eventDate), name(other.name) {}
+/**
+ * @brief Destroy the Event:: Event object
+ * 
+ */
 Event::~Event() {}
+/**
+ * @brief operator = between 2 events
+ * 
+ * @param other 
+ * @return Event& 
+ */
 Event &Event::operator=(const Event &other)
 {
     if (this != &other)

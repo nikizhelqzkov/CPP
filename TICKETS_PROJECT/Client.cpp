@@ -2,7 +2,10 @@
 #include <iostream>
 //#include "Room.h"
 //#include "DataOfRooms.cpp"
-
+/**
+ * @brief Construct a new Client:: Client object
+ * 
+ */
 Client::Client()
 {
     this->row = 0;
@@ -13,12 +16,24 @@ Client::Client()
     this->name = "";
     this->serialNumber = 0;
 }
+/**
+ * @brief Construct a new Client:: Client object
+ * 
+ * @param row 
+ * @param col 
+ * @param date 
+ * @param name 
+ * @param note 
+ */
 Client::Client(int row, int col, Date date, std::string name, std::string note) : row(row), col(col), reserve(false), buy(false), name(name), note(note)
 {
     this->date.setDay(date.getDay());
     this->date.setMonth(date.getMonth());
     this->date.setYear(date.getYear());
-}
+}/**
+ * @brief print in a console the data of the client object
+ * 
+ */
 void Client::print()
 {
     std::cout << "CLIENT-> Row: " << this->row << ", Column: " << this->col;
@@ -38,6 +53,11 @@ void Client::print()
         std::cout << " \n";
     }
 }
+/**
+ * @brief print in file 
+ * 
+ * @param out 
+ */
 void Client::print(std::ostream &out)
 {
     out << this->row << " " << this->col << " ";
@@ -72,15 +92,28 @@ void Client::print(std::ostream &out)
         out << " 0";
     }
 }
-
+/**
+ * @brief get date
+ * 
+ * @return Date 
+ */
 Date Client::getDate() const
 {
     return this->date;
 }
+/**
+ * @brief set date
+ * 
+ * @param date 
+ */
 void Client::setDate(const Date &date)
 {
     this->date = date;
 }
+/**
+ * @brief read from console
+ * 
+ */
 void Client::read()
 
 {
@@ -136,6 +169,11 @@ void Client::read()
     }
 
 }
+/**
+ * @brief read from file
+ * 
+ * @param in 
+ */
 void Client::read(std::istream &in)
 {
     std::string bOrR;
@@ -165,46 +203,95 @@ void Client::read(std::istream &in)
     in >> note;
     in >> serialNumber;
 }
+/**
+ * @brief get row
+ * 
+ * @return int 
+ */
 int Client::getRow() const
 {
     return this->row;
 }
+/**
+ * @brief get column
+ * 
+ * @return int 
+ */
 int Client::getCol() const
 {
     return this->col;
 }
+/**
+ * @brief get name of the Client
+ * 
+ * @return std::string 
+ */
 std::string Client::getName() const
 {
     return name;
 }
-
+/**
+ * @brief get some notes
+ * 
+ * @return std::string 
+ */
 std::string Client::getNote() const
 {
     return note;
 }
+/**
+ * @brief set name of the client
+ * 
+ * @param name 
+ */
 void Client::setName(std::string name)
 {
     this->name = name;
 }
+/**
+ * @brief get the bool value if the ticket is reserved
+ * 
+ * @return true 
+ * @return false 
+ */
 bool Client::getReserve() const
 {
     return reserve;
 }
+/**
+ * @brief get the bool value if the ticket is bought
+ * 
+ * @return true 
+ * @return false 
+ */
 bool Client::getBuy() const
 {
     return buy;
 }
+/**
+ * @brief return the ticket number
+ * 
+ * @return long unsigned int 
+ */
 long unsigned int Client::getTicket() const
 {
     return serialNumber;
 }
-
+/**
+ * @brief printing the data of the ticket info
+ * 
+ */
 void Client::checkCode()
 
 {
     std::cout << "Date: " << date << "\n";
     std::cout << "row:" << row << ", place on a row: " << col << std::endl;
 }
+/**
+ * @brief remove client object
+ * 
+ * @return Client& 
+ */
 Client &Client::remove()
 {
     this->row = 0;
@@ -219,23 +306,3 @@ Client &Client::remove()
     this->date.setYear(1);
     return *this;
 }
-
-// bool Client::getRooms(const EventArr &data)
-// {
-//     bool flag = false;
-//     for (int i = 0; i < data.getSize(); i++)
-//     {
-//         if (data[i].getDate().isEqual(this->date))
-//         {
-//             flag = true;
-//             std::cout << data[i].getId() << "  ";
-//         }
-//     }
-
-//     if (!flag)
-//     {
-//         std::cout << "No events on this Date!\n";
-//         return false;
-//     }
-//     return true;
-// }

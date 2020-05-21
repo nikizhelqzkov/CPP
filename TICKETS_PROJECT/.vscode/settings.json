@@ -45,5 +45,7 @@
         "unordered_map": "cpp",
         "xhash": "cpp",
         "algorithm": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "${workspaceFolder}",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

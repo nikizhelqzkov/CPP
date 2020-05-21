@@ -4,9 +4,12 @@
 #include "Date.h"
 #include <string>
 //#include "DataOfRooms.h"
+
 class Client
 {
+    
 private:
+
     int row;
     int col;
     Date date;
