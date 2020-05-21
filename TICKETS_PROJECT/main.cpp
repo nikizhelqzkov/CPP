@@ -193,7 +193,7 @@ void checkTicket(EventArr &studio)
     std::cout << "\n\n";
 }
 
-void reportFromTo(EventArr &st)
+void reportFromTo(EventArr st)
 {
 
     std::cout << "\n\nWELCOME TO THE REPORT MODE!\nWrite the date from: ";
@@ -377,7 +377,7 @@ int main()
                                     event.setMatrix(v);
 
                                     st = st.addEvent(event);
-                                    std::cout << st.getSize() << "\n";
+                                    
                                     for (int i = 0; i < v.size(); i++)
                                     {
                                         for (int j = 0; j < v[i].size(); j++)
@@ -560,7 +560,7 @@ int main()
                 std::ofstream out(fileName);
                 st.printArr(out);
                 out.close();
-                canOpen = true;
+                canOpen = false;
                 save = false;
             }
         }
@@ -582,7 +582,7 @@ int main()
                 std::cout << "YOUR FILE IS SAVED ON " << fileName2 << " !!! \n\n";
                 fileName = fileName2;
 
-                canOpen = true;
+                canOpen = false;
             }
         }
         else if (a == "close" || a == "Close" || a == "CLOSE" || a == "5")

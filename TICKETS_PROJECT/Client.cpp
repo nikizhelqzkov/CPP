@@ -269,7 +269,7 @@ bool Client::getBuy() const
     return buy;
 }
 /**
- * @brief return the ticket number
+ * @brief 
  * 
  * @return long unsigned int 
  */
@@ -277,21 +277,13 @@ long unsigned int Client::getTicket() const
 {
     return serialNumber;
 }
-/**
- * @brief printing the data of the ticket info
- * 
- */
+
 void Client::checkCode()
 
 {
     std::cout << "Date: " << date << "\n";
     std::cout << "row:" << row << ", place on a row: " << col << std::endl;
 }
-/**
- * @brief remove client object
- * 
- * @return Client& 
- */
 Client &Client::remove()
 {
     this->row = 0;
@@ -306,3 +298,23 @@ Client &Client::remove()
     this->date.setYear(1);
     return *this;
 }
+
+// bool Client::getRooms(const EventArr &data)
+// {
+//     bool flag = false;
+//     for (int i = 0; i < data.getSize(); i++)
+//     {
+//         if (data[i].getDate().isEqual(this->date))
+//         {
+//             flag = true;
+//             std::cout << data[i].getId() << "  ";
+//         }
+//     }
+
+//     if (!flag)
+//     {
+//         std::cout << "No events on this Date!\n";
+//         return false;
+//     }
+//     return true;
+// }
