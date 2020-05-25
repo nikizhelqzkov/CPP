@@ -18,5 +18,6 @@ public:
     virtual ~Formula2() override;
     virtual void print() const override;
     void Print() const;
-    virtual bool isItValid()  override;
+    virtual bool isItValid() const override;
+    virtual BaseFormula *clone() const override;
 };

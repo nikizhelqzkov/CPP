@@ -4,16 +4,19 @@
 class Book
 {
 private:
-    std::vector<>
+    std::vector<BaseFormula *> data{};
+    void copy(const Book &other);
+    void clear();
+
 public:
-    Book(/* args */);
+    Book() = default;
+    Book(std::vector<BaseFormula *>);
     ~Book();
+    const Book &addFormula(const BaseFormula *);
+    Book(const Book &);
+    Book &operator=(const Book &other);
+    BaseFormula *operator[](size_t index);
+    const BaseFormula *operator[](size_t index) const;
+    std::vector<BaseFormula *> getData() const;
+    void print() const;
 };
-
-Book::Book(/* args */)
-{
-}
-
-Book::~Book()
-{
-}

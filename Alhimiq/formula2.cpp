@@ -73,7 +73,10 @@ void Formula2::print() const
 void Formula2::Print() const
 {
 }
-bool Formula2::isItValid()
+bool Formula2::isItValid()const
 {
     return true;
+}
+BaseFormula *Formula2::clone() const {
+    return new Formula2(*this);
 }

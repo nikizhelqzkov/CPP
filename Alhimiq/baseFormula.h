@@ -5,7 +5,7 @@ class BaseFormula
 
 
 protected:
-    virtual bool isItValid()  = 0;
+   
     BaseFormula() = default;
    
    // virtual BaseFormula &operator=(const BaseFormula &other);
@@ -13,4 +13,6 @@ protected:
 public:
     virtual ~BaseFormula();
     virtual void print()const = 0;
+    virtual BaseFormula *clone() const = 0;
+     virtual bool isItValid()const  = 0;
 };

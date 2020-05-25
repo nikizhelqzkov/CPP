@@ -15,11 +15,12 @@
 #include "baseFormula.cpp"
 #include "formula.cpp"
 #include "formula2.cpp"
-//s#include "formula.h"
+#include "book.cpp"
+//#include "formula.h"
 //#include "formula2.h"
-
+//#include "book.h"
 #include <tuple>
-//g++ main.cpp gold.cpp energy.cpp metal.cpp air.cpp fire.cpp earth.cpp water.cpp spirit.cpp stone.cpp philosopheStone.cpp uravnenie.cpp baseFormula.cpp formula.cpp formula2.cpp
+//g++ main.cpp gold.cpp energy.cpp metal.cpp air.cpp fire.cpp earth.cpp water.cpp spirit.cpp stone.cpp philosopheStone.cpp uravnenie.cpp baseFormula.cpp formula.cpp formula2.cpp book.cpp
 
 int main()
 {
@@ -50,11 +51,15 @@ int main()
 
     std::cout << "=========== FORMULA ===========\n\n";
     Formula formula(u, &w);
+    std::cout << formula.isItValid() << "\n";
+
     formula.print();
     std::cout << "\n\n=========== FORMULA 2 ===========\n\n";
     std::vector<Elements *> data2{&gold};
     Uravnenie Ur(data2);
     Formula2 formula2(Ur);
+    std::cout << formula2.isItValid() << "\n";
+
     formula2.print();
     Earth e;
     std::cout << "\n\n=========== VALIDATION ===========\n\n";
@@ -62,5 +67,12 @@ int main()
     Uravnenie u3(data3);
     Formula f3(u3, &m);
     std::cout << f3.isItValid() << "\n";
+
+    std::cout << "\n\n=========== Book ===========\n\n";
+    Book book;
+    book.addFormula(&formula);
+    book.addFormula(&formula2);
+    book.print();
+
     return 0;
 }

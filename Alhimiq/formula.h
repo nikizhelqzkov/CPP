@@ -14,5 +14,6 @@ public:
     // Formula& operator=(const Formula&);
     virtual ~Formula() override;
     virtual void print() const override;
-    virtual bool isItValid()  override;
+    virtual bool isItValid()const override;
+    virtual BaseFormula *clone() const override;
 };

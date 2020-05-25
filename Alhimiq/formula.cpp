@@ -20,10 +20,9 @@ void Formula::print() const
     this->ur.printLikeFormula();
     std::cout << this->elem->getName();
 }
-bool Formula::isItValid()
+bool Formula::isItValid() const
 {
     bool v = false, v3 = false, v4 = false, v2 = false;
-    ur.print_2();
     for (int k = 0; k < ur.getData().size() - 1; k++)
     {
         v = false;
@@ -44,7 +43,7 @@ bool Formula::isItValid()
                             {
                                 if (ur[z]->getReactings()[j] == ur[k]->getName())
                                 {
-                                   
+
                                     v = true;
                                 }
                             }
@@ -76,7 +75,7 @@ bool Formula::isItValid()
                         {
                             if (ur[z]->getName() == ur[k]->getReactings()[j])
                             {
-                              
+
                                 v3 = true;
                             }
                         }
@@ -97,4 +96,8 @@ bool Formula::isItValid()
     }
     bool val = v4 || v2;
     return val;
+}
+BaseFormula *Formula::clone() const
+{
+    return new Formula(*this);
 }

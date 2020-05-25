@@ -19,5 +19,5 @@ public:
     std::vector<Elements *> getData() const;
     void print() const;
     void print_2() const;
-    void printLikeFormula()const;
+    void printLikeFormula() const;
 };
