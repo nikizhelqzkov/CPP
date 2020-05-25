@@ -22,3 +22,6 @@ void Fire::print() const
 Elements *Fire::clone() const {
     return new Fire(*this);
 }
+std::vector<std::string> Fire::getFathers() const{
+    return this->father;
+}

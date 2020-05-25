@@ -26,3 +26,6 @@ void Gold::print() const
 Elements *Gold::clone() const {
     return new Gold(*this);
 }
+std::vector<std::string> Gold::getFathers() const{
+    return this->father;
+}

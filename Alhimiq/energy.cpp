@@ -42,3 +42,6 @@ void Energy::print() const
 Elements *Energy::clone() const {
     return new Energy(*this);
 }
+std::vector<std::string> Energy::getFathers() const{
+    return this->father;
+}

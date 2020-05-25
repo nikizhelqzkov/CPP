@@ -42,3 +42,6 @@ void Stone::print() const
 Elements *Stone::clone() const {
     return new Stone(*this);
 }
+std::vector<std::string> Stone::getFathers() const{
+    return this->father;
+}

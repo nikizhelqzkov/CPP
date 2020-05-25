@@ -25,3 +25,6 @@ void Spirit::print() const
 Elements *Spirit::clone() const {
     return new Spirit(*this);
 }
+std::vector<std::string> Spirit::getFathers() const{
+    return this->father;
+}

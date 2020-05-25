@@ -18,6 +18,11 @@ void Water::print() const
         std::cout << w << "  ";
     }
 }
-Elements *Water::clone() const {
+Elements *Water::clone() const
+{
     return new Water(*this);
+}
+std::vector<std::string> Water::getFathers() const
+{
+    return this->father;
 }

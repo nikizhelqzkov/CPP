@@ -42,3 +42,6 @@ void Metal::print() const
 Elements *Metal::clone() const {
     return new Metal(*this);
 }
+std::vector<std::string> Metal::getFathers() const{
+    return this->father;
+}

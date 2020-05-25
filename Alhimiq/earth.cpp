@@ -20,3 +20,6 @@ void Earth::print() const
 Elements *Earth::clone() const {
     return new Earth(*this);
 }
+std::vector<std::string> Earth::getFathers() const{
+    return this->father;
+}

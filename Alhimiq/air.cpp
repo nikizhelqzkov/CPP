@@ -1,6 +1,5 @@
 #include "air.h"
 
-
 Air::~Air()
 {
 }
@@ -19,6 +18,10 @@ std::string Air::getName() const
 {
     return this->name;
 }
-Elements *Air::clone() const {
+Elements *Air::clone() const
+{
     return new Air(*this);
+}
+std::vector<std::string> Air::getFathers() const{
+    return this->father;
 }
