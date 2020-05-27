@@ -14,17 +14,23 @@ ElementsCountStorage &ElementsCountStorage::operator=(const ElementsCountStorage
     }
     return *this;
 }
-ElementsCountStorage &ElementsCountStorage::addEl(const CountElements &other)
+ElementsCountStorage &ElementsCountStorage::operator+=(const CountElements &other)
 {
     bool isItIn = false;
-    for (CountElements d : data)
+    int index = 0;
+    for (int i = 0; i < data.size(); ++i)
     {
-        if (d.getName() == other.getName())
+        if (data[i].getName() == other.getName())
         {
             isItIn = true;
-            d.setCount(d.getCount() + 1);
-            return *this;
+            index = i;
+            //  d.setCount(d.getCount() + 1);
         }
+    }
+    if (isItIn)
+    {
+        this->setCountEl(index, data[index].getCount() + 1);
+        return *this;
     }
     if (!isItIn)
     {
@@ -38,8 +44,17 @@ ElementsCountStorage &ElementsCountStorage::removeEl()
     {
         if (data[i].getIsItEmpty())
         {
-            data.erase(data.begin()+i);
+            data.erase(data.begin() + i);
         }
     }
     return *this;
+}
+std::vector<CountElements> ElementsCountStorage::getData() const
+{
+    return this->data;
+}
+
+void ElementsCountStorage::setCountEl(int pos, int count)
+{
+    this->data[pos].setCount(count);
 }

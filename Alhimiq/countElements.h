@@ -4,7 +4,7 @@ class CountElements
 {
 private:
     std::string name{};
-    int count{0};
+    int count{1};
      bool isItEmpty();
 public:
     CountElements() = default;

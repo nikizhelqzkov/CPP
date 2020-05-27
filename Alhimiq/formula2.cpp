@@ -73,10 +73,21 @@ void Formula2::print() const
 void Formula2::Print() const
 {
 }
-bool Formula2::isItValid()const
+bool Formula2::isItValid() const
 {
     return true;
 }
-BaseFormula *Formula2::clone() const {
+BaseFormula *Formula2::clone() const
+{
     return new Formula2(*this);
 }
+Uravnenie Formula2::getUr() const
+{
+    return this->data;
+}
+ Elements* Formula2::getEl()const{
+     return this->elem;
+ }
+std::vector<Elements *>Formula2:: getEl_2() const{
+     return this->el;
+ }

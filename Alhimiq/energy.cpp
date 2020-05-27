@@ -4,19 +4,19 @@ Energy::Energy() : Water(), Air()
     reactWith = Water::reactWith;
     size_t size = reactWith.size();
     bool isIn = false;
-    for (size_t i = 0; i < Energy::reactWith.size(); i++)
+    for (size_t i = 0; i < Air::reactWith.size(); i++)
     {
         isIn = false;
         for (size_t j = 0; j < size; j++)
         {
-            if (reactWith[j] == Energy::reactWith[i])
+            if (reactWith[j] == Air::reactWith[i])
             {
                 isIn = true;
             }
         }
         if (!isIn)
         {
-            reactWith.push_back(Energy::reactWith[i]);
+            reactWith.push_back(Air::reactWith[i]);
         }
     }
 }

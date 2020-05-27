@@ -11,6 +11,7 @@ private:
     Earth e;
     Water w;
     std::vector<Elements *> el2 = {&e, &f, &w, &a, &m};
+    Elements *elem{nullptr};
 
 public:
     Formula2(const Uravnenie &);
@@ -20,4 +21,7 @@ public:
     void Print() const;
     virtual bool isItValid() const override;
     virtual BaseFormula *clone() const override;
+    virtual Uravnenie getUr() const override;
+    virtual Elements *getEl() const override;
+    virtual std::vector<Elements *> getEl_2() const override;
 };

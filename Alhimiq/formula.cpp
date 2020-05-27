@@ -1,24 +1,14 @@
 #include "formula.h"
 Formula::Formula(const Uravnenie &_ur, Elements *_el) : ur(_ur), elem(_el) {}
 Formula::Formula(const Formula &other) : Formula(other.ur, other.elem) {}
-// Formula &Formula::operator=(const Formula &other)
-// {
-//     if (this != &other)
-//     {
-//         this->ur = other.ur;
-//         this->elem = other.elem;
-//     }
-//     return *this;
-// }
 
-// Formula(Elements *);
 Formula::~Formula()
 {
 }
 void Formula::print() const
 {
     this->ur.printLikeFormula();
-    std::cout << this->elem->getName()<<"\n";
+    std::cout << this->elem->getName() << "\n";
 }
 bool Formula::isItValid() const
 {
@@ -101,3 +91,13 @@ BaseFormula *Formula::clone() const
 {
     return new Formula(*this);
 }
+Uravnenie Formula::getUr() const
+{
+    return this->ur;
+}
+ Elements* Formula::getEl()const{
+     return this->elem;
+ }
+ std::vector<Elements *>Formula:: getEl_2() const{
+     return this->el_2;
+ }

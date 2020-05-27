@@ -18,6 +18,9 @@
 #include "formula2.cpp"
 #include "book.cpp"
 #include "ElementsFactory.cpp"
+#include "countElements.cpp"
+#include "ElementsCountStorage.cpp"
+#include "Person.cpp"
 //#include "ElementsFactory.h"
 //#include "formula.h"
 //#include "formula2.h"
@@ -27,7 +30,8 @@
 int main()
 {
 
-    // Energy en;
+    //  Energy en;
+    //  en.print()
     // Spirit sp;
     // Metal m;
     // Stone stone;
@@ -101,7 +105,7 @@ int main()
             Formula2 f2(ur);
             book.addFormula(&f2);
             // book.print();
-           // std::cout << "/" << str << " \n";
+            // std::cout << "/" << str << " \n";
         }
 
         else
@@ -110,7 +114,6 @@ int main()
             //std::cout << str << " ";
             std::vector<Elements *> v2;
             v2.push_back(ElementsFactory::readElements(in, str));
-            
 
             while (equal)
             {
@@ -121,13 +124,13 @@ int main()
                 if (str == "=")
                 {
                     equal = false;
-                    std::getline(in,str,'\n');
-                    str.erase(0,1);
-                  //  std::cout << str << " ";
+                    std::getline(in, str, '\n');
+                    str.erase(0, 1);
+                    //  std::cout << str << " ";
                     Uravnenie ur(v2);
 
                     Formula f1(ur, ElementsFactory::readElements(in, str));
-                   // f1.print();
+                    f1.print();
                     book.addFormula(&f1);
                 }
                 else if (str != "=" && str != "+")
@@ -141,8 +144,34 @@ int main()
             // f1.print();
         }
     }
+      std::cout << "\n\n============YOUR VALID FORMULAS=============\n\n";
     book.print();
     in.close();
+
+    std::vector<CountElements> c_data;
+
+    std::cout << "\n\n============YOUR ELEMENTS=============\n\n";
+    for (size_t i = 0; i < 4; i++)
+    {
+        int count;
+        std::string nameOfEl;
+        std::cout << "Write count of basic element and the name of the element:\n";
+        std::cin >> count >> nameOfEl;
+        CountElements c(nameOfEl, count);
+        c_data.push_back(c);
+    }
+    ElementsCountStorage storage(c_data);
+    Person person(book, storage);
+    std::cout << "\n=============IS IT WORKING=============\n\n";
+    if (person.isItValid())
+    {
+        std::cout << "Yes, it is!\n";
+    }
+    else
+    {
+        std::cout << "No, it isn't!\n";
+    }
+    
 
     return 0;
 }
