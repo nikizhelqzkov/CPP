@@ -1,0 +1,8 @@
+/Stone
+Water + Fire = Stone
+/Fire
+Fire + Gold = Metal
+Water + Earth = Gold
+Air + Air = Spirit
+Metal + Fire + Water = Spirit
+Gold + Spirit + Energy = Philosopher's Stone

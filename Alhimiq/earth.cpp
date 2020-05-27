@@ -17,9 +17,15 @@ void Earth::print() const
         std::cout << e << "  ";
     }
 }
-Elements *Earth::clone() const {
+Elements *Earth::clone() const
+{
     return new Earth(*this);
 }
-std::vector<std::string> Earth::getFathers() const{
+std::vector<std::string> Earth::getFathers() const
+{
     return this->father;
+}
+Earth *Earth::read(std::istream &in)
+{
+    return new Earth;
 }

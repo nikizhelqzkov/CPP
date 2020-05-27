@@ -49,7 +49,6 @@ PS::PS() : Earth(), Fire(), Water(), Air()
             reactWith.push_back(Air::reactWith[i]);
         }
     }
-
 }
 
 PS::~PS()
@@ -70,9 +69,15 @@ void PS::print() const
         std::cout << ps << "  ";
     }
 }
-Elements *PS::clone() const {
+Elements *PS::clone() const
+{
     return new PS(*this);
 }
-std::vector<std::string> PS::getFathers() const{
+std::vector<std::string> PS::getFathers() const
+{
     return this->father;
+}
+PS *PS::read(std::istream &in)
+{
+    return new PS;
 }

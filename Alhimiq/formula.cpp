@@ -18,7 +18,7 @@ Formula::~Formula()
 void Formula::print() const
 {
     this->ur.printLikeFormula();
-    std::cout << this->elem->getName();
+    std::cout << this->elem->getName()<<"\n";
 }
 bool Formula::isItValid() const
 {

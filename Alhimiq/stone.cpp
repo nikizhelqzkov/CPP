@@ -36,12 +36,18 @@ void Stone::print() const
 {
     for (auto s : this->reactWith)
     {
-        std::cout<<s<<"  ";
+        std::cout << s << "  ";
     }
 }
-Elements *Stone::clone() const {
+Elements *Stone::clone() const
+{
     return new Stone(*this);
 }
-std::vector<std::string> Stone::getFathers() const{
+std::vector<std::string> Stone::getFathers() const
+{
     return this->father;
+}
+Stone *Stone::read(std::istream &in)
+{
+    return new Stone;
 }

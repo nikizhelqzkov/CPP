@@ -25,3 +25,7 @@ Elements *Air::clone() const
 std::vector<std::string> Air::getFathers() const{
     return this->father;
 }
+Air* Air::read(std::istream& in){
+    
+    return new Air;
+}

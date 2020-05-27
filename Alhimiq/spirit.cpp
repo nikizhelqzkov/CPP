@@ -19,12 +19,18 @@ void Spirit::print() const
 {
     for (auto s : this->reactWith)
     {
-        std::cout<<s<<"  ";
+        std::cout << s << "  ";
     }
 }
-Elements *Spirit::clone() const {
+Elements *Spirit::clone() const
+{
     return new Spirit(*this);
 }
-std::vector<std::string> Spirit::getFathers() const{
+std::vector<std::string> Spirit::getFathers() const
+{
     return this->father;
+}
+Spirit *Spirit::read(std::istream &in)
+{
+    return new Spirit;
 }

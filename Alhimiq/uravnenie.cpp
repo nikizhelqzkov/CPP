@@ -59,10 +59,11 @@ void Uravnenie::print_2() const
 {
     for (Elements *el : this->data)
     {
-        for(auto str:el->getReactings()){
-            std::cout<<str<<" ";
+        for (auto str : el->getReactings())
+        {
+            std::cout << str << " ";
         }
-        std::cout<<std::endl;
+        std::cout << std::endl;
     }
     std::cout << std::endl;
 }
@@ -79,5 +80,5 @@ void Uravnenie::printLikeFormula() const
         {
             std::cout << this->data[i]->getName() << " + ";
         }
-        }
+    }
 }

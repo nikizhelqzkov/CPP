@@ -18,4 +18,5 @@ public:
   virtual void print() const override;
   virtual Elements *clone() const override;
   virtual std::vector<std::string> getFathers() const override;
+  static Water *read(std::istream &);
 };

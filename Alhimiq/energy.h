@@ -19,4 +19,5 @@ public:
     virtual void print() const override;
     virtual Elements *clone() const override;
     virtual std::vector<std::string> getFathers() const override;
+    static Energy *read(std::istream &);
 };

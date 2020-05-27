@@ -39,9 +39,15 @@ void Metal::print() const
         std::cout << m << "  ";
     }
 }
-Elements *Metal::clone() const {
+Elements *Metal::clone() const
+{
     return new Metal(*this);
 }
-std::vector<std::string> Metal::getFathers() const{
+std::vector<std::string> Metal::getFathers() const
+{
     return this->father;
+}
+Metal *Metal::read(std::istream &in)
+{
+    return new Metal;
 }

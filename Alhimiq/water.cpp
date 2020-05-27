@@ -26,3 +26,7 @@ std::vector<std::string> Water::getFathers() const
 {
     return this->father;
 }
+Water *Water::read(std::istream &in)
+{
+    return new Water;
+}

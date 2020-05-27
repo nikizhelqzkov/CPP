@@ -19,9 +19,15 @@ void Fire::print() const
         std::cout << f << "  ";
     }
 }
-Elements *Fire::clone() const {
+Elements *Fire::clone() const
+{
     return new Fire(*this);
 }
-std::vector<std::string> Fire::getFathers() const{
+std::vector<std::string> Fire::getFathers() const
+{
     return this->father;
+}
+Fire *Fire::read(std::istream &in)
+{
+    return new Fire;
 }

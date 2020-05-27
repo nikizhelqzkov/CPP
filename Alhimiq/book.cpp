@@ -57,7 +57,7 @@ void Book::print() const
     for (BaseFormula *f : this->data)
     {
          f->print();
-         std::cout<<"\n";
+         //std::cout<<"\n";
     }
-    std::cout << std::endl;
+    //std::cout << std::endl;
 }

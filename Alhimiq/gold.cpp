@@ -23,9 +23,15 @@ void Gold::print() const
         std::cout << g << "  ";
     }
 }
-Elements *Gold::clone() const {
+Elements *Gold::clone() const
+{
     return new Gold(*this);
 }
-std::vector<std::string> Gold::getFathers() const{
+std::vector<std::string> Gold::getFathers() const
+{
     return this->father;
+}
+Gold *Gold::read(std::istream &in)
+{
+    return new Gold;
 }
