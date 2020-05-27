@@ -51,7 +51,6 @@ int main()
                     equal = false;
                     std::getline(in, str, '\n');
                     str.erase(0, 1);
-                    //  std::cout << str << " ";
                     Uravnenie ur(v2);
 
                     Formula f1(ur, ElementsFactory::readElements(in, str));

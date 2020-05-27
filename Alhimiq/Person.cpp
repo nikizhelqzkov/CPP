@@ -26,7 +26,7 @@ bool Person::isItValid()
 
     for (int i = 0; i <= index; ++i)
     {
-        //proverka ako e formula1 ili e formula 2 pyro e formula 1
+      
         if (formulas[i]->getUr().getData().size() > 1)
         {
             for (int j = 0; j < formulas[i]->getUr().getData().size(); ++j)
@@ -38,7 +38,6 @@ bool Person::isItValid()
                     {
                         isItHasAName = true;
                         storage.setCountEl(stIndex, storage.getData()[stIndex].getCount() - 1);
-                        //storage.getData()[stIndex].setCount(storage.getData()[stIndex].getCount() - 1);
                     }
                 }
 
@@ -69,7 +68,6 @@ bool Person::isItValid()
                 {
                     isItHasAName2 = true;
                     storage.setCountEl(stIndex, storage.getData()[stIndex].getCount() - 1);
-                    //storage.getData()[stIndex].setCount(storage.getData()[stIndex].getCount() - 1);
                 }
             }
             if (!isItHasAName2)

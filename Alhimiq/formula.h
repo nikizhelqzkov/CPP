@@ -12,7 +12,6 @@ public:
     Formula() = default;
     Formula(const Uravnenie &, Elements *);
     Formula(const Formula &);
-    // Formula& operator=(const Formula&);
     virtual ~Formula() override;
     virtual void print() const override;
     virtual bool isItValid() const override;

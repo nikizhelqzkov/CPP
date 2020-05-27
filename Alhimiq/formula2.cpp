@@ -64,11 +64,6 @@ Formula2::~Formula2()
 void Formula2::print() const
 {
     std::cout << "/" << this->data.getData()[0]->getName() << "\n";
-    // std::cout << this->data.getData()[0]->getName() << "--> ";
-    // for (int i = 0; i < this->el.size(); i++)
-    // {
-    //     std::cout << this->el[i]->getName() << " ";
-    // }
 }
 void Formula2::Print() const
 {

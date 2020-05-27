@@ -24,7 +24,6 @@ ElementsCountStorage &ElementsCountStorage::operator+=(const CountElements &othe
         {
             isItIn = true;
             index = i;
-            //  d.setCount(d.getCount() + 1);
         }
     }
     if (isItIn)
