@@ -241,6 +241,7 @@ Date &Date::operator=(const Date &other)
 	this->day = other.day;
 	this->month = other.month;
 	this->year = other.year;
+	return *this;
 }
 /**
  * @brief Булев оператор проверяващ дали две дати съвпадат
@@ -263,6 +264,7 @@ std::ostream &operator<<(std::ostream &out, const Date &date)
 {
 	// out << date.year << '-' << date.month << '-' << date.day<<" ";
 		 out << date.year << ' ' << date.month << ' ' << date.day<<' ';
+		 return out;
 
 }
 /**
