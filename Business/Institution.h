@@ -12,10 +12,12 @@ public:
     Institution() = default;
     Institution(std::string, int);
     virtual ~Institution();
-    virtual bool has_memebr(Person) const = 0;
-    virtual Payer &payer(const Payer &) const = 0;
+    virtual bool has_member(Person) const = 0;
+    virtual const Payer *payer(const Payer *) = 0;
     virtual bool valid() const = 0;
     virtual Institution *clone() const = 0;
+    virtual const Payer* getPayer()const = 0;
+    virtual std::string type()const = 0;
 };
 
 #endif
