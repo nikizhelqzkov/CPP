@@ -1,12 +1,10 @@
-#include <iostream>
+#include "Organization.h"
 
-//#include "Organization.h"
-#include <iostream>
-#include "Person.cpp"
-#include "Payer.cpp"
-#include "Institution.cpp"
-#include "Group.cpp"
-#include "Organization.cpp"
+// #include "Person.cpp"
+// #include "Payer.cpp"
+// #include "Institution.cpp"
+// #include "Group.cpp"
+// #include "Organization.cpp"
 
 //g++ main.cpp Person.cpp Payer.cpp Institution.cpp Group.cpp Organization.cpp
 int main()

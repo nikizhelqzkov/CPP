@@ -2,6 +2,7 @@
 #define INSTITUTION_INCLUDED
 #include "Payer.h"
 #include "Person.h"
+#include <iostream>
 class Institution
 {
 private:
