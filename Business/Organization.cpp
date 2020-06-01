@@ -15,9 +15,40 @@ void Organization::clear()
         list = nullptr;
     }
 }
+int Organization::count2()
+{
+    int count = 0;
+    for (Institution *l : institutions_list)
+    {
+        if (l->type() == "Group")
+        {
+            count++;
+        }
+        if (l->type() == "Organization")
+        {
+            count += Organization::count();
+        }
+    }
+    return count;
+}
+int Organization::count() const
+{
+    int count = 0;
+    for (Institution *l : institutions_list)
+    {
+        count += l->count();
+    }
+    return count;
+}
 
-Organization::Organization(std::string name, int id, std::vector<Institution *> list, std::string address) : Institution(name, id),
-                                                                                                             institutions_list(list), organization_address(address) {}
+Organization::Organization(std::string name, std::vector<Institution *> list, std::string address) : Institution(name),
+                                                                                                     institutions_list(list), organization_address(address)
+{
+    setId(this->count());
+    std::cout << "ID -> " << this->getId() << std::endl;
+}
+//setId();
+
 Organization::~Organization()
 {
     this->clear();
@@ -97,21 +128,26 @@ bool Organization::valid() const
     for (Institution *list : this->institutions_list)
     {
         valid = false;
-        if (list->type() == "Organization")
+        // if (list->type() == "Organization")
+        // {
+        //     valid = list->valid();
+        //     if (valid)
+        //     {
+        //         return true;
+        //     }
+        // }
+        // else if (list->type() == "Group")
+        // {
+        //     valid = list->valid();
+        //     if (valid)
+        //     {
+        //         return true;
+        //     }
+        // }
+        valid = list->valid();
+        if (valid)
         {
-            valid = list->valid();
-            if (valid)
-            {
-                return true;
-            }
-        }
-        else if (list->type() == "Group")
-        {
-            valid = list->valid();
-            if (valid)
-            {
-                return true;
-            }
+            return true;
         }
     }
     return false;
@@ -127,4 +163,8 @@ const Payer *Organization::getPayer() const
 std::string Organization::type() const
 {
     return this->typeName;
+}
+bool Organization::compatible(const Organization &other) const
+{
+    return this->group_payer == other.group_payer;
 }

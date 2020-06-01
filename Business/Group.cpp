@@ -1,6 +1,6 @@
 #include "Group.h"
 
-Group::Group(std::string name, int id, bool hasAPayer) : Institution(name, id)
+Group::Group(std::string name, bool hasAPayer) : Institution(name)
 {
     this->has = hasAPayer;
 }
@@ -48,4 +48,7 @@ const Payer *Group::getPayer() const
 std::string Group::type() const
 {
     return this->typeName;
+}
+int Group::count()const{
+    return 1;
 }

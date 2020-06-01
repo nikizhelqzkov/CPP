@@ -12,7 +12,7 @@ private:
 
 public:
     Group() = default;
-    Group(std::string,int,bool);
+    Group(std::string,bool);
     ~Group();
     void addGroupId();
     virtual bool has_member(Person) const override;
@@ -22,6 +22,7 @@ public:
     int getId()const;
     virtual const Payer* getPayer()const override;
     virtual std::string type()const override;
+    virtual int count()const override;
 
     
 };

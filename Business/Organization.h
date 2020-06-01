@@ -9,12 +9,14 @@ private:
     std::string organization_address;
     const Payer *group_payer = nullptr;
     std::string typeName = "Organization";
+
     void copy(const Organization &);
     void clear();
+    int count2();
 
 public:
     Organization() = default;
-    Organization(std::string, int, std::vector<Institution *>, std::string);
+    Organization(std::string, std::vector<Institution *>, std::string);
     ~Organization();
     Organization(const Organization &);
     Organization &operator=(const Organization &);
@@ -28,6 +30,8 @@ public:
     virtual Institution *clone() const override;
     virtual const Payer *getPayer() const override;
     virtual std::string type() const override;
+    bool compatible(const Organization &) const;
+    virtual int count() const override;
 };
 
 #endif
