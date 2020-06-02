@@ -128,22 +128,6 @@ bool Organization::valid() const
     for (Institution *list : this->institutions_list)
     {
         valid = false;
-        // if (list->type() == "Organization")
-        // {
-        //     valid = list->valid();
-        //     if (valid)
-        //     {
-        //         return true;
-        //     }
-        // }
-        // else if (list->type() == "Group")
-        // {
-        //     valid = list->valid();
-        //     if (valid)
-        //     {
-        //         return true;
-        //     }
-        // }
         valid = list->valid();
         if (valid)
         {
@@ -168,6 +152,27 @@ bool Organization::compatible(const Organization &other) const
 {
     return this->group_payer == other.group_payer;
 }
-std::vector<Person>Organization::getData()const{
-    
+bool Organization::compatibleInst(const Institution *other) const
+{
+    return this->group_payer == other->getPayer();
+}
+std::vector<Person> Organization::getData() const
+{
+}
+void Organization::add_institution(Institution *other)
+{
+    if (other->valid())
+    {
+        if (other->type() == "Organization")
+        {
+            if(this->compatibleInst(other)){
+                this->institutions_list.push_back(other);
+            }
+        }
+        else if(other->type() == "Group")
+        {
+             this->institutions_list.push_back(other);
+        }
+        
+    }
 }

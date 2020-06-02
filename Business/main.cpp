@@ -7,6 +7,21 @@
 // #include "Organization.cpp"
 
 //g++ main.cpp Person.cpp Payer.cpp Institution.cpp Group.cpp Organization.cpp
+
+std::vector<Institution *> clear_institutions(std::vector<Institution *> data)
+{
+    std::vector<Institution *> temp;
+    temp = data;
+    for (int i = 0; i < temp.size(); ++i)
+    {
+        if (!temp[i]->valid())
+        {
+            temp.erase(temp.begin() + i);
+        }
+    }
+    return temp;
+}
+
 int main()
 {
     Person a("nikolay", true);
@@ -119,16 +134,49 @@ int main()
     std::cout << "========================\n\n";
     Group gr8("kalqne", true);
     gr8.payer(&p);
+    gr8.addGroupId();
     std::vector<Institution *> data3;
     if (org2.valid())
         data3.push_back(&org2);
     if (gr8.valid())
         data3.push_back(&gr8);
+
+    std::cout << "-------------\n\n";
+    for (Institution *data : org2.getList())
+    {
+
+        std::cout << data->type() << " " << data->getPayer()->getId() << " " << data->getData().size() << " ";
+    }
+
     Organization org3("kalqne", data3, "pichka dddddd");
     org3.payer(&p);
     std::cout << org3.getCountOfList() << std::endl;
     std::cout << org3.getPayer()->getName() << " " << org3.valid() << std::endl;
     std::cout << org3.compatible(org2) << " " << org3.has_member(a) << " " << org3.type() << " " << std::endl;
 
+    std::cout << "===========-=-------new part------============\n\n";
+
+    std::cout << org3.getList().size() << "\n";
+    org3.add_institution(&gr);
+    std::cout << org3.getList().size() << "\n";
+    org3.add_institution(&gr5);
+    std::cout << org3.getList().size() << "\n";
+
+    std::cout << "++++++++++++++++++++++++++++++\n\n";
+    std::vector<Institution *> list;
+    Group notValid("kalqne", false);
+    Group notValid2("kalqne", false);
+    list.push_back(&org3);
+    list.push_back(&org2);
+    list.push_back(&gr5);
+    list.push_back(&notValid2);
+    list.push_back(&gr7);
+    list.push_back(&notValid);
+
+    std::cout << list.size() << std::endl;
+
+    std::vector<Institution *> newList;
+    newList = clear_institutions(list);
+    std::cout << newList.size() << std::endl;
     return 0;
 }

@@ -6,13 +6,14 @@ class Organization : public Institution
 {
 private:
     std::vector<Institution *> institutions_list;
-    std::string organization_address;
+    std::string organization_address = "";
     const Payer *group_payer = nullptr;
     std::string typeName = "Organization";
 
     void copy(const Organization &);
     void clear();
     int count2();
+    bool compatibleInst(const Institution *) const;
 
 public:
     Organization() = default;
@@ -31,8 +32,10 @@ public:
     virtual const Payer *getPayer() const override;
     virtual std::string type() const override;
     bool compatible(const Organization &) const;
+
     virtual int count() const override;
-    virtual std::vector<Person>getData()const override;
+    virtual std::vector<Person> getData() const override;
+    void add_institution( Institution *);
 };
 
 #endif
