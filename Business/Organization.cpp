@@ -168,3 +168,6 @@ bool Organization::compatible(const Organization &other) const
 {
     return this->group_payer == other.group_payer;
 }
+std::vector<Person>Organization::getData()const{
+    
+}

@@ -3,11 +3,13 @@
 #include "Payer.h"
 #include "Person.h"
 #include <iostream>
+#include <vector>
 class Institution
 {
 private:
     std::string name;
     int id = 0;
+
 
 public:
     Institution() = default;
@@ -22,6 +24,7 @@ public:
     void setId(int);
     virtual int getId()const;
     virtual int count()const = 0;
+    virtual std::vector<Person>getData()const  = 0;
 };
 
 #endif

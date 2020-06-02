@@ -49,6 +49,21 @@ std::string Group::type() const
 {
     return this->typeName;
 }
-int Group::count()const{
+int Group::count() const
+{
+
     return 1;
 }
+void Group::addPerson(const Person &p)
+{
+    if (this->has_member(p))
+    {
+        this->data.push_back(p);
+        std::cout << "The Person : " << p.getName() << " was added\n";
+    }
+}
+std::vector<Person> Group::getData() const
+{
+    return this->data;
+}
+

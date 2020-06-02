@@ -32,6 +32,7 @@ public:
     virtual std::string type() const override;
     bool compatible(const Organization &) const;
     virtual int count() const override;
+    virtual std::vector<Person>getData()const override;
 };
 
 #endif
