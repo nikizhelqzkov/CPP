@@ -24,9 +24,9 @@ void Group::addGroupId()
     }
 }
 
-bool Group::has_member(Person person) const
+bool Group::has_member(Person person, std::function<bool(int,int)> rule) const
 {
-    return group_payer->payer_member_rule(this->group_id, person.getId());
+    return group_payer->payer_member_rule(rule,this->group_id, person.getId());
 }
 
 bool Group::valid() const
@@ -37,7 +37,7 @@ Institution *Group::clone() const
 {
     return new Group();
 }
-int Group::getId() const
+int Group::getIdGroup() const
 {
     return this->group_id;
 }
@@ -51,12 +51,11 @@ std::string Group::type() const
 }
 int Group::count() const
 {
-
     return 1;
 }
-void Group::addPerson(const Person &p)
+void Group::addPerson(const Person &p,std::function<bool(int,int)>f)
 {
-    if (this->has_member(p))
+    if (this->has_member(p,f))
     {
         this->data.push_back(p);
         std::cout << "The Person : " << p.getName() << " was added\n";
@@ -66,4 +65,7 @@ std::vector<Person> Group::getData() const
 {
     return this->data;
 }
-
+int Group::countPersons()
+{
+    return this->data.size();
+}

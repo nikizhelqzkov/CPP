@@ -83,11 +83,11 @@ std::vector<Institution *> Organization::getList() const
 {
     return this->institutions_list;
 }
-bool Organization::has_member(Person person) const
+bool Organization::has_member(Person person, std::function<bool(int,int)>f) const
 {
     for (Institution *list : this->institutions_list)
     {
-        if (list->has_member(person))
+        if (list->has_member(person, f))
         {
             return true;
         }
@@ -165,14 +165,24 @@ void Organization::add_institution(Institution *other)
     {
         if (other->type() == "Organization")
         {
-            if(this->compatibleInst(other)){
+            if (this->compatibleInst(other))
+            {
                 this->institutions_list.push_back(other);
             }
         }
-        else if(other->type() == "Group")
+        else if (other->type() == "Group")
         {
-             this->institutions_list.push_back(other);
+            this->institutions_list.push_back(other);
         }
-        
     }
+}
+
+int Organization::countPersons()
+{
+    int sum = 0;
+    for (int i = 0; i < this->institutions_list.size(); ++i)
+    {
+        sum += institutions_list[i]->countPersons();
+    }
+    return sum;
 }

@@ -6,6 +6,11 @@ void Institution::setId(int id)
 {
     this->id = id;
 }
-int Institution::getId()const{
+int Institution::getId() const
+{
+    if (this->type() == "Group")
+    {
+        return 1;
+    }
     return this->id;
 }

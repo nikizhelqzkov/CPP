@@ -5,8 +5,15 @@ Payer::Payer()
     this->name = "";
     this->id = 0;
 }
-Payer::Payer(std::string _name, int _id) : name(_name), id(_id) {}
-Payer::Payer(const Payer &other) : Payer(other.name, other.id) {}
+Payer::Payer(std::string _name, int _id, rule f) : name(_name), id(_id), payer_rule(f)
+{
+}
+Payer::Payer(const Payer &other)
+{
+    this->name = other.name;
+    this->id = other.id;
+    this->payer_rule = other.payer_rule;
+}
 Payer::~Payer() {}
 Payer &Payer::operator=(const Payer &other)
 {
@@ -17,9 +24,9 @@ Payer &Payer::operator=(const Payer &other)
     }
     return *this;
 }
-bool Payer::payer_member_rule(int groupId, int PersonId) const
+bool Payer::payer_member_rule(rule f, int group_id, int person_id) const
 {
-    return groupId == PersonId;
+    return f(group_id,person_id);
 }
 std::string Payer::getName() const
 {

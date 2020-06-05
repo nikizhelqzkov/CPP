@@ -25,7 +25,7 @@ public:
     const Institution *operator[](size_t index) const;
     int getCountOfList() const;
     std::vector<Institution *> getList() const;
-    virtual bool has_member(Person) const override;
+    virtual bool has_member(Person, std::function<bool(int,int)>) const override;
     virtual const Payer *payer(const Payer *) override;
     virtual bool valid() const override;
     virtual Institution *clone() const override;
@@ -36,6 +36,8 @@ public:
     virtual int count() const override;
     virtual std::vector<Person> getData() const override;
     void add_institution( Institution *);
+
+    virtual int countPersons() override;
 };
 
 #endif
