@@ -81,16 +81,16 @@ int main()
     Person a3("ivan", true);
     Person a4("kimon", true);
     Person a5("misho", true);
-    Payer p("kozeel", 23, p_rule);
+    Payer p("dragan", 23, p_rule);
     Payer p2("Ivan", 27, p_rule);
     Payer p12("gosho", 37, p_rule);
-    Group gr("kalqne", true);
-    Group gr2("kalqne", true);
-    Group gr4("kalqne", true);
-    Group gr5("kalqne", true);
-    Group gr6("kalqne", true);
-    Group gr7("kalqne", true);
-    Group gr8("kalqne", true);
+    Group gr("inst_name", true);
+    Group gr2("inst_name", true);
+    Group gr4("inst_name", true);
+    Group gr5("inst_name", true);
+    Group gr6("inst_name", true);
+    Group gr7("inst_name", true);
+    Group gr8("inst_name", true);
 
     if (a.getHasPayer())
     {
@@ -127,7 +127,7 @@ int main()
     std::vector<Institution *> data;
     data.push_back(&gr);
     data.push_back(&gr2);
-    Organization org("kalqne", data, "mquu bau str.");
+    Organization org("inst_name", data, "dobrudja str.");
     org.payer(&p);
 
     gr4.payer(&p12);
@@ -172,7 +172,7 @@ int main()
     //     std::cout << data->type() << " " << data->getPayer()->getId() << " " << data->getData().size() << " ";
     // }
 
-    Organization org2("kalqne", data2, "kozludi 2");
+    Organization org2("inst_name", data2, "kozludui 2");
 
     org2.payer(&p2);
 
@@ -193,7 +193,7 @@ int main()
     //     std::cout << data->type() << " " << data->getPayer()->getId() << " " << data->getData().size() << " ";
     // }
 
-    Organization org3("kalqne", data3, "pichka dddddd");
+    Organization org3("inst_name", data3, "boris boikov 23");
     org3.payer(&p);
 
     org3.add_institution(&gr);
@@ -201,8 +201,8 @@ int main()
     org3.add_institution(&gr5);
 
     std::vector<Institution *> list;
-    Group notValid("kalqne", false);
-    Group notValid2("kalqne", false);
+    Group notValid("inst_name", false);
+    Group notValid2("inst_name", false);
     list.push_back(&org3);
     list.push_back(&org2);
     list.push_back(&gr5);

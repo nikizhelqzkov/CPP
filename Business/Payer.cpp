@@ -27,7 +27,7 @@ Payer &Payer::operator=(const Payer &other)
 }
 bool Payer::payer_member_rule(rule f, int group_id, int person_id) const
 {
-    return f(group_id,person_id);
+    return f(group_id, person_id);
 }
 std::string Payer::getName() const
 {
@@ -45,6 +45,7 @@ void Payer::setId(int id)
 {
     this->id = id;
 }
-std::function<int(int,int)>Payer::getRule()const{
+std::function<int(int, int)> Payer::getRule() const
+{
     return this->fRule;
 }
