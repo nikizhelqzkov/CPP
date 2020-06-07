@@ -34,10 +34,10 @@ public:
     bool compatible(const Organization &) const;
 
     virtual int count() const override;
-    virtual std::vector<Person> getData() const override;
+    //virtual std::vector<Person> getData() const override;
     void add_institution( Institution *);
 
-    virtual int countPersons() override;
+    //virtual int countPersons() override;
 };
 
 #endif

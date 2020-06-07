@@ -23,8 +23,8 @@ public:
     void setId(int);
     virtual int getId() const;
     virtual int count() const = 0;
-    virtual std::vector<Person> getData() const = 0;
-    virtual int countPersons() = 0;
+   // virtual std::vector<Person> getData() const = 0;
+    //virtual int countPersons() = 0;
 };
 
 #endif

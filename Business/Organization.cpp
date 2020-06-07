@@ -45,7 +45,6 @@ Organization::Organization(std::string name, std::vector<Institution *> list, st
                                                                                                      institutions_list(list), organization_address(address)
 {
     setId(this->count());
-    std::cout << "ID -> " << this->getId() << std::endl;
 }
 //setId();
 
@@ -156,9 +155,9 @@ bool Organization::compatibleInst(const Institution *other) const
 {
     return this->group_payer == other->getPayer();
 }
-std::vector<Person> Organization::getData() const
+/*std::vector<Person> Organization::getData() const
 {
-}
+}*/
 void Organization::add_institution(Institution *other)
 {
     if (other->valid())
@@ -176,7 +175,7 @@ void Organization::add_institution(Institution *other)
         }
     }
 }
-
+/*
 int Organization::countPersons()
 {
     int sum = 0;
@@ -185,4 +184,4 @@ int Organization::countPersons()
         sum += institutions_list[i]->countPersons();
     }
     return sum;
-}
+}*/

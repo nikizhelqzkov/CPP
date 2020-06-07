@@ -53,7 +53,7 @@ int Group::count() const
 {
     return 1;
 }
-void Group::addPerson(const Person &p,std::function<bool(int,int)>f)
+/*void Group::addPerson(const Person &p,std::function<bool(int,int)>f)
 {
     if (this->has_member(p,f))
     {
@@ -68,4 +68,4 @@ std::vector<Person> Group::getData() const
 int Group::countPersons()
 {
     return this->data.size();
-}
+}*/

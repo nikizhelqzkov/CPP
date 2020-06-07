@@ -9,6 +9,7 @@ private:
     std::string name;
     int id;
     bool payer_rule = true;
+    std::function<int(int,int)>fRule;
 
 public:
     using rule = std::function < bool(int, int)>;
@@ -22,6 +23,7 @@ public:
     int getId() const;
     void setName(std::string);
     void setId(int);
+    std::function<int(int,int)>getRule()const;
 };
 
 #endif

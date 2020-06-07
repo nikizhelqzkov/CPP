@@ -7,6 +7,7 @@ Payer::Payer()
 }
 Payer::Payer(std::string _name, int _id, rule f) : name(_name), id(_id), payer_rule(f)
 {
+    this->fRule = f;
 }
 Payer::Payer(const Payer &other)
 {
@@ -43,4 +44,7 @@ void Payer::setName(std::string name)
 void Payer::setId(int id)
 {
     this->id = id;
+}
+std::function<int(int,int)>Payer::getRule()const{
+    return this->fRule;
 }
