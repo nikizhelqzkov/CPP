@@ -1,10 +1,10 @@
-//#include "Organization.h"
+#include "Organization.h"
 
-#include "Person.cpp"
-#include "Payer.cpp"
-#include "Institution.cpp"
-#include "Group.cpp"
-#include "Organization.cpp"
+// #include "Person.cpp"
+// #include "Payer.cpp"
+// #include "Institution.cpp"
+// #include "Group.cpp"
+// #include "Organization.cpp"
 
 //g++ main.cpp Person.cpp Payer.cpp Institution.cpp Group.cpp Organization.cpp
 
@@ -210,7 +210,7 @@ int main()
     list.push_back(&gr7);
     list.push_back(&notValid);
 
-    std::cout << "_____________clear institution__________________\n\n";
+    std::cout << "\n____________________________clear institution___________________________________\n\n";
     std::cout << "Old Institution list size: " << list.size() << "\n";
     std::vector<Institution *> newList;
     newList = clear_institutions(list);
@@ -234,7 +234,7 @@ int main()
 
     // std::cout << find_most_popular_institution(newList) << "\n";
 
-    std::cout << "_____________________________find most popular__________________________________\n\n";
+    std::cout << "\n_____________________________find most popular__________________________________\n\n";
     std::vector<Person> person_data{a, a2, a3, a4, a5};
     std::cout << find_most_popular_institution(newList, person_data)<<std::endl;
     return 0;
