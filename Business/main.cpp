@@ -68,7 +68,7 @@ bool p_rule(int p_id, int gr_id)
 int main()
 {
     /*
-    Ti koito go gledash da znaesh slednoto:
+    Vie koito gledate tova da znaete slednoto:
     90% ot komentarite postaveni v koda sa zashtoto imah vtori variant za rabota na poslednata funkciq chrez 
     vector ot hora i napravih mnogo gotini funckii i gi ostavih za da se poglednat. 
     Poischistih meina ot izhodi i ostavih izhoda na dvete vunshni funkcii. 
